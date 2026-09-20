@@ -1,6 +1,6 @@
 # Plugins
 
-A plugin is a ready-to-run bundle of slash commands built around one workflow — often leaning on one or more skills behind the scenes to do the actual work.
+A plugin is how a team packages and publishes its skills for everyone else to use — not a separate workflow, just the publishing unit. Browse by plugin to see what each team has shared, or see the [Skills catalog](../skills/index.md) to browse by skill instead.
 
 <div class="grid cards" markdown>
 

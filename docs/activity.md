@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 7 · **Contributors:** 1
+**Total commits:** 8 · **Contributors:** 1
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `fb72028` | brianjgonza | 2026-09-20 | Replace the visible page title with a small brand masthead |
 | `f719643` | brianjgonza | 2026-09-20 | Drop the hero banner, reorder onboarding first, swap issue CTA for email |
 | `bdaf12c` | brianjgonza | 2026-09-20 | Tighten hero, add Claude lead-in, and link Getting Started/FAQ guides |
 | `f40747a` | brianjgonza | 2026-09-20 | Trim homepage copy and reorder sections for new-user friendliness |
@@ -18,6 +19,6 @@
 
 | Name | Commits |
 |---|---|
-| brianjgonza | 7 |
+| brianjgonza | 8 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)

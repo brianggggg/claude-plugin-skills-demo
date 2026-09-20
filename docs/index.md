@@ -6,13 +6,6 @@ hide:
 
 # Business Ops Center of Excellence { .visually-hidden }
 
-<!-- Placeholder company name — swap "Acme Inc." for the real one whenever you have it. -->
-<div class="masthead" markdown>
-
-:material-domain: __Acme Inc.__ &nbsp;·&nbsp; :material-creation: Powered by Claude
-
-</div>
-
 <div class="onboarding reveal" markdown>
 
 ## New here?
@@ -28,27 +21,17 @@ Get set up with Claude Code in a few minutes, then come back to explore what the
 
 ### What's Claude?
 
-Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the plugins and skills below.
+Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the skills below.
 
 </div>
 
-<div class="concept-row reveal" markdown>
+<div class="lead-in reveal" markdown>
 
-<div class="concept" markdown>
+### :material-flash-outline: Skills & Plugins
 
-### :material-flash-outline: Skills
+A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin is simply how a team packages and publishes its skills for everyone else to use — not a separate workflow, just the publishing unit.
 
-Teaches Claude how to do one job well, like summarizing a meeting. [Learn more →](skills/index.md)
-
-</div>
-
-<div class="concept" markdown>
-
-### :material-puzzle-outline: Plugins
-
-Ready-to-run commands for a workflow, often built on skills. [Learn more →](plugins/index.md)
-
-</div>
+[Browse Skills](skills/index.md) · [Browse Plugins](plugins/index.md)
 
 </div>
 
@@ -72,7 +55,7 @@ Ready-to-run commands for a workflow, often built on skills. [Learn more →](pl
 
     ---
 
-    Bundle commands — and existing skills — for your team.
+    Package up your team's skills so others can find and use them.
 
     [:octicons-arrow-right-24: Read the guide](guides/publishing-a-plugin.md)
 

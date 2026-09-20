@@ -191,8 +191,9 @@ def build_plugins_index(plugins):
     lines = [
         "# Plugins",
         "",
-        "A plugin is a ready-to-run bundle of slash commands built around one workflow — "
-        "often leaning on one or more skills behind the scenes to do the actual work.",
+        "A plugin is how a team packages and publishes its skills for everyone else to use — "
+        "not a separate workflow, just the publishing unit. Browse by plugin to see what each "
+        "team has shared, or see the [Skills catalog](../skills/index.md) to browse by skill instead.",
         "",
     ]
     lines.append('<div class="grid cards" markdown>')
@@ -210,8 +211,9 @@ def build_skills_index(skills, skill_to_plugins):
         "# Skills",
         "",
         "A skill teaches Claude how to do one job well — like summarizing a meeting or checking "
-        "an expense against policy. Ask Claude to use one any time; a plugin may also bundle it "
-        "behind a command.",
+        "an expense against policy. Ask Claude to use one any time; a plugin is just how a team "
+        "packages and publishes a set of skills together. Browse by skill here, or see the "
+        "[Plugins catalog](../plugins/index.md) to browse by team instead.",
         "",
     ]
     lines.append('<div class="grid cards" markdown>')

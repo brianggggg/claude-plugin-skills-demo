@@ -1,6 +1,6 @@
 # Publishing a Plugin
 
-A plugin bundles one or more ready-to-run slash commands — and optionally, existing skills — around a single workflow, like "invoice processing" or "meeting ops." Here's how to add one.
+A plugin is how your team packages and publishes its skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.
 
 ## 1. Create the plugin folder
 
@@ -8,8 +8,6 @@ A plugin bundles one or more ready-to-run slash commands — and optionally, exi
 plugins/your-plugin-name/
   .claude-plugin/
     plugin.json
-  commands/
-    your-command.md
 ```
 
 ## 2. Fill in `plugin.json`
@@ -23,22 +21,9 @@ plugins/your-plugin-name/
 }
 ```
 
-## 3. Add one file per command
+## 3. Bundle your team's skills
 
-Each command lives in `commands/` as its own Markdown file. The filename becomes the command name — `commands/audit-expenses.md` becomes `/audit-expenses`.
-
-```markdown
----
-description: One-line description shown in the catalog
----
-
-Step-by-step instructions for what this command should do when it runs,
-including which skill(s) to lean on for the actual reasoning.
-```
-
-## 4. (Optional) Bundle existing skills
-
-If your plugin should use one or more skills already in the [Skills catalog](../skills/index.md), list their names in a `skills.json` file next to `plugin.json`:
+List the skills this plugin publishes — already in the [Skills catalog](../skills/index.md), or new ones you're adding alongside it — in a `skills.json` file next to `plugin.json`:
 
 ```
 plugins/your-plugin-name/skills.json
@@ -49,6 +34,25 @@ plugins/your-plugin-name/skills.json
 ```
 
 This is what powers the "bundled skills" and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.
+
+## 4. (Optional) Add a slash command
+
+If you want a skill (or a sequence of them) runnable directly as a slash command, add a `commands/` folder:
+
+```
+plugins/your-plugin-name/commands/your-command.md
+```
+
+```markdown
+---
+description: One-line description shown in the catalog
+---
+
+Step-by-step instructions for what this command should do when it runs,
+including which skill(s) to lean on for the actual reasoning.
+```
+
+The filename becomes the command name — `commands/audit-expenses.md` becomes `/audit-expenses`.
 
 ## 5. Register it in the marketplace
 
@@ -68,4 +72,4 @@ Same as skills — open a pull request with your new files, or ask a teammate (o
 
 ## 7. What happens next
 
-Once merged, the site rebuilds automatically. Your plugin appears on the [Plugins catalog](../plugins/index.md) with its commands and bundled skills, and each bundled skill's own page updates to show it's now "used by" your plugin too.
+Once merged, the site rebuilds automatically. Your plugin appears on the [Plugins catalog](../plugins/index.md) with its bundled skills (and any commands), and each bundled skill's own page updates to show it's now "used by" your plugin too.

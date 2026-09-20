@@ -1,6 +1,6 @@
 # Skills
 
-A skill teaches Claude how to do one job well — like summarizing a meeting or checking an expense against policy. Ask Claude to use one any time; a plugin may also bundle it behind a command.
+A skill teaches Claude how to do one job well — like summarizing a meeting or checking an expense against policy. Ask Claude to use one any time; a plugin is just how a team packages and publishes a set of skills together. Browse by skill here, or see the [Plugins catalog](../plugins/index.md) to browse by team instead.
 
 <div class="grid cards" markdown>
 

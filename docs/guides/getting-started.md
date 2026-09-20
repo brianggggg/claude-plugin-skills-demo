@@ -10,9 +10,9 @@ If your team already has Claude Code set up, open a session pointed at this repo
 
 You don't need to know a skill's name or memorize a command. Describe the task in plain English — "summarize this meeting," "check this expense report against policy" — and Claude reaches for the right skill on its own.
 
-## 3. Or run a plugin command directly
+## 3. Or browse by team
 
-If a [plugin](../plugins/index.md) is installed, its commands show up as slash commands, like `/invoice-intake`. Browse the [Plugins catalog](../plugins/index.md) to see what's available and what each command does.
+Each [plugin](../plugins/index.md) is a team's published set of skills. Some also add a slash command, like `/invoice-intake`, for quick access. Browse the [Plugins catalog](../plugins/index.md) to see what each team has shared.
 
 ## 4. Have a question?
 
