@@ -7,16 +7,19 @@ build, so the catalog is always current:
                               hand-written docs/index.md via pymdownx.snippets
   docs/plugins/index.md      "Teams" catalog — a closed accordion, one entry
                               per team (technically a "plugin"), expanding to
-                              that team's published skills. Skills not
-                              published by any team get a final "Unassigned
-                              Skills" entry so nothing is orphaned.
-  docs/plugins/<name>.md     one full page per team, with its bundled skills
+                              that team's published skills and (inline, not
+                              a table) its commands, if it has any. Skills
+                              not published by any team get a final
+                              "Unassigned Skills" entry so nothing is
+                              orphaned.
   docs/activity.md           recent commits + contributors
 
-There is deliberately no standalone Skills catalog or per-skill page —
-skills are only ever shown nested inside a team's accordion (or the
-"Unassigned Skills" entry), and never show their raw SKILL.md contents,
-which is considered too detailed for new users.
+There are deliberately no standalone Skills catalog, per-skill pages, or
+per-team pages — everything about a team (its skills, its commands)
+lives entirely in its own accordion entry, so there's nothing left to
+duplicate by clicking through to a separate page. Skills also never show
+their raw SKILL.md contents, which is considered too detailed for new
+users.
 
 docs/index.md and docs/guides/*.md are hand-written and never touched here.
 """
@@ -209,11 +212,10 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
             body.append("No skills published yet.")
             body.append("")
 
-        # Commands are deliberately left off this accordion view — they
-        # mostly restate what the skills above already say, and this is
-        # the first thing new members see. Still shown on the full team
-        # page for anyone who wants that level of detail.
-        body.append(f"[Full team page →]({plugin['name']}.md)")
+        if plugin["commands"]:
+            command_list = ", ".join(f"`{cmd['name']}`" for cmd in plugin["commands"])
+            body.append(f"**Commands:** {command_list}")
+            body.append("")
 
         lines.append(indent("\n".join(body)))
         lines.append("")
@@ -231,45 +233,6 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
         lines.append(indent("\n".join(body)))
         lines.append("")
 
-    return "\n".join(lines)
-
-
-def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
-    lines = []
-    lines.append(f"# {plugin['name']}")
-    lines.append("")
-    author_bit = f" · {plugin['author']}" if plugin["author"] else ""
-    lines.append(f"*Team · v{plugin['version']}{author_bit}*")
-    lines.append("")
-    lines.append(plugin["description"])
-    lines.append("")
-
-    if plugin["commands"]:
-        lines.append("## Commands")
-        lines.append("")
-        lines.append("| Command | Description |")
-        lines.append("|---|---|")
-        for cmd in plugin["commands"]:
-            lines.append(f"| `{cmd['name']}` | {cmd['description']} |")
-        lines.append("")
-
-    lines.append("## Skills")
-    lines.append("")
-    if plugin["skills"]:
-        for skill_name in plugin["skills"]:
-            skill = skills_by_name.get(skill_name)
-            if not skill:
-                continue
-            other_plugins = [p for p in skill_to_plugins.get(skill_name, []) if p != plugin["name"]]
-            note = f"Also on: {', '.join(other_plugins)}" if other_plugins else ""
-            lines.append(build_skill_accordion_item(skill, note))
-            lines.append("")
-    else:
-        lines.append("This team hasn't published any skills yet.")
-        lines.append("")
-
-    lines.append("[:octicons-arrow-left-24: Back to Teams catalog](index.md)")
-    lines.append("")
     return "\n".join(lines)
 
 
@@ -331,11 +294,6 @@ def main():
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins))
-
-    for plugin in plugins:
-        path = os.path.join(PLUGINS_OUT_DIR, f"{plugin['name']}.md")
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(build_plugin_page(plugin, skills_by_name, skill_to_plugins))
 
     with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
         f.write(build_activity_page(commits, contributors, total_commits))

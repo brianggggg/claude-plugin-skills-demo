@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 12 · **Contributors:** 1
+**Total commits:** 13 · **Contributors:** 1
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `7997cdf` | brianjgonza | 2026-09-20 | Drop the Commands table from the Teams accordion view |
 | `f88be03` | brianjgonza | 2026-09-20 | Remove Skills catalog and raw skill definitions; both stats lead to Teams |
 | `3810399` | brianjgonza | 2026-09-20 | Rename Plugins to Teams, add closed accordion catalog, trim homepage links |
 | `1147737` | brianjgonza | 2026-09-20 | Restore masthead, drop commit count, shorten Skills & Plugins copy |
@@ -15,12 +16,11 @@
 | `bdaf12c` | brianjgonza | 2026-09-20 | Tighten hero, add Claude lead-in, and link Getting Started/FAQ guides |
 | `f40747a` | brianjgonza | 2026-09-20 | Trim homepage copy and reorder sections for new-user friendliness |
 | `62c2373` | brianjgonza | 2026-09-20 | Give the homepage a modern scrolling landing-page treatment |
-| `d062890` | brianjgonza | 2026-09-20 | Turn site into a Center of Excellence hub, add Read the Docs hosting |
 
 ## Contributors
 
 | Name | Commits |
 |---|---|
-| brianjgonza | 12 |
+| brianjgonza | 13 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)
