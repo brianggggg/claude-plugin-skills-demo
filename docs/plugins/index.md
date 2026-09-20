@@ -8,8 +8,6 @@
 
     No skills published yet.
 
-    **Commands:** `/crm-dedupe`, `/crm-pull`, `/crm-push`
-
 ??? note "expense-audit — v1.0.0 · 2 skills"
 
     Review expense reports and new vendors against company policy.
@@ -24,8 +22,6 @@
 
         Runs a new vendor through a standard risk checklist covering data access, financial stability signals, and contract terms, then gives an approve/conditional/escalate recommendation. Use when a user asks to vet, review, or assess a new vendor before onboarding.
 
-    **Commands:** `/audit-expenses`, `/review-vendor`
-
 ??? note "hr-onboarding — v1.0.0 · 1 skill"
 
     Generate role-specific onboarding checklists and provisioning requests for new hires.
@@ -33,8 +29,6 @@
     ??? example "onboarding-checklist"
 
         Builds a role-specific new-hire onboarding checklist (accounts, equipment, training, introductions) grouped by before day one / week one / first 30 days. Use when a user asks to onboard a new hire or generate an onboarding plan.
-
-    **Commands:** `/onboard-new-hire`, `/provision-access`
 
 ??? note "invoice-processor — v1.2.0 · 2 skills"
 
@@ -50,8 +44,6 @@
 
         Also on: expense-audit
 
-    **Commands:** `/invoice-file`, `/invoice-intake`
-
 ??? note "meeting-ops — v1.1.0 · 2 skills"
 
     Prep agendas, summarize calls, and turn discussions into weekly reports.
@@ -63,8 +55,6 @@
     ??? example "weekly-report-writer"
 
         Rolls scattered updates (Slack messages, meeting notes, ticket status) into one structured weekly status report with highlights, risks, and next steps. Use when a user asks to write, draft, or compile a weekly/status update.
-
-    **Commands:** `/meeting-followup`, `/meeting-prep`
 
 ??? note "Unassigned Skills — 2 skills"
 

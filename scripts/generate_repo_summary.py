@@ -7,19 +7,18 @@ build, so the catalog is always current:
                               hand-written docs/index.md via pymdownx.snippets
   docs/plugins/index.md      "Teams" catalog — a closed accordion, one entry
                               per team (technically a "plugin"), expanding to
-                              that team's published skills and (inline, not
-                              a table) its commands, if it has any. Skills
-                              not published by any team get a final
-                              "Unassigned Skills" entry so nothing is
-                              orphaned.
+                              that team's published skills. Skills not
+                              published by any team get a final "Unassigned
+                              Skills" entry so nothing is orphaned.
   docs/activity.md           recent commits + contributors
 
 There are deliberately no standalone Skills catalog, per-skill pages, or
-per-team pages — everything about a team (its skills, its commands)
-lives entirely in its own accordion entry, so there's nothing left to
-duplicate by clicking through to a separate page. Skills also never show
-their raw SKILL.md contents, which is considered too detailed for new
-users.
+per-team pages — everything about a team lives entirely in its own
+accordion entry, so there's nothing left to duplicate by clicking
+through to a separate page. Skills also never show their raw SKILL.md
+contents, which is considered too detailed for new users. Commands
+are tracked (see load_plugins) but deliberately not displayed anywhere
+— they didn't add enough over the skill descriptions to earn the space.
 
 docs/index.md and docs/guides/*.md are hand-written and never touched here.
 """
@@ -210,11 +209,6 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
                 body.append("")
         else:
             body.append("No skills published yet.")
-            body.append("")
-
-        if plugin["commands"]:
-            command_list = ", ".join(f"`{cmd['name']}`" for cmd in plugin["commands"])
-            body.append(f"**Commands:** {command_list}")
             body.append("")
 
         lines.append(indent("\n".join(body)))
