@@ -170,7 +170,7 @@ def skill_card(skill, href, note):
     )
 
 
-def build_stats_snippet(plugins, skills, total_commits, friendly_date):
+def build_stats_snippet(plugins, skills, friendly_date):
     # Raw HTML <a> tags bypass MkDocs' markdown link resolution, so these
     # must already be the served paths (with use_directory_urls: true),
     # not the source .md filenames.
@@ -180,8 +180,6 @@ def build_stats_snippet(plugins, skills, total_commits, friendly_date):
         f'<span class="stat-label">Plugins</span></a>\n'
         f'  <a class="stat" href="skills/"><span class="stat-number" data-target="{len(skills)}">0</span>'
         f'<span class="stat-label">Skills</span></a>\n'
-        f'  <a class="stat" href="activity/"><span class="stat-number" data-target="{total_commits}">0</span>'
-        f'<span class="stat-label">Commits</span></a>\n'
         f"</div>\n"
         f'<p class="stat-updated">Last updated <strong>{friendly_date}</strong></p>\n'
     )
@@ -191,9 +189,8 @@ def build_plugins_index(plugins):
     lines = [
         "# Plugins",
         "",
-        "A plugin is how a team packages and publishes its skills for everyone else to use — "
-        "not a separate workflow, just the publishing unit. Browse by plugin to see what each "
-        "team has shared, or see the [Skills catalog](../skills/index.md) to browse by skill instead.",
+        "A plugin groups skills for your team. Browse by plugin here, or see the "
+        "[Skills catalog](../skills/index.md) to browse by skill instead.",
         "",
     ]
     lines.append('<div class="grid cards" markdown>')
@@ -210,10 +207,9 @@ def build_skills_index(skills, skill_to_plugins):
     lines = [
         "# Skills",
         "",
-        "A skill teaches Claude how to do one job well — like summarizing a meeting or checking "
-        "an expense against policy. Ask Claude to use one any time; a plugin is just how a team "
-        "packages and publishes a set of skills together. Browse by skill here, or see the "
-        "[Plugins catalog](../plugins/index.md) to browse by team instead.",
+        "A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin "
+        "groups skills for your team. Browse by skill here, or see the "
+        "[Plugins catalog](../plugins/index.md) to browse by plugin instead.",
         "",
     ]
     lines.append('<div class="grid cards" markdown>')
@@ -353,7 +349,7 @@ def main():
     friendly_date = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
-        f.write(build_stats_snippet(plugins, skills, total_commits, friendly_date))
+        f.write(build_stats_snippet(plugins, skills, friendly_date))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_plugins_index(plugins))

@@ -6,6 +6,13 @@ hide:
 
 # Business Ops Center of Excellence { .visually-hidden }
 
+<!-- Placeholder company name — swap "Acme Inc." for the real one whenever you have it. -->
+<div class="masthead" markdown>
+
+:material-domain: __Acme Inc.__ &nbsp;·&nbsp; :material-creation: Powered by Claude
+
+</div>
+
 <div class="onboarding reveal" markdown>
 
 ## New here?
@@ -29,7 +36,7 @@ Claude is Anthropic's AI assistant — you describe what you need in plain Engli
 
 ### :material-flash-outline: Skills & Plugins
 
-A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin is simply how a team packages and publishes its skills for everyone else to use — not a separate workflow, just the publishing unit.
+A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin groups skills for your team.
 
 [Browse Skills](skills/index.md) · [Browse Plugins](plugins/index.md)
 

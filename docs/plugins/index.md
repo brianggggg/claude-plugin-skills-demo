@@ -1,6 +1,6 @@
 # Plugins
 
-A plugin is how a team packages and publishes its skills for everyone else to use — not a separate workflow, just the publishing unit. Browse by plugin to see what each team has shared, or see the [Skills catalog](../skills/index.md) to browse by skill instead.
+A plugin groups skills for your team. Browse by plugin here, or see the [Skills catalog](../skills/index.md) to browse by skill instead.
 
 <div class="grid cards" markdown>
 
