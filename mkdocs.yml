@@ -1,0 +1,23 @@
+site_name: Business Ops Plugin & Skills Catalog
+site_description: Auto-generated catalog of the plugins and skills in this repository.
+repo_url: https://github.com/brianggggg/claude-plugin-skills-demo
+repo_name: brianggggg/claude-plugin-skills-demo
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: teal
+    accent: teal
+  features:
+    - navigation.instant
+    - content.code.copy
+
+nav:
+  - Catalog: index.md
+
+markdown_extensions:
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true

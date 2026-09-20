@@ -1,0 +1,8 @@
+{
+  "name": "hr-onboarding",
+  "description": "Generate role-specific onboarding checklists and provisioning requests for new hires.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Business Ops Team"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "meeting-ops",
+  "description": "Prep agendas, summarize calls, and turn discussions into weekly reports.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Business Ops Team"
+  }
+}

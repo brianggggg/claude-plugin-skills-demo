@@ -1,0 +1,8 @@
+{
+  "name": "expense-audit",
+  "description": "Review expense reports and new vendors against company policy.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Business Ops Team"
+  }
+}

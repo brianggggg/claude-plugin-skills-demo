@@ -1,0 +1,8 @@
+{
+  "name": "invoice-processor",
+  "description": "Extract, validate, and file vendor invoices from PDFs and emails.",
+  "version": "1.2.0",
+  "author": {
+    "name": "Business Ops Team"
+  }
+}

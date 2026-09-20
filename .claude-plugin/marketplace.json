@@ -1,0 +1,33 @@
+{
+  "name": "business-ops-marketplace",
+  "owner": {
+    "name": "Business Ops Team"
+  },
+  "plugins": [
+    {
+      "name": "crm-sync",
+      "source": "./plugins/crm-sync",
+      "description": "Pull, push, and de-duplicate CRM contacts and deals from Claude."
+    },
+    {
+      "name": "invoice-processor",
+      "source": "./plugins/invoice-processor",
+      "description": "Extract, validate, and file vendor invoices from PDFs and emails."
+    },
+    {
+      "name": "meeting-ops",
+      "source": "./plugins/meeting-ops",
+      "description": "Prep agendas, summarize calls, and turn discussions into weekly reports."
+    },
+    {
+      "name": "hr-onboarding",
+      "source": "./plugins/hr-onboarding",
+      "description": "Generate role-specific onboarding checklists and provisioning requests for new hires."
+    },
+    {
+      "name": "expense-audit",
+      "source": "./plugins/expense-audit",
+      "description": "Review expense reports and new vendors against company policy."
+    }
+  ]
+}

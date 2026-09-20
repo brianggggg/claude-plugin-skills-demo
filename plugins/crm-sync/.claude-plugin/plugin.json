@@ -1,0 +1,8 @@
+{
+  "name": "crm-sync",
+  "description": "Pull, push, and de-duplicate CRM contacts and deals from Claude.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Business Ops Team"
+  }
+}
