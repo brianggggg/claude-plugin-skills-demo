@@ -41,4 +41,4 @@ Condenses a meeting transcript or raw notes into decisions, action items with ow
     ```
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

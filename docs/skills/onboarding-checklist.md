@@ -33,4 +33,4 @@ Builds a role-specific new-hire onboarding checklist (accounts, equipment, train
     5. Flag any input you didn't get (e.g. no manager name) instead of leaving that step vague.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

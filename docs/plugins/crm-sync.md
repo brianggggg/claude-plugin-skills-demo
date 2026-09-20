@@ -16,4 +16,4 @@ Pull, push, and de-duplicate CRM contacts and deals from Claude.
 
 This plugin doesn't bundle any skills — its commands are self-contained.
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Plugins catalog](index.md)

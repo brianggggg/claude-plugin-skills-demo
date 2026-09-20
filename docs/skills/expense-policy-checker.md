@@ -34,4 +34,4 @@ Checks expense line items (from a report, invoice, or receipt) against the compa
     4. Never approve or reject a report yourself — present findings for a human to decide on.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

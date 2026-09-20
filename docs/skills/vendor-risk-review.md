@@ -33,4 +33,4 @@ Runs a new vendor through a standard risk checklist covering data access, financ
     4. Never recommend "approve" if data access and security posture haven't both been checked.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

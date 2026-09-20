@@ -28,4 +28,4 @@ Generate role-specific onboarding checklists and provisioning requests for new h
 
 </div>
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Plugins catalog](index.md)

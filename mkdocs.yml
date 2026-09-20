@@ -1,7 +1,15 @@
-site_name: Business Ops Plugin & Skills Catalog
-site_description: Auto-generated catalog of the plugins and skills in this repository.
+site_name: Business Ops Center of Excellence
+site_description: Home for the team's Claude Code plugins and skills — what they do, how to use them, and how to publish your own.
 repo_url: https://github.com/brianggggg/claude-plugin-skills-demo
 repo_name: brianggggg/claude-plugin-skills-demo
+
+nav:
+  - Home: index.md
+  - Guides:
+      - Publishing a skill: guides/publishing-a-skill.md
+      - Publishing a plugin: guides/publishing-a-plugin.md
+  - Plugins: plugins/index.md
+  - Skills: skills/index.md
 
 theme:
   name: material
@@ -24,12 +32,17 @@ theme:
         name: Switch to dark mode
   features:
     - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.indexes
     - navigation.top
     - content.code.copy
     - search.suggest
     - search.highlight
+
+validation:
+  omitted_files: ignore
 
 extra_css:
   - stylesheets/extra.css
@@ -42,6 +55,9 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path:
+        - docs
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg

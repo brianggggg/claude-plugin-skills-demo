@@ -39,4 +39,4 @@ Review expense reports and new vendors against company policy.
 
 </div>
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Plugins catalog](index.md)

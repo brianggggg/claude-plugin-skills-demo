@@ -39,4 +39,4 @@ Extract, validate, and file vendor invoices from PDFs and emails.
 
 </div>
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Plugins catalog](index.md)

@@ -34,4 +34,4 @@ Extracts vendor, invoice number, line items, totals, and due date from an invoic
     4. Output the result as a JSON object matching the fields above, followed by a one-line human-readable summary.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

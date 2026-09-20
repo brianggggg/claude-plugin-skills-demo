@@ -26,4 +26,4 @@ Not currently bundled by any plugin — available standalone.
     5. Output a table: Key Result | Baseline | Target | Current | Delta | Status.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

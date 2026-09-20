@@ -29,4 +29,4 @@ Rolls scattered updates (Slack messages, meeting notes, ticket status) into one 
     5. If an input is ambiguous (e.g. unclear whether something shipped or is still in progress), ask rather than guessing the status.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)

@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Regenerates the docs/ site from the current state of the repository.
+"""Regenerates the generated parts of the docs/ site from the repository's
+current state. Run by the "Docs" workflow (and Read the Docs) on every
+build, so the catalog is always current:
 
-Run by the "Docs" GitHub Actions workflow on every push, so the MkDocs
-site always reflects the current plugins, skills, and commits:
+  docs/_generated/stats.md   one-line stat snippet, included into the
+                              hand-written docs/index.md via pymdownx.snippets
+  docs/plugins/index.md      plugin card grid
+  docs/plugins/<name>.md     one page per plugin, with its bundled skills
+  docs/skills/index.md       skill card grid
+  docs/skills/<name>.md      one page per skill, with the plugins that use it
+  docs/activity.md           recent commits + contributors
 
-  docs/index.md          overview + plugin/skill card grids
-  docs/plugins/<name>.md one page per plugin, with its bundled skills
-  docs/skills/<name>.md  one page per skill, with the plugins that use it
+docs/index.md and docs/guides/*.md are hand-written and never touched here.
 """
 import json
 import os
@@ -18,6 +23,7 @@ from datetime import datetime, timezone
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DIR = os.path.join(REPO_ROOT, "docs")
+GENERATED_DIR = os.path.join(DOCS_DIR, "_generated")
 PLUGINS_OUT_DIR = os.path.join(DOCS_DIR, "plugins")
 SKILLS_OUT_DIR = os.path.join(DOCS_DIR, "skills")
 PLUGINS_DIR = os.path.join(REPO_ROOT, "plugins")
@@ -142,11 +148,7 @@ def get_total_commit_count():
     return run_git(["rev-list", "--count", "HEAD"])
 
 
-def get_current_branch():
-    return run_git(["rev-parse", "--abbrev-ref", "HEAD"])
-
-
-def plugin_card(plugin, icon, link_prefix=""):
+def plugin_card(plugin, icon, href):
     skill_count = len(plugin["skills"])
     skill_note = f"{skill_count} skill{'s' if skill_count != 1 else ''}" if skill_count else "no bundled skills"
     return (
@@ -154,81 +156,48 @@ def plugin_card(plugin, icon, link_prefix=""):
         f"    ---\n\n"
         f"    {plugin['description']}\n\n"
         f"    {len(plugin['commands'])} commands · {skill_note}\n\n"
-        f"    [:octicons-arrow-right-24: View plugin]({link_prefix}plugins/{plugin['name']}.md)\n"
+        f"    [:octicons-arrow-right-24: View plugin]({href})\n"
     )
 
 
-def skill_card(skill, used_by, link_prefix="", note_override=None):
-    if note_override is not None:
-        used_note = note_override
-    else:
-        used_note = f"Used by: {', '.join(used_by)}" if used_by else "Standalone — not bundled by a plugin"
+def skill_card(skill, href, note):
     return (
         f"-   :{SKILL_ICON}:{{ .lg .middle }} __{skill['name']}__\n\n"
         f"    ---\n\n"
         f"    {skill['description']}\n\n"
-        f"    {used_note}\n\n"
-        f"    [:octicons-arrow-right-24: View skill]({link_prefix}skills/{skill['name']}.md)\n"
+        f"    {note}\n\n"
+        f"    [:octicons-arrow-right-24: View skill]({href})\n"
     )
 
 
-def build_index(plugins, skills, skill_to_plugins, commits, contributors, total_commits, branch, now):
-    lines = []
-    lines.append("# Business Ops Plugin & Skills Catalog")
-    lines.append("")
-    lines.append(
-        f"*This page is generated automatically from the repository's current state. "
-        f"Last updated: **{now}** (branch `{branch}`).*"
-    )
-    lines.append("")
+def build_stats_snippet(plugins, skills, now):
+    return f"**{len(plugins)} plugins** · **{len(skills)} skills** · catalog last rebuilt **{now}**\n"
 
-    lines.append("## Overview")
-    lines.append("")
-    lines.append(f"- **Plugins:** {len(plugins)}")
-    lines.append(f"- **Skills:** {len(skills)}")
-    lines.append(f"- **Total commits:** {total_commits}")
-    lines.append(f"- **Contributors:** {len(contributors)}")
-    lines.append("")
 
-    lines.append("## Plugins")
-    lines.append("")
+def build_plugins_index(plugins):
+    lines = ["# Plugins", "", "Ready-to-run command bundles, one per workflow.", ""]
     lines.append('<div class="grid cards" markdown>')
     lines.append("")
     for plugin, icon in zip(plugins, PLUGIN_ICONS):
-        lines.append(plugin_card(plugin, icon))
+        lines.append(plugin_card(plugin, icon, href=f"{plugin['name']}.md"))
         lines.append("")
     lines.append("</div>")
     lines.append("")
+    return "\n".join(lines)
 
-    lines.append("## Skills")
-    lines.append("")
+
+def build_skills_index(skills, skill_to_plugins):
+    lines = ["# Skills", "", "Single-purpose capabilities Claude can use directly, or that a plugin bundles.", ""]
     lines.append('<div class="grid cards" markdown>')
     lines.append("")
     for skill in skills:
-        lines.append(skill_card(skill, skill_to_plugins.get(skill["name"], [])))
+        used_by = skill_to_plugins.get(skill["name"], [])
+        note = f"Used by: {', '.join(used_by)}" if used_by else "Standalone — not bundled by a plugin"
+        lines.append(skill_card(skill, href=f"{skill['name']}.md", note=note))
         lines.append("")
     lines.append("</div>")
     lines.append("")
-
-    lines.append("## Recent Commits")
-    lines.append("")
-    lines.append("| Commit | Author | Date | Message |")
-    lines.append("|---|---|---|---|")
-    for sha, author, date, message in commits:
-        message = message.replace("|", "\\|")
-        lines.append(f"| `{sha}` | {author} | {date} | {message} |")
-    lines.append("")
-
-    if contributors:
-        lines.append("## Contributors")
-        lines.append("")
-        lines.append("| Name | Commits |")
-        lines.append("|---|---|")
-        for name, count in contributors:
-            lines.append(f"| {name} | {count} |")
-        lines.append("")
-
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines)
 
 
 def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
@@ -261,7 +230,7 @@ def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
                 continue
             other_plugins = [p for p in skill_to_plugins.get(skill_name, []) if p != plugin["name"]]
             note = f"Also used by: {', '.join(other_plugins)}" if other_plugins else "Bundled by this plugin"
-            lines.append(skill_card(skill, [], link_prefix="../", note_override=note))
+            lines.append(skill_card(skill, href=f"../skills/{skill_name}.md", note=note))
             lines.append("")
         lines.append("</div>")
         lines.append("")
@@ -269,7 +238,7 @@ def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
         lines.append("This plugin doesn't bundle any skills — its commands are self-contained.")
         lines.append("")
 
-    lines.append("[:octicons-arrow-left-24: Back to catalog](../index.md)")
+    lines.append("[:octicons-arrow-left-24: Back to Plugins catalog](index.md)")
     lines.append("")
     return "\n".join(lines)
 
@@ -302,18 +271,44 @@ def build_skill_page(skill, used_by):
     lines.append("    ```")
     lines.append("")
 
-    lines.append("[:octicons-arrow-left-24: Back to catalog](../index.md)")
+    lines.append("[:octicons-arrow-left-24: Back to Skills catalog](index.md)")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_activity_page(commits, contributors, total_commits):
+    lines = ["# Repository Activity", ""]
+    lines.append(f"**Total commits:** {total_commits} · **Contributors:** {len(contributors)}")
+    lines.append("")
+
+    lines.append("## Recent Commits")
+    lines.append("")
+    lines.append("| Commit | Author | Date | Message |")
+    lines.append("|---|---|---|---|")
+    for sha, author, date, message in commits:
+        message = message.replace("|", "\\|")
+        lines.append(f"| `{sha}` | {author} | {date} | {message} |")
+    lines.append("")
+
+    if contributors:
+        lines.append("## Contributors")
+        lines.append("")
+        lines.append("| Name | Commits |")
+        lines.append("|---|---|")
+        for name, count in contributors:
+            lines.append(f"| {name} | {count} |")
+        lines.append("")
+
+    lines.append("[:octicons-arrow-left-24: Back to Home](index.md)")
     lines.append("")
     return "\n".join(lines)
 
 
 def main():
-    if os.path.isdir(PLUGINS_OUT_DIR):
-        shutil.rmtree(PLUGINS_OUT_DIR)
-    if os.path.isdir(SKILLS_OUT_DIR):
-        shutil.rmtree(SKILLS_OUT_DIR)
-    os.makedirs(PLUGINS_OUT_DIR, exist_ok=True)
-    os.makedirs(SKILLS_OUT_DIR, exist_ok=True)
+    for path in (PLUGINS_OUT_DIR, SKILLS_OUT_DIR, GENERATED_DIR):
+        if os.path.isdir(path):
+            shutil.rmtree(path)
+        os.makedirs(path, exist_ok=True)
 
     plugins = load_plugins()
     skills = load_skills()
@@ -327,15 +322,16 @@ def main():
     commits = get_recent_commits()
     contributors = get_contributors()
     total_commits = get_total_commit_count()
-    branch = get_current_branch()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-    with open(os.path.join(DOCS_DIR, "index.md"), "w", encoding="utf-8") as f:
-        f.write(
-            build_index(
-                plugins, skills, skill_to_plugins, commits, contributors, total_commits, branch, now
-            )
-        )
+    with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
+        f.write(build_stats_snippet(plugins, skills, now))
+
+    with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
+        f.write(build_plugins_index(plugins))
+
+    with open(os.path.join(SKILLS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
+        f.write(build_skills_index(skills, skill_to_plugins))
 
     for plugin in plugins:
         path = os.path.join(PLUGINS_OUT_DIR, f"{plugin['name']}.md")
@@ -347,7 +343,13 @@ def main():
         with open(path, "w", encoding="utf-8") as f:
             f.write(build_skill_page(skill, skill_to_plugins.get(skill["name"], [])))
 
-    print(f"Wrote docs/index.md, {len(plugins)} plugin pages, {len(skills)} skill pages")
+    with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
+        f.write(build_activity_page(commits, contributors, total_commits))
+
+    print(
+        f"Wrote stats snippet, plugins/index.md ({len(plugins)} plugins), "
+        f"skills/index.md ({len(skills)} skills), and activity.md"
+    )
 
 
 if __name__ == "__main__":

@@ -34,4 +34,4 @@ Not currently bundled by any plugin — available standalone.
     4. End with a one-line overall risk rating (low/medium/high) and a note that this is a first-pass flag for legal review, not a substitute for it.
     ```
 
-[:octicons-arrow-left-24: Back to catalog](../index.md)
+[:octicons-arrow-left-24: Back to Skills catalog](index.md)
