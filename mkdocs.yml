@@ -9,6 +9,7 @@ nav:
       - Getting started: guides/getting-started.md
       - Publishing a skill: guides/publishing-a-skill.md
       - Registering a team: guides/publishing-a-plugin.md
+      - Requesting a connector: guides/requesting-a-connector.md
       - FAQ: guides/faq.md
   - Teams: plugins/index.md
 

@@ -40,6 +40,34 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A tea
 
 </div>
 
+<div class="reveal" markdown>
+
+## How it works
+
+<div class="grid cards" markdown>
+
+-   :material-forum-outline:{ .lg .middle } __1. Just ask__
+
+    ---
+
+    Describe the task in plain English in your Claude Code session — no command or skill name to memorize.
+
+-   :material-flash-outline:{ .lg .middle } __2. Claude finds the skill__
+
+    ---
+
+    Claude matches your request to the right published skill automatically and runs it.
+
+-   :material-check-circle-outline:{ .lg .middle } __3. Review the result__
+
+    ---
+
+    Check the output, or ask Claude to adjust it — same as any other request.
+
+</div>
+
+</div>
+
 --8<-- "_generated/stats.md"
 
 <div class="reveal" markdown>
@@ -63,6 +91,26 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A tea
     Package up your team's skills so others can find and use them.
 
     [:octicons-arrow-right-24: Read the guide](guides/publishing-a-plugin.md)
+
+</div>
+
+</div>
+
+<div class="reveal" markdown>
+
+## Need a new connector?
+
+Connectors let Claude read and write directly in outside systems — Salesforce, Jira, an internal database, and similar. Since these touch live systems, each one goes through a short security and access review before it's turned on for the team.
+
+<div class="grid cards" markdown>
+
+-   :material-connection:{ .lg .middle } __Request a Connector Review__
+
+    ---
+
+    Tell us what system you need connected and why — review typically takes a few days.
+
+    [:octicons-arrow-right-24: Read the guide](guides/requesting-a-connector.md)
 
 </div>
 
