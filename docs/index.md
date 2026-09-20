@@ -4,17 +4,20 @@ hide:
   - toc
 ---
 
-<div class="hero" markdown>
-
 # Business Ops Center of Excellence
 
-Reusable Claude Code plugins and skills that help the whole team move faster.
+<div class="onboarding reveal" markdown>
 
-<a href="#learn-more" class="hero-scroll-cue" aria-label="Scroll to learn more">⌄</a>
+## New here?
+
+Get set up with Claude Code in a few minutes, then come back to explore what the team's already built.
+
+[Get Started](guides/getting-started.md){ .md-button .md-button--primary }
+[Read the FAQ](guides/faq.md){ .md-button }
 
 </div>
 
-<div class="lead-in reveal" id="learn-more" markdown>
+<div class="lead-in reveal" markdown>
 
 ### What's Claude?
 
@@ -44,17 +47,6 @@ Ready-to-run commands for a workflow, often built on skills. [Learn more →](pl
 
 --8<-- "_generated/stats.md"
 
-<div class="onboarding reveal" markdown>
-
-## New here?
-
-Get set up with Claude Code in a few minutes, then come back to explore what the team's already built.
-
-[Get Started](guides/getting-started.md){ .md-button .md-button--primary }
-[Read the FAQ](guides/faq.md){ .md-button }
-
-</div>
-
 <div class="reveal" markdown>
 
 ## Add to the catalog
@@ -83,9 +75,12 @@ Get set up with Claude Code in a few minutes, then come back to explore what the
 
 <div class="cta-banner reveal" markdown>
 
-### Have an idea, but can't build it yourself?
+### Have a question?
 
-[Open an issue](https://github.com/brianggggg/claude-plugin-skills-demo/issues/new){ .md-button .md-button--primary } and tag it `help wanted` — someone on the team will pick it up.
+Click below to send it straight to the team.
+
+<!-- Placeholder: add a "To" address once the team has one, e.g. mailto:business-ops@yourcompany.com?subject=... -->
+[Email the team](mailto:?subject=Question%20about%20the%20Business%20Ops%20Catalog){ .md-button .md-button--primary }
 
 </div>
 

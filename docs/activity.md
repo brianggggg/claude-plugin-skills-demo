@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 5 · **Contributors:** 1
+**Total commits:** 6 · **Contributors:** 1
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `bdaf12c` | brianjgonza | 2026-09-20 | Tighten hero, add Claude lead-in, and link Getting Started/FAQ guides |
 | `f40747a` | brianjgonza | 2026-09-20 | Trim homepage copy and reorder sections for new-user friendliness |
 | `62c2373` | brianjgonza | 2026-09-20 | Give the homepage a modern scrolling landing-page treatment |
 | `d062890` | brianjgonza | 2026-09-20 | Turn site into a Center of Excellence hub, add Read the Docs hosting |
@@ -16,6 +17,6 @@
 
 | Name | Commits |
 |---|---|
-| brianjgonza | 5 |
+| brianjgonza | 6 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)

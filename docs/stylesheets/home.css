@@ -1,64 +1,12 @@
-/* Homepage landing-page treatment: full-bleed hero, animated stats,
-   and scroll-reveal sections. Scoped to classes only used on index.md
-   so it never affects Guides/Plugins/Skills pages. */
+/* Homepage landing-page treatment: animated stats and scroll-reveal
+   sections. Scoped to classes only used on index.md so it never
+   affects Guides/Plugins/Skills pages. */
 
 html {
   scroll-behavior: smooth;
 }
 
-.hero {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: -1.2rem;
-  margin-bottom: 2rem;
-  padding: 3rem 1.5rem 2.25rem;
-  text-align: center;
-  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, #0b3d3a 100%);
-  color: var(--md-primary-bg-color);
-  overflow: hidden;
-}
-
-[data-md-color-scheme="slate"] .hero {
-  background: linear-gradient(135deg, #0c3e3b 0%, #03100f 100%);
-}
-
-.hero h1 {
-  color: var(--md-primary-bg-color);
-  /* Scales down on narrow viewports so the title never wraps to a
-     second line, without needing a fixed breakpoint. Floor is tuned
-     to still fit a 320px-wide screen with margin to spare. */
-  font-size: clamp(0.8rem, 4vw, 1.55rem);
-  white-space: nowrap;
-  margin-bottom: 0.6rem;
-}
-
-.hero > p {
-  max-width: 38rem;
-  margin: 0 auto;
-  font-size: 1.05rem;
-  opacity: 0.92;
-}
-
-.hero-scroll-cue {
-  display: block;
-  margin-top: 1.25rem;
-  font-size: 1.5rem;
-  color: var(--md-primary-bg-color);
-  opacity: 0.8;
-  text-decoration: none;
-  animation: hero-bounce 2s infinite;
-}
-
-@keyframes hero-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
-/* Lead-in: one short "what's Claude" blurb right under the hero */
+/* Lead-in: one short "what's Claude" blurb near the top of the page */
 .lead-in {
   max-width: 34rem;
   margin: 0 auto 2rem;
@@ -206,7 +154,6 @@ a.stat:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .hero-scroll-cue,
   html {
     transition: none !important;
     animation: none !important;
