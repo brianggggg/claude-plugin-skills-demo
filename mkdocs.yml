@@ -5,19 +5,43 @@ repo_name: brianggggg/claude-plugin-skills-demo
 
 theme:
   name: material
+  icon:
+    repo: fontawesome/brands/github
   palette:
-    scheme: slate
-    primary: teal
-    accent: teal
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   features:
     - navigation.instant
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
     - content.code.copy
+    - search.suggest
+    - search.highlight
 
-nav:
-  - Catalog: index.md
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - tables
-  - fenced_code
   - toc:
       permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
