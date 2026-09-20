@@ -25,7 +25,7 @@ plugins/your-team-name/
 
 ## 3. Bundle your team's skills
 
-List the skills this team publishes — already in the [Skills catalog](../skills/index.md), or new ones you're adding alongside it — in a `skills.json` file next to `plugin.json`:
+List the skills this team publishes — already published under another team on the [Teams catalog](../plugins/index.md) (or under "Unassigned Skills" there), or new ones you're adding alongside it in the `skills/` folder — in a `skills.json` file next to `plugin.json`:
 
 ```
 plugins/your-team-name/skills.json
@@ -74,4 +74,4 @@ Same as skills — open a pull request with your new files, or ask a teammate (o
 
 ## 7. What happens next
 
-Once merged, the site rebuilds automatically. Your team appears on the [Teams catalog](../plugins/index.md) with its published skills (and any commands), and each skill's own page updates to show it's now "used by" your team too.
+Once merged, the site rebuilds automatically. Your team appears on the [Teams catalog](../plugins/index.md) with its published skills (and any commands) nested inside its accordion entry.

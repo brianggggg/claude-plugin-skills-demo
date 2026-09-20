@@ -12,7 +12,7 @@ Pull, push, and de-duplicate CRM contacts and deals from Claude.
 | `/crm-pull` | Fetch contacts or deals matching a filter from the CRM |
 | `/crm-push` | Create or update a CRM record from data in the conversation |
 
-## Bundled skills
+## Skills
 
 This team hasn't published any skills yet.
 

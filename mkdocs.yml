@@ -11,7 +11,6 @@ nav:
       - Registering a team: guides/publishing-a-plugin.md
       - FAQ: guides/faq.md
   - Teams: plugins/index.md
-  - Skills: skills/index.md
 
 theme:
   name: material

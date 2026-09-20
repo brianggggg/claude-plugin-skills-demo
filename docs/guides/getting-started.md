@@ -17,7 +17,3 @@ Each [team](../plugins/index.md) publishes its own set of skills. Some also add 
 ## 4. Have a question?
 
 Check the [FAQ](faq.md) first. If it's not answered there, [open an issue](https://github.com/brianggggg/claude-plugin-skills-demo/issues/new) and someone on the team will help.
-
----
-
-[Browse Teams](../plugins/index.md){ .md-button } [Browse Skills](../skills/index.md){ .md-button }

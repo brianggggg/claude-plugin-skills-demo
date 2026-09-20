@@ -40,7 +40,7 @@ Think of the body of `SKILL.md` as onboarding a very capable new teammate who's 
 - Call out what "done well" looks like, not just "done."
 - Name the edge cases that trip people up (missing data, ambiguous input) and say what to do about them — flag it, ask, or use a stated default. Don't leave Claude to guess silently.
 
-Look at an existing skill in the [Skills catalog](../skills/index.md) for a worked example.
+Look at an existing skill's `SKILL.md` file in the `skills/` folder for a worked example.
 
 ## 4. Submit it
 
@@ -52,6 +52,6 @@ If you don't use git day-to-day, the easiest path is to ask a teammate with repo
 
 ## 5. What happens next
 
-Once your pull request is approved and merged, the site rebuilds automatically. Your skill appears in the [Skills catalog](../skills/index.md) within a couple of minutes — no manual publishing step.
+Once your pull request is approved and merged, the site rebuilds automatically. Your skill appears within a couple of minutes on the [Teams catalog](../plugins/index.md) — nested under whichever team bundles it, or under "Unassigned Skills" if it isn't bundled by a team yet. No manual publishing step.
 
 Want your team's skills published together under one name, or wired up as a slash command? See [Registering a Team](publishing-a-plugin.md).
