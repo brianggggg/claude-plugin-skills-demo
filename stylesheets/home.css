@@ -7,8 +7,8 @@ html {
 }
 
 /* Screen-reader-only: keeps a real page heading in the accessibility
-   tree / document outline even though the page shows a masthead
-   instead of a visible title. */
+   tree / document outline even though the page shows no visible
+   title (the header bar already carries the site name). */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -21,15 +21,8 @@ html {
   border: 0;
 }
 
-/* Masthead: small brand line in place of a page title */
-.masthead {
-  text-align: center;
-  font-size: 0.95rem;
-  opacity: 0.75;
-  margin: 0.5rem 0 1.75rem;
-}
-
-/* Lead-in: one short "what's Claude" blurb near the top of the page */
+/* Lead-in: short centered blurbs near the top of the page (what's
+   Claude, what's a skill/plugin) */
 .lead-in {
   max-width: 34rem;
   margin: 0 auto 2rem;
@@ -37,39 +30,15 @@ html {
 }
 
 .lead-in h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   margin-bottom: 0.35rem;
   font-size: 1.05rem;
 }
 
 .lead-in p {
-  margin: 0;
-  opacity: 0.85;
-}
-
-/* Concept row: 1-2 sentence intro to each core idea, right under the hero */
-.concept-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  max-width: 44rem;
-  margin: 0 auto 2.5rem;
-  text-align: left;
-}
-
-.concept {
-  flex: 1 1 16rem;
-}
-
-.concept h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 0 0.35rem;
-  font-size: 1.05rem;
-}
-
-.concept p {
   margin: 0;
   opacity: 0.85;
 }

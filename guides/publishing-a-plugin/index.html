@@ -588,10 +588,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-add-one-file-per-command" class="md-nav__link">
+  <a href="#3-bundle-your-teams-skills" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Add one file per command
+        3. Bundle your team's skills
       
     </span>
   </a>
@@ -599,10 +599,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-optional-bundle-existing-skills" class="md-nav__link">
+  <a href="#4-optional-add-a-slash-command" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. (Optional) Bundle existing skills
+        4. (Optional) Add a slash command
       
     </span>
   </a>
@@ -789,10 +789,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-add-one-file-per-command" class="md-nav__link">
+  <a href="#3-bundle-your-teams-skills" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Add one file per command
+        3. Bundle your team's skills
       
     </span>
   </a>
@@ -800,10 +800,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-optional-bundle-existing-skills" class="md-nav__link">
+  <a href="#4-optional-add-a-slash-command" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. (Optional) Bundle existing skills
+        4. (Optional) Add a slash command
       
     </span>
   </a>
@@ -864,13 +864,11 @@
 
 
 <h1 id="publishing-a-plugin">Publishing a Plugin<a class="headerlink" href="#publishing-a-plugin" title="Permanent link">&para;</a></h1>
-<p>A plugin bundles one or more ready-to-run slash commands — and optionally, existing skills — around a single workflow, like "invoice processing" or "meeting ops." Here's how to add one.</p>
+<p>A plugin is how your team packages and publishes its skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.</p>
 <h2 id="1-create-the-plugin-folder">1. Create the plugin folder<a class="headerlink" href="#1-create-the-plugin-folder" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>plugins/your-plugin-name/
   .claude-plugin/
     plugin.json
-  commands/
-    your-command.md
 </code></pre></div>
 <h2 id="2-fill-in-pluginjson">2. Fill in <code>plugin.json</code><a class="headerlink" href="#2-fill-in-pluginjson" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -880,8 +878,17 @@
 <span class="w">  </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Team"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="3-add-one-file-per-command">3. Add one file per command<a class="headerlink" href="#3-add-one-file-per-command" title="Permanent link">&para;</a></h2>
-<p>Each command lives in <code>commands/</code> as its own Markdown file. The filename becomes the command name — <code>commands/audit-expenses.md</code> becomes <code>/audit-expenses</code>.</p>
+<h2 id="3-bundle-your-teams-skills">3. Bundle your team's skills<a class="headerlink" href="#3-bundle-your-teams-skills" title="Permanent link">&para;</a></h2>
+<p>List the skills this plugin publishes — already in the <a href="../../skills/">Skills catalog</a>, or new ones you're adding alongside it — in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
+<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/skills.json
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">"skill-one"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skill-two"</span><span class="p">]</span>
+</code></pre></div>
+<p>This is what powers the "bundled skills" and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.</p>
+<h2 id="4-optional-add-a-slash-command">4. (Optional) Add a slash command<a class="headerlink" href="#4-optional-add-a-slash-command" title="Permanent link">&para;</a></h2>
+<p>If you want a skill (or a sequence of them) runnable directly as a slash command, add a <code>commands/</code> folder:</p>
+<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/commands/your-command.md
+</code></pre></div>
 <div class="highlight"><pre><span></span><code>---
 <span class="gu">description: One-line description shown in the catalog</span>
 <span class="gu">---</span>
@@ -889,13 +896,7 @@
 Step-by-step instructions for what this command should do when it runs,
 including which skill(s) to lean on for the actual reasoning.
 </code></pre></div>
-<h2 id="4-optional-bundle-existing-skills">4. (Optional) Bundle existing skills<a class="headerlink" href="#4-optional-bundle-existing-skills" title="Permanent link">&para;</a></h2>
-<p>If your plugin should use one or more skills already in the <a href="../../skills/">Skills catalog</a>, list their names in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
-<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/skills.json
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">"skill-one"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skill-two"</span><span class="p">]</span>
-</code></pre></div>
-<p>This is what powers the "bundled skills" and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.</p>
+<p>The filename becomes the command name — <code>commands/audit-expenses.md</code> becomes <code>/audit-expenses</code>.</p>
 <h2 id="5-register-it-in-the-marketplace">5. Register it in the marketplace<a class="headerlink" href="#5-register-it-in-the-marketplace" title="Permanent link">&para;</a></h2>
 <p>Add an entry to <code>.claude-plugin/marketplace.json</code> at the repo root so the plugin is discoverable:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -907,7 +908,7 @@ including which skill(s) to lean on for the actual reasoning.
 <h2 id="6-submit-it">6. Submit it<a class="headerlink" href="#6-submit-it" title="Permanent link">&para;</a></h2>
 <p>Same as skills — open a pull request with your new files, or ask a teammate (or Claude Code, pointed at this repository) to do the git mechanics for you.</p>
 <h2 id="7-what-happens-next">7. What happens next<a class="headerlink" href="#7-what-happens-next" title="Permanent link">&para;</a></h2>
-<p>Once merged, the site rebuilds automatically. Your plugin appears on the <a href="../../plugins/">Plugins catalog</a> with its commands and bundled skills, and each bundled skill's own page updates to show it's now "used by" your plugin too.</p>
+<p>Once merged, the site rebuilds automatically. Your plugin appears on the <a href="../../plugins/">Plugins catalog</a> with its bundled skills (and any commands), and each bundled skill's own page updates to show it's now "used by" your plugin too.</p>
 
 
 
