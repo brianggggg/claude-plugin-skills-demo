@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 11 · **Contributors:** 1
+**Total commits:** 12 · **Contributors:** 1
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `f88be03` | brianjgonza | 2026-09-20 | Remove Skills catalog and raw skill definitions; both stats lead to Teams |
 | `3810399` | brianjgonza | 2026-09-20 | Rename Plugins to Teams, add closed accordion catalog, trim homepage links |
 | `1147737` | brianjgonza | 2026-09-20 | Restore masthead, drop commit count, shorten Skills & Plugins copy |
 | `3099168` | brianjgonza | 2026-09-20 | Correct the plugin/skill model and remove the redundant masthead |
@@ -15,12 +16,11 @@
 | `f40747a` | brianjgonza | 2026-09-20 | Trim homepage copy and reorder sections for new-user friendliness |
 | `62c2373` | brianjgonza | 2026-09-20 | Give the homepage a modern scrolling landing-page treatment |
 | `d062890` | brianjgonza | 2026-09-20 | Turn site into a Center of Excellence hub, add Read the Docs hosting |
-| `08a9f9d` | brianjgonza | 2026-09-20 | Redesign catalog site with plugin/skill card grids and cross-links |
 
 ## Contributors
 
 | Name | Commits |
 |---|---|
-| brianjgonza | 11 |
+| brianjgonza | 12 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)

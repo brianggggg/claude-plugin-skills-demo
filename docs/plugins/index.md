@@ -8,14 +8,6 @@
 
     No skills published yet.
 
-    **Commands**
-
-    | Command | Description |
-    |---|---|
-    | `/crm-dedupe` | Find likely duplicate contacts/companies and propose merges |
-    | `/crm-pull` | Fetch contacts or deals matching a filter from the CRM |
-    | `/crm-push` | Create or update a CRM record from data in the conversation |
-
     [Full team page →](crm-sync.md)
 
 ??? note "expense-audit — v1.0.0 · 2 skills"
@@ -32,13 +24,6 @@
 
         Runs a new vendor through a standard risk checklist covering data access, financial stability signals, and contract terms, then gives an approve/conditional/escalate recommendation. Use when a user asks to vet, review, or assess a new vendor before onboarding.
 
-    **Commands**
-
-    | Command | Description |
-    |---|---|
-    | `/audit-expenses` | Review a batch of expense line items against policy and flag exceptions |
-    | `/review-vendor` | Run a new vendor through the standard risk checklist before onboarding them |
-
     [Full team page →](expense-audit.md)
 
 ??? note "hr-onboarding — v1.0.0 · 1 skill"
@@ -48,13 +33,6 @@
     ??? example "onboarding-checklist"
 
         Builds a role-specific new-hire onboarding checklist (accounts, equipment, training, introductions) grouped by before day one / week one / first 30 days. Use when a user asks to onboard a new hire or generate an onboarding plan.
-
-    **Commands**
-
-    | Command | Description |
-    |---|---|
-    | `/onboard-new-hire` | Generate a full onboarding checklist for a new hire's role and team |
-    | `/provision-access` | Draft the IT/access-request tickets implied by an onboarding checklist |
 
     [Full team page →](hr-onboarding.md)
 
@@ -72,13 +50,6 @@
 
         Also on: expense-audit
 
-    **Commands**
-
-    | Command | Description |
-    |---|---|
-    | `/invoice-file` | File a validated invoice into the accounting system under the right cost center |
-    | `/invoice-intake` | Extract structured data from an invoice attachment and check it against the PO |
-
     [Full team page →](invoice-processor.md)
 
 ??? note "meeting-ops — v1.1.0 · 2 skills"
@@ -92,13 +63,6 @@
     ??? example "weekly-report-writer"
 
         Rolls scattered updates (Slack messages, meeting notes, ticket status) into one structured weekly status report with highlights, risks, and next steps. Use when a user asks to write, draft, or compile a weekly/status update.
-
-    **Commands**
-
-    | Command | Description |
-    |---|---|
-    | `/meeting-followup` | Turn a transcript or notes into a summary, action items, and a status update |
-    | `/meeting-prep` | Draft an agenda from the meeting's goal and recent related threads |
 
     [Full team page →](meeting-ops.md)
 

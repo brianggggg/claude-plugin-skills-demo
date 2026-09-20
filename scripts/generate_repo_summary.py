@@ -209,15 +209,10 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
             body.append("No skills published yet.")
             body.append("")
 
-        if plugin["commands"]:
-            body.append("**Commands**")
-            body.append("")
-            body.append("| Command | Description |")
-            body.append("|---|---|")
-            for cmd in plugin["commands"]:
-                body.append(f"| `{cmd['name']}` | {cmd['description']} |")
-            body.append("")
-
+        # Commands are deliberately left off this accordion view — they
+        # mostly restate what the skills above already say, and this is
+        # the first thing new members see. Still shown on the full team
+        # page for anyone who wants that level of detail.
         body.append(f"[Full team page →]({plugin['name']}.md)")
 
         lines.append(indent("\n".join(body)))
