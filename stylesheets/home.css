@@ -1,0 +1,157 @@
+/* Homepage landing-page treatment: full-bleed hero, animated stats,
+   and scroll-reveal sections. Scoped to classes only used on index.md
+   so it never affects Guides/Plugins/Skills pages. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -1.2rem;
+  margin-bottom: 3rem;
+  padding: 4.5rem 1.5rem 5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, #0b3d3a 100%);
+  color: var(--md-primary-bg-color);
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .hero {
+  background: linear-gradient(135deg, #0c3e3b 0%, #03100f 100%);
+}
+
+.hero h1 {
+  color: var(--md-primary-bg-color);
+  font-size: 2.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero > p {
+  max-width: 38rem;
+  margin: 0 auto 2rem;
+  font-size: 1.15rem;
+  opacity: 0.92;
+}
+
+.hero .md-button {
+  margin: 0.25rem 0.4rem;
+}
+
+.hero .md-button:not(.md-button--primary) {
+  color: var(--md-primary-bg-color);
+  border-color: var(--md-primary-bg-color);
+}
+
+.hero .md-button:not(.md-button--primary):hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--md-primary-bg-color);
+}
+
+.hero-scroll-cue {
+  display: block;
+  margin-top: 2.5rem;
+  font-size: 1.8rem;
+  color: var(--md-primary-bg-color);
+  opacity: 0.8;
+  text-decoration: none;
+  animation: hero-bounce 2s infinite;
+}
+
+@keyframes hero-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* Stat strip */
+.stat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: -3.5rem auto 0.5rem;
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+}
+
+.stat {
+  background: var(--md-default-bg-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--md-shadow-z2);
+  padding: 1rem 1.75rem;
+  text-align: center;
+  min-width: 8rem;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--md-primary-fg-color);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.stat-updated {
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 3rem;
+}
+
+/* CTA banner */
+.cta-banner {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: var(--md-code-bg-color);
+}
+
+.cta-banner > :last-child {
+  margin-bottom: 0;
+}
+
+/* Scroll reveal. Content is visible by default (progressive
+   enhancement) — home.js adds .reveal-armed right before it starts
+   observing, so opacity only ever drops to 0 when the JS that will
+   bring it back is confirmed to be running. If JS fails to load, the
+   page still shows everything. */
+.reveal.reveal-armed {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.reveal-armed.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-scroll-cue,
+  html {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

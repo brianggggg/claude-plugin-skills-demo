@@ -49,6 +49,8 @@
     
       <link rel="stylesheet" href="../../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../../stylesheets/home.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -576,7 +578,12 @@
 
   <h1>Stats</h1>
 
-<p><strong>5 plugins</strong> · <strong>8 skills</strong> · catalog last rebuilt <strong>2026-09-20 11:36 UTC</strong></p>
+<div class="stat-strip reveal">
+  <div class="stat"><span class="stat-number" data-target="5">0</span><span class="stat-label">Plugins</span></div>
+  <div class="stat"><span class="stat-number" data-target="8">0</span><span class="stat-label">Skills</span></div>
+  <div class="stat"><span class="stat-number" data-target="4">0</span><span class="stat-label">Commits</span></div>
+</div>
+<p class="stat-updated">Catalog last rebuilt <strong>2026-09-20 11:47 UTC</strong></p>
 
 
 
@@ -636,6 +643,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/home.js"></script>
       
     
   </body>
