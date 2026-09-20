@@ -15,7 +15,7 @@ html {
   margin-right: -50vw;
   margin-top: -1.2rem;
   margin-bottom: 3rem;
-  padding: 4.5rem 1.5rem 5rem;
+  padding: 4.5rem 1.5rem 3.5rem;
   text-align: center;
   background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, #0b3d3a 100%);
   color: var(--md-primary-bg-color);
@@ -68,25 +68,60 @@ html {
   50% { transform: translateY(8px); }
 }
 
-/* Stat strip */
+/* Concept row: 1-2 sentence intro to each core idea, right under the hero */
+.concept-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 44rem;
+  margin: 0 auto 2.5rem;
+  text-align: left;
+}
+
+.concept {
+  flex: 1 1 16rem;
+}
+
+.concept h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.concept p {
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Stat strip — each card links to the section it counts */
 .stat-strip {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  margin: -3.5rem auto 0.5rem;
-  position: relative;
-  z-index: 1;
+  margin: 0 auto 0.5rem;
   max-width: 42rem;
 }
 
-.stat {
+a.stat {
+  display: block;
   background: var(--md-default-bg-color);
   border-radius: 0.5rem;
-  box-shadow: var(--md-shadow-z2);
+  box-shadow: var(--md-shadow-z1);
   padding: 1rem 1.75rem;
   text-align: center;
   min-width: 8rem;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--md-shadow-z2);
 }
 
 .stat-number {
