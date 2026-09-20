@@ -46,6 +46,10 @@ validation:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/home.css
+
+extra_javascript:
+  - javascripts/home.js
 
 markdown_extensions:
   - attr_list

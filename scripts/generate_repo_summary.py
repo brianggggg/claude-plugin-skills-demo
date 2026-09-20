@@ -170,8 +170,18 @@ def skill_card(skill, href, note):
     )
 
 
-def build_stats_snippet(plugins, skills, now):
-    return f"**{len(plugins)} plugins** · **{len(skills)} skills** · catalog last rebuilt **{now}**\n"
+def build_stats_snippet(plugins, skills, total_commits, now):
+    return (
+        f'<div class="stat-strip reveal">\n'
+        f'  <div class="stat"><span class="stat-number" data-target="{len(plugins)}">0</span>'
+        f'<span class="stat-label">Plugins</span></div>\n'
+        f'  <div class="stat"><span class="stat-number" data-target="{len(skills)}">0</span>'
+        f'<span class="stat-label">Skills</span></div>\n'
+        f'  <div class="stat"><span class="stat-number" data-target="{total_commits}">0</span>'
+        f'<span class="stat-label">Commits</span></div>\n'
+        f"</div>\n"
+        f'<p class="stat-updated">Catalog last rebuilt <strong>{now}</strong></p>\n'
+    )
 
 
 def build_plugins_index(plugins):
@@ -325,7 +335,7 @@ def main():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
-        f.write(build_stats_snippet(plugins, skills, now))
+        f.write(build_stats_snippet(plugins, skills, total_commits, now))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_plugins_index(plugins))
