@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Home for the team's Claude Code plugins and skills — what they do, how to use them, and how to publish your own.">
+        <meta name="description" content="Home for the team's Claude Code skills and teams — what they do, how to use them, and how to publish your own.">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Publishing a plugin - Business Ops Center of Excellence</title>
+        <title>Registering a team - Business Ops Center of Excellence</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#publishing-a-plugin" class="md-skip">
+        <a href="#registering-a-team" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Publishing a plugin
+              Registering a team
             
           </span>
         </div>
@@ -272,7 +272,7 @@
   
     
   
-  Plugins
+  Teams
 
       </a>
     </li>
@@ -522,7 +522,7 @@
   <span class="md-ellipsis">
     
   
-    Publishing a plugin
+    Registering a team
   
 
     
@@ -540,7 +540,7 @@
   <span class="md-ellipsis">
     
   
-    Publishing a plugin
+    Registering a team
   
 
     
@@ -566,10 +566,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-the-plugin-folder" class="md-nav__link">
+  <a href="#1-create-the-teams-folder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create the plugin folder
+        1. Create the team's folder
       
     </span>
   </a>
@@ -700,7 +700,7 @@
   <span class="md-ellipsis">
     
   
-    Plugins
+    Teams
   
 
     
@@ -767,10 +767,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-the-plugin-folder" class="md-nav__link">
+  <a href="#1-create-the-teams-folder" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create the plugin folder
+        1. Create the team's folder
       
     </span>
   </a>
@@ -863,31 +863,32 @@
   
 
 
-<h1 id="publishing-a-plugin">Publishing a Plugin<a class="headerlink" href="#publishing-a-plugin" title="Permanent link">&para;</a></h1>
-<p>A plugin is how your team packages and publishes its skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.</p>
-<h2 id="1-create-the-plugin-folder">1. Create the plugin folder<a class="headerlink" href="#1-create-the-plugin-folder" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/
+<h1 id="registering-a-team">Registering a Team<a class="headerlink" href="#registering-a-team" title="Permanent link">&para;</a></h1>
+<p>A team is how you package and publish your skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.</p>
+<p><em>(Technical note: under the hood this still uses Claude Code's <code>plugins/</code> folder structure — the site just presents it as "Teams.")</em></p>
+<h2 id="1-create-the-teams-folder">1. Create the team's folder<a class="headerlink" href="#1-create-the-teams-folder" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>plugins/your-team-name/
   .claude-plugin/
     plugin.json
 </code></pre></div>
 <h2 id="2-fill-in-pluginjson">2. Fill in <code>plugin.json</code><a class="headerlink" href="#2-fill-in-pluginjson" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-plugin-name"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One sentence describing what this plugin is for."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-team-name"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One sentence describing what this team publishes."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Team"</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="3-bundle-your-teams-skills">3. Bundle your team's skills<a class="headerlink" href="#3-bundle-your-teams-skills" title="Permanent link">&para;</a></h2>
-<p>List the skills this plugin publishes — already in the <a href="../../skills/">Skills catalog</a>, or new ones you're adding alongside it — in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
-<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/skills.json
+<p>List the skills this team publishes — already in the <a href="../../skills/">Skills catalog</a>, or new ones you're adding alongside it — in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
+<div class="highlight"><pre><span></span><code>plugins/your-team-name/skills.json
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">"skill-one"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skill-two"</span><span class="p">]</span>
 </code></pre></div>
-<p>This is what powers the "bundled skills" and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.</p>
+<p>This is what powers the accordion and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.</p>
 <h2 id="4-optional-add-a-slash-command">4. (Optional) Add a slash command<a class="headerlink" href="#4-optional-add-a-slash-command" title="Permanent link">&para;</a></h2>
 <p>If you want a skill (or a sequence of them) runnable directly as a slash command, add a <code>commands/</code> folder:</p>
-<div class="highlight"><pre><span></span><code>plugins/your-plugin-name/commands/your-command.md
+<div class="highlight"><pre><span></span><code>plugins/your-team-name/commands/your-command.md
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>---
 <span class="gu">description: One-line description shown in the catalog</span>
@@ -898,17 +899,17 @@ including which skill(s) to lean on for the actual reasoning.
 </code></pre></div>
 <p>The filename becomes the command name — <code>commands/audit-expenses.md</code> becomes <code>/audit-expenses</code>.</p>
 <h2 id="5-register-it-in-the-marketplace">5. Register it in the marketplace<a class="headerlink" href="#5-register-it-in-the-marketplace" title="Permanent link">&para;</a></h2>
-<p>Add an entry to <code>.claude-plugin/marketplace.json</code> at the repo root so the plugin is discoverable:</p>
+<p>Add an entry to <code>.claude-plugin/marketplace.json</code> at the repo root so your team is discoverable:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-plugin-name"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./plugins/your-plugin-name"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-team-name"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./plugins/your-team-name"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same one-sentence description as above."</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="6-submit-it">6. Submit it<a class="headerlink" href="#6-submit-it" title="Permanent link">&para;</a></h2>
 <p>Same as skills — open a pull request with your new files, or ask a teammate (or Claude Code, pointed at this repository) to do the git mechanics for you.</p>
 <h2 id="7-what-happens-next">7. What happens next<a class="headerlink" href="#7-what-happens-next" title="Permanent link">&para;</a></h2>
-<p>Once merged, the site rebuilds automatically. Your plugin appears on the <a href="../../plugins/">Plugins catalog</a> with its bundled skills (and any commands), and each bundled skill's own page updates to show it's now "used by" your plugin too.</p>
+<p>Once merged, the site rebuilds automatically. Your team appears on the <a href="../../plugins/">Teams catalog</a> with its published skills (and any commands), and each skill's own page updates to show it's now "used by" your team too.</p>
 
 
 
