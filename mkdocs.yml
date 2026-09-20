@@ -6,8 +6,10 @@ repo_name: brianggggg/claude-plugin-skills-demo
 nav:
   - Home: index.md
   - Guides:
+      - Getting started: guides/getting-started.md
       - Publishing a skill: guides/publishing-a-skill.md
       - Publishing a plugin: guides/publishing-a-plugin.md
+      - FAQ: guides/faq.md
   - Plugins: plugins/index.md
   - Skills: skills/index.md
 

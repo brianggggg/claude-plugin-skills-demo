@@ -10,14 +10,19 @@ hide:
 
 Reusable Claude Code plugins and skills that help the whole team move faster.
 
-[Browse Plugins](plugins/index.md){ .md-button .md-button--primary }
-[Browse Skills](skills/index.md){ .md-button }
-
 <a href="#learn-more" class="hero-scroll-cue" aria-label="Scroll to learn more">⌄</a>
 
 </div>
 
-<div class="concept-row reveal" id="learn-more" markdown>
+<div class="lead-in reveal" id="learn-more" markdown>
+
+### What's Claude?
+
+Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the plugins and skills below.
+
+</div>
+
+<div class="concept-row reveal" markdown>
 
 <div class="concept" markdown>
 
@@ -38,6 +43,17 @@ Ready-to-run commands for a workflow, often built on skills. [Learn more →](pl
 </div>
 
 --8<-- "_generated/stats.md"
+
+<div class="onboarding reveal" markdown>
+
+## New here?
+
+Get set up with Claude Code in a few minutes, then come back to explore what the team's already built.
+
+[Get Started](guides/getting-started.md){ .md-button .md-button--primary }
+[Read the FAQ](guides/faq.md){ .md-button }
+
+</div>
 
 <div class="reveal" markdown>
 
