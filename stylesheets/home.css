@@ -14,8 +14,8 @@ html {
   margin-left: -50vw;
   margin-right: -50vw;
   margin-top: -1.2rem;
-  margin-bottom: 3rem;
-  padding: 4.5rem 1.5rem 3.5rem;
+  margin-bottom: 2rem;
+  padding: 3rem 1.5rem 2.25rem;
   text-align: center;
   background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, #0b3d3a 100%);
   color: var(--md-primary-bg-color);
@@ -28,35 +28,25 @@ html {
 
 .hero h1 {
   color: var(--md-primary-bg-color);
-  font-size: 2.6rem;
-  margin-bottom: 0.75rem;
+  /* Scales down on narrow viewports so the title never wraps to a
+     second line, without needing a fixed breakpoint. Floor is tuned
+     to still fit a 320px-wide screen with margin to spare. */
+  font-size: clamp(0.8rem, 4vw, 1.55rem);
+  white-space: nowrap;
+  margin-bottom: 0.6rem;
 }
 
 .hero > p {
   max-width: 38rem;
-  margin: 0 auto 2rem;
-  font-size: 1.15rem;
+  margin: 0 auto;
+  font-size: 1.05rem;
   opacity: 0.92;
-}
-
-.hero .md-button {
-  margin: 0.25rem 0.4rem;
-}
-
-.hero .md-button:not(.md-button--primary) {
-  color: var(--md-primary-bg-color);
-  border-color: var(--md-primary-bg-color);
-}
-
-.hero .md-button:not(.md-button--primary):hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--md-primary-bg-color);
 }
 
 .hero-scroll-cue {
   display: block;
-  margin-top: 2.5rem;
-  font-size: 1.8rem;
+  margin-top: 1.25rem;
+  font-size: 1.5rem;
   color: var(--md-primary-bg-color);
   opacity: 0.8;
   text-decoration: none;
@@ -66,6 +56,23 @@ html {
 @keyframes hero-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
+}
+
+/* Lead-in: one short "what's Claude" blurb right under the hero */
+.lead-in {
+  max-width: 34rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.lead-in h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.lead-in p {
+  margin: 0;
+  opacity: 0.85;
 }
 
 /* Concept row: 1-2 sentence intro to each core idea, right under the hero */
@@ -144,6 +151,22 @@ a.stat:hover {
   font-size: 0.85rem;
   opacity: 0.7;
   margin-bottom: 3rem;
+}
+
+/* Onboarding: short "get started" nudge, no full-bleed background —
+   keeps it light so it doesn't compete visually with the CTA banner */
+.onboarding {
+  max-width: 34rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.onboarding p {
+  opacity: 0.85;
+}
+
+.onboarding .md-button {
+  margin: 0.25rem 0.4rem;
 }
 
 /* CTA banner */
