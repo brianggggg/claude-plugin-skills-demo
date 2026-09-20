@@ -12,7 +12,7 @@ Condenses a meeting transcript or raw notes into decisions, action items with ow
 
 ??? note "SKILL.md contents"
 
-    ```markdown
+    ````markdown
     # Meeting Summarizer
 
     Turn unstructured meeting input into a short, scannable summary.
@@ -39,6 +39,6 @@ Condenses a meeting transcript or raw notes into decisions, action items with ow
     ## Open Questions
     - ...
     ```
-    ```
+    ````
 
 [:octicons-arrow-left-24: Back to Skills catalog](index.md)

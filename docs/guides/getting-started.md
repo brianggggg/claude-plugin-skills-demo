@@ -12,7 +12,7 @@ You don't need to know a skill's name or memorize a command. Describe the task i
 
 ## 3. Or browse by team
 
-Each [plugin](../plugins/index.md) is a team's published set of skills. Some also add a slash command, like `/invoice-intake`, for quick access. Browse the [Plugins catalog](../plugins/index.md) to see what each team has shared.
+Each [team](../plugins/index.md) publishes its own set of skills. Some also add a slash command, like `/invoice-intake`, for quick access. Browse the [Teams catalog](../plugins/index.md) to see what each team has shared.
 
 ## 4. Have a question?
 
@@ -20,4 +20,4 @@ Check the [FAQ](faq.md) first. If it's not answered there, [open an issue](https
 
 ---
 
-[Browse Plugins](../plugins/index.md){ .md-button } [Browse Skills](../skills/index.md){ .md-button }
+[Browse Teams](../plugins/index.md){ .md-button } [Browse Skills](../skills/index.md){ .md-button }

@@ -1,6 +1,6 @@
 # meeting-ops
 
-*Plugin · v1.1.0 · Business Ops Team*
+*Team · v1.1.0 · Business Ops Team*
 
 Prep agendas, summarize calls, and turn discussions into weekly reports.
 
@@ -21,7 +21,7 @@ Prep agendas, summarize calls, and turn discussions into weekly reports.
 
     Condenses a meeting transcript or raw notes into decisions, action items with owners, and open questions. Use when a user pastes a transcript, forwards meeting notes, or asks "summarize this meeting" / "what did we decide".
 
-    Bundled by this plugin
+    Published by this team
 
     [:octicons-arrow-right-24: View skill](../skills/meeting-summarizer.md)
 
@@ -32,11 +32,11 @@ Prep agendas, summarize calls, and turn discussions into weekly reports.
 
     Rolls scattered updates (Slack messages, meeting notes, ticket status) into one structured weekly status report with highlights, risks, and next steps. Use when a user asks to write, draft, or compile a weekly/status update.
 
-    Bundled by this plugin
+    Published by this team
 
     [:octicons-arrow-right-24: View skill](../skills/weekly-report-writer.md)
 
 
 </div>
 
-[:octicons-arrow-left-24: Back to Plugins catalog](index.md)
+[:octicons-arrow-left-24: Back to Teams catalog](index.md)

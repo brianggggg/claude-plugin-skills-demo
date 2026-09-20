@@ -6,7 +6,7 @@ Reviews a contract draft and flags clauses that are risky, non-standard, or miss
 
 ## Used by
 
-Not currently bundled by any plugin — available standalone.
+Not currently published by any team — available standalone.
 
 ## Full skill definition
 

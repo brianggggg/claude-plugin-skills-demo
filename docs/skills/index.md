@@ -1,6 +1,6 @@
 # Skills
 
-A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin groups skills for your team. Browse by skill here, or see the [Plugins catalog](../plugins/index.md) to browse by plugin instead.
+A skill teaches Claude how to do one job well, like summarizing a meeting. A team groups its skills together. Browse by skill here, or see the [Teams catalog](../plugins/index.md) to browse by team instead.
 
 <div class="grid cards" markdown>
 
@@ -10,7 +10,7 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A plu
 
     Reviews a contract draft and flags clauses that are risky, non-standard, or missing entirely (indemnification, liability caps, termination, auto-renewal, data handling). Use when a user shares a contract/agreement and asks for a review, redline, or risk flag.
 
-    Standalone — not bundled by a plugin
+    Standalone — not published by any team
 
     [:octicons-arrow-right-24: View skill](contract-redline.md)
 
@@ -54,7 +54,7 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A plu
 
     Turns a status update or set of raw metrics into progress deltas against existing OKRs (on track / at risk / behind, with the delta since last update). Use when a user shares a status update and asks how it maps to their OKRs, or asks for an OKR progress update.
 
-    Standalone — not bundled by a plugin
+    Standalone — not published by any team
 
     [:octicons-arrow-right-24: View skill](okr-tracker.md)
 

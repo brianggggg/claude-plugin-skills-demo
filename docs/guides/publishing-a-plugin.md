@@ -1,11 +1,13 @@
-# Publishing a Plugin
+# Registering a Team
 
-A plugin is how your team packages and publishes its skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.
+A team is how you package and publish your skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.
 
-## 1. Create the plugin folder
+*(Technical note: under the hood this still uses Claude Code's `plugins/` folder structure — the site just presents it as "Teams.")*
+
+## 1. Create the team's folder
 
 ```
-plugins/your-plugin-name/
+plugins/your-team-name/
   .claude-plugin/
     plugin.json
 ```
@@ -14,8 +16,8 @@ plugins/your-plugin-name/
 
 ```json
 {
-  "name": "your-plugin-name",
-  "description": "One sentence describing what this plugin is for.",
+  "name": "your-team-name",
+  "description": "One sentence describing what this team publishes.",
   "version": "1.0.0",
   "author": { "name": "Your Team" }
 }
@@ -23,24 +25,24 @@ plugins/your-plugin-name/
 
 ## 3. Bundle your team's skills
 
-List the skills this plugin publishes — already in the [Skills catalog](../skills/index.md), or new ones you're adding alongside it — in a `skills.json` file next to `plugin.json`:
+List the skills this team publishes — already in the [Skills catalog](../skills/index.md), or new ones you're adding alongside it — in a `skills.json` file next to `plugin.json`:
 
 ```
-plugins/your-plugin-name/skills.json
+plugins/your-team-name/skills.json
 ```
 
 ```json
 ["skill-one", "skill-two"]
 ```
 
-This is what powers the "bundled skills" and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.
+This is what powers the accordion and "used by" cross-links you see on the catalog pages — it's read automatically, you don't need to update anything else.
 
 ## 4. (Optional) Add a slash command
 
 If you want a skill (or a sequence of them) runnable directly as a slash command, add a `commands/` folder:
 
 ```
-plugins/your-plugin-name/commands/your-command.md
+plugins/your-team-name/commands/your-command.md
 ```
 
 ```markdown
@@ -56,12 +58,12 @@ The filename becomes the command name — `commands/audit-expenses.md` becomes `
 
 ## 5. Register it in the marketplace
 
-Add an entry to `.claude-plugin/marketplace.json` at the repo root so the plugin is discoverable:
+Add an entry to `.claude-plugin/marketplace.json` at the repo root so your team is discoverable:
 
 ```json
 {
-  "name": "your-plugin-name",
-  "source": "./plugins/your-plugin-name",
+  "name": "your-team-name",
+  "source": "./plugins/your-team-name",
   "description": "Same one-sentence description as above."
 }
 ```
@@ -72,4 +74,4 @@ Same as skills — open a pull request with your new files, or ask a teammate (o
 
 ## 7. What happens next
 
-Once merged, the site rebuilds automatically. Your plugin appears on the [Plugins catalog](../plugins/index.md) with its bundled skills (and any commands), and each bundled skill's own page updates to show it's now "used by" your plugin too.
+Once merged, the site rebuilds automatically. Your team appears on the [Teams catalog](../plugins/index.md) with its published skills (and any commands), and each skill's own page updates to show it's now "used by" your team too.

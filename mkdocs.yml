@@ -1,5 +1,5 @@
 site_name: Business Ops Center of Excellence
-site_description: Home for the team's Claude Code plugins and skills — what they do, how to use them, and how to publish your own.
+site_description: Home for the team's Claude Code skills and teams — what they do, how to use them, and how to publish your own.
 repo_url: https://github.com/brianggggg/claude-plugin-skills-demo
 repo_name: brianggggg/claude-plugin-skills-demo
 
@@ -8,9 +8,9 @@ nav:
   - Guides:
       - Getting started: guides/getting-started.md
       - Publishing a skill: guides/publishing-a-skill.md
-      - Publishing a plugin: guides/publishing-a-plugin.md
+      - Registering a team: guides/publishing-a-plugin.md
       - FAQ: guides/faq.md
-  - Plugins: plugins/index.md
+  - Teams: plugins/index.md
   - Skills: skills/index.md
 
 theme:

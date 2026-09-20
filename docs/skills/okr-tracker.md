@@ -6,7 +6,7 @@ Turns a status update or set of raw metrics into progress deltas against existin
 
 ## Used by
 
-Not currently bundled by any plugin — available standalone.
+Not currently published by any team — available standalone.
 
 ## Full skill definition
 

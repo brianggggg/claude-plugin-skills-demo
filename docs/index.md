@@ -34,11 +34,9 @@ Claude is Anthropic's AI assistant — you describe what you need in plain Engli
 
 <div class="lead-in reveal" markdown>
 
-### :material-flash-outline: Skills & Plugins
+### :material-flash-outline: Skills & Teams
 
-A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin groups skills for your team.
-
-[Browse Skills](skills/index.md) · [Browse Plugins](plugins/index.md)
+A skill teaches Claude how to do one job well, like summarizing a meeting. A team groups its skills together.
 
 </div>
 
@@ -58,7 +56,7 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A plu
 
     [:octicons-arrow-right-24: Read the guide](guides/publishing-a-skill.md)
 
--   :material-puzzle-outline:{ .lg .middle } __Publish a Plugin__
+-   :material-puzzle-outline:{ .lg .middle } __Register a Team__
 
     ---
 

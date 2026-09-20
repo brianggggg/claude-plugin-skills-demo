@@ -5,10 +5,12 @@ build, so the catalog is always current:
 
   docs/_generated/stats.md   one-line stat snippet, included into the
                               hand-written docs/index.md via pymdownx.snippets
-  docs/plugins/index.md      plugin card grid
-  docs/plugins/<name>.md     one page per plugin, with its bundled skills
+  docs/plugins/index.md      "Teams" catalog — a closed accordion, one entry
+                              per team (technically a "plugin"), expanding to
+                              that team's published skills
+  docs/plugins/<name>.md     one full page per team, with its bundled skills
   docs/skills/index.md       skill card grid
-  docs/skills/<name>.md      one page per skill, with the plugins that use it
+  docs/skills/<name>.md      one page per skill, with the team(s) that use it
   docs/activity.md           recent commits + contributors
 
 docs/index.md and docs/guides/*.md are hand-written and never touched here.
@@ -31,13 +33,6 @@ SKILLS_DIR = os.path.join(REPO_ROOT, "skills")
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
 
-PLUGIN_ICONS = [
-    "material-puzzle-outline",
-    "material-connection",
-    "material-calendar-check-outline",
-    "material-account-plus-outline",
-    "material-receipt-text-check-outline",
-]
 SKILL_ICON = "material-flash-outline"
 
 
@@ -148,16 +143,38 @@ def get_total_commit_count():
     return run_git(["rev-list", "--count", "HEAD"])
 
 
-def plugin_card(plugin, icon, href):
-    skill_count = len(plugin["skills"])
-    skill_note = f"{skill_count} skill{'s' if skill_count != 1 else ''}" if skill_count else "no bundled skills"
-    return (
-        f"-   :{icon}:{{ .lg .middle }} __{plugin['name']}__ `v{plugin['version']}`\n\n"
-        f"    ---\n\n"
-        f"    {plugin['description']}\n\n"
-        f"    {len(plugin['commands'])} commands · {skill_note}\n\n"
-        f"    [:octicons-arrow-right-24: View plugin]({href})\n"
-    )
+def indent(text, prefix="    "):
+    """Indent every non-empty line of text — for nesting pymdownx.details
+    (accordion) blocks, where each nesting level needs 4 more spaces."""
+    return "\n".join((prefix + line if line else "") for line in text.splitlines())
+
+
+def fence_for(text):
+    """A fence delimiter long enough that it can't be closed early by any
+    backtick run already inside text (e.g. a skill body that itself
+    contains a ``` example block)."""
+    longest = 0
+    for match in re.finditer(r"`+", text):
+        longest = max(longest, len(match.group()))
+    return "`" * max(3, longest + 1)
+
+
+def build_skill_definition_block(skill):
+    lines = ['??? note "Full skill definition"', ""]
+    fence = fence_for(skill["body"])
+    code = [f"{fence}markdown"] + skill["body"].splitlines() + [fence]
+    lines.append(indent("\n".join(code)))
+    return "\n".join(lines)
+
+
+def build_skill_accordion_item(skill, note):
+    lines = [f'??? example "{skill["name"]}"', ""]
+    body = [skill["description"]]
+    if note:
+        body += ["", note]
+    body += ["", build_skill_definition_block(skill)]
+    lines.append(indent("\n".join(body)))
+    return "\n".join(lines)
 
 
 def skill_card(skill, href, note):
@@ -177,7 +194,7 @@ def build_stats_snippet(plugins, skills, friendly_date):
     return (
         f'<div class="stat-strip reveal">\n'
         f'  <a class="stat" href="plugins/"><span class="stat-number" data-target="{len(plugins)}">0</span>'
-        f'<span class="stat-label">Plugins</span></a>\n'
+        f'<span class="stat-label">Teams</span></a>\n'
         f'  <a class="stat" href="skills/"><span class="stat-number" data-target="{len(skills)}">0</span>'
         f'<span class="stat-label">Skills</span></a>\n'
         f"</div>\n"
@@ -185,21 +202,53 @@ def build_stats_snippet(plugins, skills, friendly_date):
     )
 
 
-def build_plugins_index(plugins):
+def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
+    team_count = len(plugins)
     lines = [
-        "# Plugins",
+        "# Teams",
         "",
-        "A plugin groups skills for your team. Browse by plugin here, or see the "
+        f"{team_count} team{'s' if team_count != 1 else ''} {'have' if team_count != 1 else 'has'} "
+        "published skills here. Click a team to see what they've shared, or see the "
         "[Skills catalog](../skills/index.md) to browse by skill instead.",
         "",
     ]
-    lines.append('<div class="grid cards" markdown>')
-    lines.append("")
-    for plugin, icon in zip(plugins, PLUGIN_ICONS):
-        lines.append(plugin_card(plugin, icon, href=f"{plugin['name']}.md"))
+
+    for plugin in plugins:
+        skill_count = len(plugin["skills"])
+        skill_note = f"{skill_count} skill{'s' if skill_count != 1 else ''}" if skill_count else "no skills yet"
+        summary = f"{plugin['name']} — v{plugin['version']} · {skill_note}"
+        lines.append(f'??? note "{summary}"')
         lines.append("")
-    lines.append("</div>")
-    lines.append("")
+
+        body = [plugin["description"], ""]
+
+        if plugin["skills"]:
+            for skill_name in plugin["skills"]:
+                skill = skills_by_name.get(skill_name)
+                if not skill:
+                    continue
+                other = [p for p in skill_to_plugins.get(skill_name, []) if p != plugin["name"]]
+                note = f"Also on: {', '.join(other)}" if other else ""
+                body.append(build_skill_accordion_item(skill, note))
+                body.append("")
+        else:
+            body.append("No skills published yet.")
+            body.append("")
+
+        if plugin["commands"]:
+            body.append("**Commands**")
+            body.append("")
+            body.append("| Command | Description |")
+            body.append("|---|---|")
+            for cmd in plugin["commands"]:
+                body.append(f"| `{cmd['name']}` | {cmd['description']} |")
+            body.append("")
+
+        body.append(f"[Full team page →]({plugin['name']}.md)")
+
+        lines.append(indent("\n".join(body)))
+        lines.append("")
+
     return "\n".join(lines)
 
 
@@ -207,16 +256,16 @@ def build_skills_index(skills, skill_to_plugins):
     lines = [
         "# Skills",
         "",
-        "A skill teaches Claude how to do one job well, like summarizing a meeting. A plugin "
-        "groups skills for your team. Browse by skill here, or see the "
-        "[Plugins catalog](../plugins/index.md) to browse by plugin instead.",
+        "A skill teaches Claude how to do one job well, like summarizing a meeting. A team "
+        "groups its skills together. Browse by skill here, or see the "
+        "[Teams catalog](../plugins/index.md) to browse by team instead.",
         "",
     ]
     lines.append('<div class="grid cards" markdown>')
     lines.append("")
     for skill in skills:
         used_by = skill_to_plugins.get(skill["name"], [])
-        note = f"Used by: {', '.join(used_by)}" if used_by else "Standalone — not bundled by a plugin"
+        note = f"Used by: {', '.join(used_by)}" if used_by else "Standalone — not published by any team"
         lines.append(skill_card(skill, href=f"{skill['name']}.md", note=note))
         lines.append("")
     lines.append("</div>")
@@ -229,7 +278,7 @@ def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
     lines.append(f"# {plugin['name']}")
     lines.append("")
     author_bit = f" · {plugin['author']}" if plugin["author"] else ""
-    lines.append(f"*Plugin · v{plugin['version']}{author_bit}*")
+    lines.append(f"*Team · v{plugin['version']}{author_bit}*")
     lines.append("")
     lines.append(plugin["description"])
     lines.append("")
@@ -253,16 +302,16 @@ def build_plugin_page(plugin, skills_by_name, skill_to_plugins):
             if not skill:
                 continue
             other_plugins = [p for p in skill_to_plugins.get(skill_name, []) if p != plugin["name"]]
-            note = f"Also used by: {', '.join(other_plugins)}" if other_plugins else "Bundled by this plugin"
+            note = f"Also on: {', '.join(other_plugins)}" if other_plugins else "Published by this team"
             lines.append(skill_card(skill, href=f"../skills/{skill_name}.md", note=note))
             lines.append("")
         lines.append("</div>")
         lines.append("")
     else:
-        lines.append("This plugin doesn't bundle any skills — its commands are self-contained.")
+        lines.append("This team hasn't published any skills yet.")
         lines.append("")
 
-    lines.append("[:octicons-arrow-left-24: Back to Plugins catalog](index.md)")
+    lines.append("[:octicons-arrow-left-24: Back to Teams catalog](index.md)")
     lines.append("")
     return "\n".join(lines)
 
@@ -282,17 +331,18 @@ def build_skill_page(skill, used_by):
         for plugin_name in used_by:
             lines.append(f"- [{plugin_name}](../plugins/{plugin_name}.md)")
     else:
-        lines.append("Not currently bundled by any plugin — available standalone.")
+        lines.append("Not currently published by any team — available standalone.")
     lines.append("")
 
     lines.append("## Full skill definition")
     lines.append("")
     lines.append("??? note \"SKILL.md contents\"")
     lines.append("")
-    lines.append("    ```markdown")
+    fence = fence_for(skill["body"])
+    lines.append(f"    {fence}markdown")
     for line in skill["body"].splitlines():
         lines.append(f"    {line}" if line else "")
-    lines.append("    ```")
+    lines.append(f"    {fence}")
     lines.append("")
 
     lines.append("[:octicons-arrow-left-24: Back to Skills catalog](index.md)")
@@ -352,7 +402,7 @@ def main():
         f.write(build_stats_snippet(plugins, skills, friendly_date))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
-        f.write(build_plugins_index(plugins))
+        f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins))
 
     with open(os.path.join(SKILLS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_skills_index(skills, skill_to_plugins))
@@ -371,7 +421,7 @@ def main():
         f.write(build_activity_page(commits, contributors, total_commits))
 
     print(
-        f"Wrote stats snippet, plugins/index.md ({len(plugins)} plugins), "
+        f"Wrote stats snippet, plugins/index.md ({len(plugins)} teams), "
         f"skills/index.md ({len(skills)} skills), and activity.md"
     )
 

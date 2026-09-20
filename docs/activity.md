@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 9 · **Contributors:** 1
+**Total commits:** 10 · **Contributors:** 1
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `1147737` | brianjgonza | 2026-09-20 | Restore masthead, drop commit count, shorten Skills & Plugins copy |
 | `3099168` | brianjgonza | 2026-09-20 | Correct the plugin/skill model and remove the redundant masthead |
 | `fb72028` | brianjgonza | 2026-09-20 | Replace the visible page title with a small brand masthead |
 | `f719643` | brianjgonza | 2026-09-20 | Drop the hero banner, reorder onboarding first, swap issue CTA for email |
@@ -20,6 +21,6 @@
 
 | Name | Commits |
 |---|---|
-| brianjgonza | 9 |
+| brianjgonza | 10 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)

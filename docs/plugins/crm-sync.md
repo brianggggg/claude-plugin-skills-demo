@@ -1,6 +1,6 @@
 # crm-sync
 
-*Plugin · v1.0.0 · Business Ops Team*
+*Team · v1.0.0 · Business Ops Team*
 
 Pull, push, and de-duplicate CRM contacts and deals from Claude.
 
@@ -14,6 +14,6 @@ Pull, push, and de-duplicate CRM contacts and deals from Claude.
 
 ## Bundled skills
 
-This plugin doesn't bundle any skills — its commands are self-contained.
+This team hasn't published any skills yet.
 
-[:octicons-arrow-left-24: Back to Plugins catalog](index.md)
+[:octicons-arrow-left-24: Back to Teams catalog](index.md)

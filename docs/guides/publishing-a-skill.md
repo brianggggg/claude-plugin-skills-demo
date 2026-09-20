@@ -54,4 +54,4 @@ If you don't use git day-to-day, the easiest path is to ask a teammate with repo
 
 Once your pull request is approved and merged, the site rebuilds automatically. Your skill appears in the [Skills catalog](../skills/index.md) within a couple of minutes — no manual publishing step.
 
-Want your team's skills published together under one name, or wired up as a slash command? See [Publishing a Plugin](publishing-a-plugin.md).
+Want your team's skills published together under one name, or wired up as a slash command? See [Registering a Team](publishing-a-plugin.md).
