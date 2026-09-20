@@ -1,6 +1,6 @@
 # Plugins
 
-Ready-to-run command bundles, one per workflow.
+A plugin is a ready-to-run bundle of slash commands built around one workflow — often leaning on one or more skills behind the scenes to do the actual work.
 
 <div class="grid cards" markdown>
 

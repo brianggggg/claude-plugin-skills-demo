@@ -1,6 +1,6 @@
 # Skills
 
-Single-purpose capabilities Claude can use directly, or that a plugin bundles.
+A skill teaches Claude how to do one job well — like summarizing a meeting or checking an expense against policy. Ask Claude to use one any time; a plugin may also bundle it behind a command.
 
 <div class="grid cards" markdown>
 

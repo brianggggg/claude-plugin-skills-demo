@@ -170,22 +170,31 @@ def skill_card(skill, href, note):
     )
 
 
-def build_stats_snippet(plugins, skills, total_commits, now):
+def build_stats_snippet(plugins, skills, total_commits, friendly_date):
+    # Raw HTML <a> tags bypass MkDocs' markdown link resolution, so these
+    # must already be the served paths (with use_directory_urls: true),
+    # not the source .md filenames.
     return (
         f'<div class="stat-strip reveal">\n'
-        f'  <div class="stat"><span class="stat-number" data-target="{len(plugins)}">0</span>'
-        f'<span class="stat-label">Plugins</span></div>\n'
-        f'  <div class="stat"><span class="stat-number" data-target="{len(skills)}">0</span>'
-        f'<span class="stat-label">Skills</span></div>\n'
-        f'  <div class="stat"><span class="stat-number" data-target="{total_commits}">0</span>'
-        f'<span class="stat-label">Commits</span></div>\n'
+        f'  <a class="stat" href="plugins/"><span class="stat-number" data-target="{len(plugins)}">0</span>'
+        f'<span class="stat-label">Plugins</span></a>\n'
+        f'  <a class="stat" href="skills/"><span class="stat-number" data-target="{len(skills)}">0</span>'
+        f'<span class="stat-label">Skills</span></a>\n'
+        f'  <a class="stat" href="activity/"><span class="stat-number" data-target="{total_commits}">0</span>'
+        f'<span class="stat-label">Commits</span></a>\n'
         f"</div>\n"
-        f'<p class="stat-updated">Catalog last rebuilt <strong>{now}</strong></p>\n'
+        f'<p class="stat-updated">Last updated <strong>{friendly_date}</strong></p>\n'
     )
 
 
 def build_plugins_index(plugins):
-    lines = ["# Plugins", "", "Ready-to-run command bundles, one per workflow.", ""]
+    lines = [
+        "# Plugins",
+        "",
+        "A plugin is a ready-to-run bundle of slash commands built around one workflow — "
+        "often leaning on one or more skills behind the scenes to do the actual work.",
+        "",
+    ]
     lines.append('<div class="grid cards" markdown>')
     lines.append("")
     for plugin, icon in zip(plugins, PLUGIN_ICONS):
@@ -197,7 +206,14 @@ def build_plugins_index(plugins):
 
 
 def build_skills_index(skills, skill_to_plugins):
-    lines = ["# Skills", "", "Single-purpose capabilities Claude can use directly, or that a plugin bundles.", ""]
+    lines = [
+        "# Skills",
+        "",
+        "A skill teaches Claude how to do one job well — like summarizing a meeting or checking "
+        "an expense against policy. Ask Claude to use one any time; a plugin may also bundle it "
+        "behind a command.",
+        "",
+    ]
     lines.append('<div class="grid cards" markdown>')
     lines.append("")
     for skill in skills:
@@ -332,10 +348,10 @@ def main():
     commits = get_recent_commits()
     contributors = get_contributors()
     total_commits = get_total_commit_count()
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    friendly_date = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
-        f.write(build_stats_snippet(plugins, skills, total_commits, now))
+        f.write(build_stats_snippet(plugins, skills, total_commits, friendly_date))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_plugins_index(plugins))
