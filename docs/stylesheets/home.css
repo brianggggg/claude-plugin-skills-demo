@@ -6,6 +6,29 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Screen-reader-only: keeps a real page heading in the accessibility
+   tree / document outline even though the page shows a masthead
+   instead of a visible title. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Masthead: small brand line in place of a page title */
+.masthead {
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin: 0.5rem 0 1.75rem;
+}
+
 /* Lead-in: one short "what's Claude" blurb near the top of the page */
 .lead-in {
   max-width: 34rem;

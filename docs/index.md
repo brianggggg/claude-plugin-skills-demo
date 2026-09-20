@@ -4,7 +4,14 @@ hide:
   - toc
 ---
 
-# Business Ops Center of Excellence
+# Business Ops Center of Excellence { .visually-hidden }
+
+<!-- Placeholder company name — swap "Acme Inc." for the real one whenever you have it. -->
+<div class="masthead" markdown>
+
+:material-domain: __Acme Inc.__ &nbsp;·&nbsp; :material-creation: Powered by Claude
+
+</div>
 
 <div class="onboarding reveal" markdown>
 
