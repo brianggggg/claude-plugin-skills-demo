@@ -13,3 +13,14 @@
 .md-typeset .grid.cards > ul > li > hr {
   margin: 0.6rem 0;
 }
+
+/* Material only shows the top tab bar above ~1220px and otherwise
+   folds all navigation into the hamburger drawer — which is easy to
+   land under on a non-maximized laptop window. Keep tabs visible down
+   to tablet width instead; still falls back to the drawer below that,
+   where 7 tabs wouldn't fit anyway. */
+@media screen and (min-width: 60em) {
+  .md-tabs {
+    display: block;
+  }
+}
