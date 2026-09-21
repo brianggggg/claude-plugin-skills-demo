@@ -31,7 +31,7 @@ Get set up with Claude in a few minutes, then come back to explore what the team
 
 ### :material-flash-outline: Skills & Teams
 
-A skill teaches Claude how to do one job well, like summarizing a meeting. A team groups its skills together.
+A skill teaches Claude one job well. A team groups skills together.
 
 --8<-- "_generated/stats.md"
 

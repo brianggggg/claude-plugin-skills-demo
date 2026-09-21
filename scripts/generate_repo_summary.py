@@ -164,10 +164,12 @@ def build_skill_accordion_item(skill, note):
     return "\n".join(lines)
 
 
-def build_stats_snippet(plugins, skills, friendly_date):
+def build_stats_snippet(plugins, skills):
     # Raw HTML <a> tags bypass MkDocs' markdown link resolution, so these
     # must already be the served paths (with use_directory_urls: true),
-    # not the source .md filenames.
+    # not the source .md filenames. No "last updated" line here — this
+    # snippet is embedded in the compact homepage column; the date lives
+    # on the Teams page itself instead.
     return (
         f'<div class="stat-strip reveal">\n'
         f'  <a class="stat" href="plugins/"><span class="stat-number" data-target="{len(plugins)}">0</span>'
@@ -175,17 +177,18 @@ def build_stats_snippet(plugins, skills, friendly_date):
         f'  <a class="stat" href="plugins/"><span class="stat-number" data-target="{len(skills)}">0</span>'
         f'<span class="stat-label">Skills</span></a>\n'
         f"</div>\n"
-        f'<p class="stat-updated">Last updated <strong>{friendly_date}</strong></p>\n'
     )
 
 
-def build_plugins_index(plugins, skills_by_name, skill_to_plugins):
+def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date):
     team_count = len(plugins)
     lines = [
         "# Teams",
         "",
         f"{team_count} team{'s' if team_count != 1 else ''} {'have' if team_count != 1 else 'has'} "
         "published skills here. Click a team to see what they've shared.",
+        "",
+        f"*Last updated {friendly_date}.*",
         "",
     ]
 
@@ -284,10 +287,10 @@ def main():
     friendly_date = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
-        f.write(build_stats_snippet(plugins, skills, friendly_date))
+        f.write(build_stats_snippet(plugins, skills))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
-        f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins))
+        f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date))
 
     with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
         f.write(build_activity_page(commits, contributors, total_commits))

@@ -2,6 +2,8 @@
 
 5 teams have published skills here. Click a team to see what they've shared.
 
+*Last updated September 21, 2026.*
+
 ??? note "crm-sync — v1.0.0 · no skills yet"
 
     Pull, push, and de-duplicate CRM contacts and deals from Claude.
