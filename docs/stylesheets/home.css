@@ -109,7 +109,30 @@ a.stat:hover {
   margin: 0.2rem 0.4rem 0.2rem 0;
 }
 
-@media screen and (max-width: 76.1875em) {
+/* Stat tracker nested inside the Skills & Teams column: left-aligned
+   and tightened up, since the full-width centered version (used
+   elsewhere) is sized for the whole page, not a third of it. */
+.hero-col .stat-strip {
+  justify-content: flex-start;
+  max-width: none;
+  gap: 0.75rem;
+  margin: 0.5rem 0 0.35rem;
+}
+
+.hero-col a.stat {
+  min-width: 0;
+  padding: 0.6rem 1rem;
+}
+
+.hero-col .stat-updated {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+/* Force 3 columns down to phone widths — only stack there, since a
+   laptop window that isn't maximized can easily sit under a
+   1200px-ish breakpoint and would otherwise fall back to 1 column. */
+@media screen and (max-width: 37.5em) {
   .hero-grid {
     grid-template-columns: 1fr;
     max-width: 34rem;
@@ -118,6 +141,14 @@ a.stat:hover {
 
   .hero-col h3 {
     justify-content: center;
+  }
+
+  .hero-col .stat-strip {
+    justify-content: center;
+  }
+
+  .hero-col .stat-updated {
+    text-align: center;
   }
 }
 

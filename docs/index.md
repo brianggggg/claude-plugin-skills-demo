@@ -33,39 +33,11 @@ Get set up with Claude in a few minutes, then come back to explore what the team
 
 A skill teaches Claude how to do one job well, like summarizing a meeting. A team groups its skills together.
 
-</div>
-
-</div>
-
-<div class="reveal" markdown>
-
-## How it works
-
-<div class="grid cards" markdown>
-
--   :material-forum-outline:{ .lg .middle } __1. Just ask__
-
-    ---
-
-    Describe the task in plain English to Claude — no command or skill name to memorize.
-
--   :material-flash-outline:{ .lg .middle } __2. Claude finds the skill__
-
-    ---
-
-    Claude matches your request to the right published skill automatically and runs it.
-
--   :material-check-circle-outline:{ .lg .middle } __3. Review the result__
-
-    ---
-
-    Check the output, or ask Claude to adjust it — same as any other request.
-
-</div>
-
-</div>
-
 --8<-- "_generated/stats.md"
+
+</div>
+
+</div>
 
 <div class="reveal" markdown>
 
