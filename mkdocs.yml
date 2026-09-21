@@ -12,6 +12,9 @@ nav:
       - Requesting a connector: guides/requesting-a-connector.md
       - FAQ: guides/faq.md
   - Teams: plugins/index.md
+  - Important links: important-links.md
+  - Report an issue: report-an-issue.md
+  - Contribute: contribute.md
 
 theme:
   name: material
