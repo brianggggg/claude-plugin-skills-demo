@@ -29,28 +29,6 @@ html {
   margin: 0.5rem 0 1.75rem;
 }
 
-/* Lead-in: short centered blurbs near the top of the page (what's
-   Claude, what's a skill/plugin) */
-.lead-in {
-  max-width: 34rem;
-  margin: 0 auto 2rem;
-  text-align: center;
-}
-
-.lead-in h3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-bottom: 0.35rem;
-  font-size: 1.05rem;
-}
-
-.lead-in p {
-  margin: 0;
-  opacity: 0.85;
-}
-
 /* Stat strip — each card links to the section it counts */
 .stat-strip {
   display: flex;
@@ -101,20 +79,46 @@ a.stat:hover {
   margin-bottom: 3rem;
 }
 
-/* Onboarding: short "get started" nudge, no full-bleed background —
-   keeps it light so it doesn't compete visually with the CTA banner */
-.onboarding {
-  max-width: 34rem;
-  margin: 0 auto 2.5rem;
-  text-align: center;
+/* Hero grid: three quadrants above the fold — What's Claude / New
+   here? / Skills & Teams side by side, so the first screen carries
+   more than one idea. Collapses to a single column on narrow/tablet
+   widths where three columns would get too cramped to read. */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+  max-width: 64rem;
+  margin: 0 auto 2rem;
+  text-align: left;
 }
 
-.onboarding p {
+.hero-col h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.hero-col p {
+  margin: 0 0 0.75rem;
   opacity: 0.85;
 }
 
-.onboarding .md-button {
-  margin: 0.25rem 0.4rem;
+.hero-col .md-button {
+  margin: 0.2rem 0.4rem 0.2rem 0;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    max-width: 34rem;
+    text-align: center;
+  }
+
+  .hero-col h3 {
+    justify-content: center;
+  }
 }
 
 /* CTA banner */
