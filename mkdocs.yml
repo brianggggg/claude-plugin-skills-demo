@@ -15,6 +15,7 @@ nav:
   - Important links: important-links.md
   - Report an issue: report-an-issue.md
   - Contribute: contribute.md
+  - Reporting: activity.md
 
 theme:
   name: material

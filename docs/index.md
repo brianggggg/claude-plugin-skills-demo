@@ -101,6 +101,6 @@ Click below to send it straight to the team.
 ## Key links
 
 - [Source repository](https://github.com/brianggggg/claude-plugin-skills-demo)
-- [Recent activity](activity.md)
+- [Reporting](activity.md)
 
 </div>

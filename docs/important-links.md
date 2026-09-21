@@ -5,7 +5,7 @@ Everything you need, in one place.
 ## Catalog
 
 - [Teams catalog](plugins/index.md) — browse every team's published skills
-- [Recent activity](activity.md) — commit history and contributors
+- [Reporting](activity.md) — commit history and contributors
 
 ## Guides
 

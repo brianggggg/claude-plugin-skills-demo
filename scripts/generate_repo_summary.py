@@ -234,7 +234,9 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date
 
 
 def build_activity_page(commits, contributors, total_commits):
-    lines = ["# Repository Activity", ""]
+    lines = ["# Reporting", ""]
+    lines.append("Repository activity: recent commits and who's contributing.")
+    lines.append("")
     lines.append(f"**Total commits:** {total_commits} · **Contributors:** {len(contributors)}")
     lines.append("")
 
