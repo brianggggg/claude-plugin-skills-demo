@@ -6,9 +6,19 @@ hide:
 
 # Claude COE { .visually-hidden }
 
-<div class="onboarding reveal" markdown>
+<div class="hero-grid reveal" markdown>
 
-## New here?
+<div class="hero-col" markdown>
+
+### What's Claude?
+
+Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the skills below.
+
+</div>
+
+<div class="hero-col" markdown>
+
+### New here?
 
 Get set up with Claude in a few minutes, then come back to explore what the team's already built.
 
@@ -17,19 +27,13 @@ Get set up with Claude in a few minutes, then come back to explore what the team
 
 </div>
 
-<div class="lead-in reveal" markdown>
-
-### What's Claude?
-
-Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the skills below.
-
-</div>
-
-<div class="lead-in reveal" markdown>
+<div class="hero-col" markdown>
 
 ### :material-flash-outline: Skills & Teams
 
 A skill teaches Claude how to do one job well, like summarizing a meeting. A team groups its skills together.
+
+</div>
 
 </div>
 

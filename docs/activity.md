@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 17 · **Contributors:** 2
+**Total commits:** 18 · **Contributors:** 2
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `e4ae454` | Claude | 2026-09-21 | Rename site to Claude COE, drop the masthead to save space |
 | `73f4b0a` | Claude | 2026-09-21 | Remove Claude Code branding from docs — advertise Claude generally |
 | `53b045c` | Claude | 2026-09-20 | Add a How it works section and a connector request flow |
 | `e608585` | brianjgonza | 2026-09-20 | Remove the inline Commands line from the Teams accordion |
@@ -15,13 +16,12 @@
 | `3810399` | brianjgonza | 2026-09-20 | Rename Plugins to Teams, add closed accordion catalog, trim homepage links |
 | `1147737` | brianjgonza | 2026-09-20 | Restore masthead, drop commit count, shorten Skills & Plugins copy |
 | `3099168` | brianjgonza | 2026-09-20 | Correct the plugin/skill model and remove the redundant masthead |
-| `fb72028` | brianjgonza | 2026-09-20 | Replace the visible page title with a small brand masthead |
 
 ## Contributors
 
 | Name | Commits |
 |---|---|
 | brianjgonza | 15 |
-| Claude | 2 |
+| Claude | 3 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)
