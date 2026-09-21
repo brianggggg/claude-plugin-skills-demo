@@ -2,9 +2,9 @@
 
 New to Claude? Here's the fastest path from zero to using what's in this catalog.
 
-## 1. Open a Claude Code session
+## 1. Open Claude
 
-If your team already has Claude Code set up, open a session pointed at this repository. If you're not sure how, ask your team's Claude Code admin, or see [Anthropic's Claude Code docs](https://docs.claude.com/claude-code) to get set up.
+Open Claude wherever your team already has it set up, and point it at this repository (or paste in what you need help with). If you're not sure how your team accesses Claude, ask your workspace admin.
 
 ## 2. Just describe what you need
 

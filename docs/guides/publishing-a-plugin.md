@@ -2,7 +2,7 @@
 
 A team is how you package and publish your skills for everyone else to use — it's not a separate workflow, just the publishing unit. Commands are optional, for when you want something runnable as a slash command too. Here's how to add one.
 
-*(Technical note: under the hood this still uses Claude Code's `plugins/` folder structure — the site just presents it as "Teams.")*
+*(Technical note: under the hood this still uses a `plugins/` folder structure — the site just presents it as "Teams.")*
 
 ## 1. Create the team's folder
 
@@ -70,7 +70,7 @@ Add an entry to `.claude-plugin/marketplace.json` at the repo root so your team 
 
 ## 6. Submit it
 
-Same as skills — open a pull request with your new files, or ask a teammate (or Claude Code, pointed at this repository) to do the git mechanics for you.
+Same as skills — open a pull request with your new files, or ask a teammate (or Claude, pointed at this repository) to do the git mechanics for you.
 
 ## 7. What happens next
 

@@ -1,11 +1,12 @@
 # Repository Activity
 
-**Total commits:** 15 · **Contributors:** 1
+**Total commits:** 16 · **Contributors:** 2
 
 ## Recent Commits
 
 | Commit | Author | Date | Message |
 |---|---|---|---|
+| `53b045c` | Claude | 2026-09-20 | Add a How it works section and a connector request flow |
 | `e608585` | brianjgonza | 2026-09-20 | Remove the inline Commands line from the Teams accordion |
 | `27e211a` | brianjgonza | 2026-09-20 | Remove standalone team pages; fold commands into the accordion inline |
 | `7997cdf` | brianjgonza | 2026-09-20 | Drop the Commands table from the Teams accordion view |
@@ -15,12 +16,12 @@
 | `3099168` | brianjgonza | 2026-09-20 | Correct the plugin/skill model and remove the redundant masthead |
 | `fb72028` | brianjgonza | 2026-09-20 | Replace the visible page title with a small brand masthead |
 | `f719643` | brianjgonza | 2026-09-20 | Drop the hero banner, reorder onboarding first, swap issue CTA for email |
-| `bdaf12c` | brianjgonza | 2026-09-20 | Tighten hero, add Claude lead-in, and link Getting Started/FAQ guides |
 
 ## Contributors
 
 | Name | Commits |
 |---|---|
 | brianjgonza | 15 |
+| Claude | 1 |
 
 [:octicons-arrow-left-24: Back to Home](index.md)

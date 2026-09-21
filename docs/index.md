@@ -17,7 +17,7 @@ hide:
 
 ## New here?
 
-Get set up with Claude Code in a few minutes, then come back to explore what the team's already built.
+Get set up with Claude in a few minutes, then come back to explore what the team's already built.
 
 [Get Started](guides/getting-started.md){ .md-button .md-button--primary }
 [Read the FAQ](guides/faq.md){ .md-button }
@@ -50,7 +50,7 @@ A skill teaches Claude how to do one job well, like summarizing a meeting. A tea
 
     ---
 
-    Describe the task in plain English in your Claude Code session — no command or skill name to memorize.
+    Describe the task in plain English to Claude — no command or skill name to memorize.
 
 -   :material-flash-outline:{ .lg .middle } __2. Claude finds the skill__
 

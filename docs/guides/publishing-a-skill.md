@@ -44,7 +44,7 @@ Look at an existing skill's `SKILL.md` file in the `skills/` folder for a worked
 
 ## 4. Submit it
 
-If you don't use git day-to-day, the easiest path is to ask a teammate with repo access — or ask Claude Code itself, pointing it at this repository — to:
+If you don't use git day-to-day, the easiest path is to ask a teammate with repo access — or ask Claude itself, pointing it at this repository — to:
 
 1. Create a new branch
 2. Add your `SKILL.md` file under `skills/<your-skill-name>/`

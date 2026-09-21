@@ -4,7 +4,7 @@ A connector lets Claude read and write directly in an outside system — Salesfo
 
 ## 1. Check what's already available
 
-Ask in the team channel or check with your Claude Code admin — the connector you need may already be approved and just needs to be enabled for you.
+Ask in the team channel or check with your workspace admin — the connector you need may already be approved and just needs to be enabled for you.
 
 ## 2. Open a request
 
