@@ -4,14 +4,7 @@ hide:
   - toc
 ---
 
-# Business Ops Center of Excellence { .visually-hidden }
-
-<!-- Placeholder company name — swap "Acme Inc." for the real one whenever you have it. -->
-<div class="masthead" markdown>
-
-:material-domain: __Acme Inc.__ &nbsp;·&nbsp; :material-creation: Powered by Claude
-
-</div>
+# Claude COE { .visually-hidden }
 
 <div class="onboarding reveal" markdown>
 
@@ -123,7 +116,7 @@ Connectors let Claude read and write directly in outside systems — Salesforce,
 Click below to send it straight to the team.
 
 <!-- Placeholder: add a "To" address once the team has one, e.g. mailto:business-ops@yourcompany.com?subject=... -->
-[Email the team](mailto:?subject=Question%20about%20the%20Business%20Ops%20Catalog){ .md-button .md-button--primary }
+[Email the team](mailto:?subject=Question%20about%20the%20Claude%20COE%20Catalog){ .md-button .md-button--primary }
 
 </div>
 
