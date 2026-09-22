@@ -70,14 +70,22 @@ A skill teaches Claude one job well. A team groups skills together.
 
 ## Usage snapshot
 
-*Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up as its own workspace. See [Reporting](activity.md) for more on what's planned and why.*
+*Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up as its own workspace, plus a logging layer for skill-level detail. See [Reporting](activity.md) for more on what's planned and why.*
 
 <div class="stat-strip" markdown>
 
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Claude requests (30d)</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skill usage %</span></div>
 <div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Active teams (30d)</span></div>
 
 </div>
+
+**Top skills (30d)**
+
+1. —
+2. —
+3. —
+4. —
+5. —
 
 </div>
 

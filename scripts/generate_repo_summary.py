@@ -233,7 +233,7 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date
     return "\n".join(lines)
 
 
-def build_activity_page(commits, contributors, total_commits):
+def build_activity_page(commits, contributors, total_commits, plugins):
     lines = ["# Reporting", ""]
     lines.append("Repository activity: recent commits and who's contributing.")
     lines.append("")
@@ -243,14 +243,14 @@ def build_activity_page(commits, contributors, total_commits):
     lines.append("## Usage Metrics — Planned")
     lines.append("")
     lines.append(
-        "Skill and team adoption metrics aren't wired up yet. Here's what's planned, "
+        "Team and org-wide adoption metrics aren't wired up yet. Here's what's planned, "
         "roughly in order of how feasible each one is to actually pull:"
     )
     lines.append("")
     lines.append("| Metric | Level | Source | Status |")
     lines.append("|---|---|---|---|")
     lines.append(
-        "| Claude requests, tokens, spend | Org-wide | Anthropic Usage & Cost Admin API "
+        "| Requests, tokens, spend | Org-wide | Anthropic Usage & Cost Admin API "
         "| Feasible once API access is set up |"
     )
     lines.append(
@@ -258,12 +258,27 @@ def build_activity_page(commits, contributors, total_commits):
         "if each team has its own workspace | Feasible, needs workspace-per-team setup |"
     )
     lines.append(
-        "| Skills invoked, most-used skill | Skill | Custom instrumentation — Anthropic's "
-        "API doesn't track \"skills\" as a concept | Needs a logging layer around skill invocation |"
+        "| Token mix (input / output / cache read+write) | Org-wide | Anthropic Usage API "
+        "| Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Cost by model (Opus / Sonnet / Haiku mix) | Org-wide | Anthropic Cost Admin API "
+        "| Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Prompt cache hit rate & savings | Org-wide | Anthropic Usage API "
+        "(cache_read_input_tokens vs. total) | Feasible once API access is set up |"
     )
     lines.append(
         "| Individual usage stats | Person | Custom authenticated proxy in front of Claude "
         "| Under evaluation — see note below |"
+    )
+    lines.append("")
+    lines.append(
+        "Skill-level detail (which skill, how often) isn't in this table — Anthropic's API "
+        "has no concept of \"skills,\" so that needs its own logging layer regardless of "
+        "level. See the homepage's Top Skills preview for where that will surface once it "
+        "exists."
     )
     lines.append("")
     lines.append("### A note on individual usage stats")
@@ -290,6 +305,20 @@ def build_activity_page(commits, contributors, total_commits):
         "needed) and treat named-individual stats as a separate initiative pending its own "
         "approval."
     )
+    lines.append("")
+
+    lines.append("## Team Breakdown — Planned")
+    lines.append("")
+    lines.append(
+        "The slice that matters most once usage is wired up: every team in the catalog, "
+        "side by side. Skills Published is real (pulled from the catalog); the rest are "
+        "placeholders for the same Usage & Cost API breakdown, per team workspace."
+    )
+    lines.append("")
+    lines.append("| Team | Skills Published | Requests (30d) | Cost (30d) | Active Users (30d) |")
+    lines.append("|---|---|---|---|---|")
+    for plugin in plugins:
+        lines.append(f"| {plugin['name']} | {len(plugin['skills'])} | — | — | — |")
     lines.append("")
 
     lines.append("## Recent Commits")
@@ -347,7 +376,7 @@ def main():
         f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date))
 
     with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
-        f.write(build_activity_page(commits, contributors, total_commits))
+        f.write(build_activity_page(commits, contributors, total_commits, plugins))
 
     print(
         f"Wrote stats snippet and plugins/index.md ({len(plugins)} teams, "
