@@ -13,7 +13,8 @@ nav:
       - Requesting a connector: guides/requesting-a-connector.md
       - Report an issue: guides/report-an-issue.md
       - FAQ: guides/faq.md
-  - CitDev Inventory: plugins/index.md
+  - Skills Inventory: plugins/index.md
+  - Meet the CitDevs: citdevs.md
   - Important links: important-links.md
   - Reporting: activity.md
 

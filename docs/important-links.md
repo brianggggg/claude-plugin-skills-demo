@@ -4,7 +4,7 @@ Everything you need, in one place.
 
 ## Catalog
 
-- [CitDev Inventory](plugins/index.md) — browse every team's published skills
+- [Skills Inventory](plugins/index.md) — browse every team's published skills
 - [Reporting](activity.md) — commit history and contributors
 
 ## CitDev Resources

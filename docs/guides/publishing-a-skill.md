@@ -52,6 +52,6 @@ If you don't use git day-to-day, the easiest path is to ask a teammate with repo
 
 ## 5. What happens next
 
-Once your pull request is approved and merged, the site rebuilds automatically. Your skill appears within a couple of minutes on the [CitDev Inventory](../plugins/index.md) — nested under whichever team bundles it, or under "Unassigned Skills" if it isn't bundled by a team yet. No manual publishing step.
+Once your pull request is approved and merged, the site rebuilds automatically. Your skill appears within a couple of minutes on the [Skills Inventory](../plugins/index.md) — nested under whichever team bundles it, or under "Unassigned Skills" if it isn't bundled by a team yet. No manual publishing step.
 
 Want your team's skills published together under one name, or wired up as a slash command? See [Registering a Team](publishing-a-plugin.md).

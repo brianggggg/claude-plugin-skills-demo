@@ -230,7 +230,7 @@ def build_stats_snippet(plugins, skills):
 def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date):
     team_count = len(plugins)
     lines = [
-        "# CitDev Inventory",
+        "# Skills Inventory",
         "",
         f"{team_count} team{'s' if team_count != 1 else ''} {'have' if team_count != 1 else 'has'} "
         "published skills here. Click a team to see what they've shared.",

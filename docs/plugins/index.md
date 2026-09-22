@@ -1,4 +1,4 @@
-# CitDev Inventory
+# Skills Inventory
 
 5 teams have published skills here. Click a team to see what they've shared.
 

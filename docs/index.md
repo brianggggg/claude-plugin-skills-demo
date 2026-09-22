@@ -28,13 +28,21 @@ This is a citizen developer site for contributing reusable Claude skills. Explor
 
     [:octicons-arrow-right-24: Browse resources](guides/index.md)
 
--   :material-view-grid-outline:{ .lg .middle } __CitDev Inventory__
+-   :material-view-grid-outline:{ .lg .middle } __Skills Inventory__
 
     ---
 
     Browse every team's published skills.
 
     [:octicons-arrow-right-24: Browse inventory](plugins/index.md)
+
+-   :material-account-group-outline:{ .lg .middle } __Meet the CitDevs__
+
+    ---
+
+    Who's behind each team — AI Champions and the CitDevs who publish skills.
+
+    [:octicons-arrow-right-24: View directory](citdevs.md)
 
 -   :material-link-variant:{ .lg .middle } __Important Links__
 

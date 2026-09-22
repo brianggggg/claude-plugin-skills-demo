@@ -12,7 +12,7 @@ You don't need to know a skill's name or memorize a command. Describe the task i
 
 ## 3. Or browse by team
 
-Each [team](../plugins/index.md) publishes its own set of skills. Some also add a slash command, like `/invoice-intake`, for quick access. Browse the [CitDev Inventory](../plugins/index.md) to see what each team has shared.
+Each [team](../plugins/index.md) publishes its own set of skills. Some also add a slash command, like `/invoice-intake`, for quick access. Browse the [Skills Inventory](../plugins/index.md) to see what each team has shared.
 
 ## 4. Have a question?
 
