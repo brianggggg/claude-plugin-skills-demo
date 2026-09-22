@@ -48,7 +48,7 @@ This is a citizen developer site for contributing reusable Claude skills. Explor
 
     ---
 
-    Commit activity today; skill usage metrics soon.
+    Usage metrics — planned and in progress.
 
     [:octicons-arrow-right-24: View reporting](activity.md)
 
@@ -70,12 +70,10 @@ A skill teaches Claude one job well. A team groups skills together.
 
 ## Usage snapshot
 
-*Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up as its own workspace, plus a logging layer for skill-level detail. See [Reporting](activity.md) for more on what's planned and why.*
-
 <div class="stat-strip" markdown>
 
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skill usage %</span></div>
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Active teams (30d)</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skills fired (30d)</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Percent utilization</span></div>
 
 </div>
 

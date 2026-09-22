@@ -10,7 +10,7 @@ build, so the catalog is always current:
                               that team's published skills. Skills not
                               published by any team get a final "Unassigned
                               Skills" entry so nothing is orphaned.
-  docs/activity.md           recent commits + contributors
+  docs/activity.md           "Reporting" — planned usage metrics and feasibility notes
 
 There are deliberately no standalone Skills catalog, per-skill pages, or
 per-team pages — everything about a team lives entirely in its own
@@ -26,8 +26,7 @@ import json
 import os
 import re
 import shutil
-import subprocess
-from collections import Counter, defaultdict
+from collections import defaultdict
 from datetime import datetime, timezone
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,15 +38,6 @@ PLUGINS_DIR = os.path.join(REPO_ROOT, "plugins")
 SKILLS_DIR = os.path.join(REPO_ROOT, "skills")
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
-
-def run_git(args):
-    result = subprocess.run(
-        ["git", "-C", REPO_ROOT, *args],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    return result.stdout.strip()
 
 
 def parse_frontmatter(text):
@@ -126,25 +116,6 @@ def load_skills():
             }
         )
     return skills
-
-
-def get_recent_commits(limit=10):
-    log = run_git(["log", f"-{limit}", "--pretty=format:%h|%an|%ad|%s", "--date=short"])
-    commits = []
-    for line in log.splitlines():
-        parts = line.split("|", 3)
-        if len(parts) == 4:
-            commits.append(parts)
-    return commits
-
-
-def get_contributors():
-    log = run_git(["log", "--pretty=format:%an"])
-    return Counter(name for name in log.splitlines() if name).most_common()
-
-
-def get_total_commit_count():
-    return run_git(["rev-list", "--count", "HEAD"])
 
 
 def indent(text, prefix="    "):
@@ -233,18 +204,20 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date
     return "\n".join(lines)
 
 
-def build_activity_page(commits, contributors, total_commits, plugins):
+def build_activity_page(plugins):
     lines = ["# Reporting", ""]
-    lines.append("Repository activity: recent commits and who's contributing.")
-    lines.append("")
-    lines.append(f"**Total commits:** {total_commits} · **Contributors:** {len(contributors)}")
+    lines.append(
+        "Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up "
+        "as its own workspace, plus a logging layer for skill-level detail."
+    )
     lines.append("")
 
     lines.append("## Usage Metrics — Planned")
     lines.append("")
     lines.append(
-        "Team and org-wide adoption metrics aren't wired up yet. Here's what's planned, "
-        "roughly in order of how feasible each one is to actually pull:"
+        "Team and org-wide adoption metrics aren't wired up yet. Here's the full set of "
+        "what's worth pulling once they are, roughly in order of how feasible each one is "
+        "to actually get:"
     )
     lines.append("")
     lines.append("| Metric | Level | Source | Status |")
@@ -268,6 +241,22 @@ def build_activity_page(commits, contributors, total_commits, plugins):
     lines.append(
         "| Prompt cache hit rate & savings | Org-wide | Anthropic Usage API "
         "(cache_read_input_tokens vs. total) | Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Average tokens per request | Org-wide or team | Derived from requests + tokens "
+        "totals, no new data needed | Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Request volume trend (daily / weekly) | Org-wide or team | Anthropic Usage API, "
+        "time-bucketed | Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Model version / mix adoption | Org-wide or team | Anthropic Usage API, broken "
+        "out by model | Feasible — flags teams still on older models |"
+    )
+    lines.append(
+        "| Batch vs. real-time API split | Org-wide | Anthropic Usage API, if the Message "
+        "Batches API is in use | Feasible, only useful once batch usage exists |"
     )
     lines.append(
         "| Individual usage stats | Person | Custom authenticated proxy in front of Claude "
@@ -321,24 +310,6 @@ def build_activity_page(commits, contributors, total_commits, plugins):
         lines.append(f"| {plugin['name']} | {len(plugin['skills'])} | — | — | — |")
     lines.append("")
 
-    lines.append("## Recent Commits")
-    lines.append("")
-    lines.append("| Commit | Author | Date | Message |")
-    lines.append("|---|---|---|---|")
-    for sha, author, date, message in commits:
-        message = message.replace("|", "\\|")
-        lines.append(f"| `{sha}` | {author} | {date} | {message} |")
-    lines.append("")
-
-    if contributors:
-        lines.append("## Contributors")
-        lines.append("")
-        lines.append("| Name | Commits |")
-        lines.append("|---|---|")
-        for name, count in contributors:
-            lines.append(f"| {name} | {count} |")
-        lines.append("")
-
     lines.append("[:octicons-arrow-left-24: Back to Home](index.md)")
     lines.append("")
     return "\n".join(lines)
@@ -364,9 +335,6 @@ def main():
         for skill_name in plugin["skills"]:
             skill_to_plugins[skill_name].append(plugin["name"])
 
-    commits = get_recent_commits()
-    contributors = get_contributors()
-    total_commits = get_total_commit_count()
     friendly_date = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
@@ -376,7 +344,7 @@ def main():
         f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date))
 
     with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
-        f.write(build_activity_page(commits, contributors, total_commits, plugins))
+        f.write(build_activity_page(plugins))
 
     print(
         f"Wrote stats snippet and plugins/index.md ({len(plugins)} teams, "
