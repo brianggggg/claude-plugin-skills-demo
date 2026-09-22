@@ -806,28 +806,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#recent-commits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recent Commits
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributors
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -901,28 +879,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#recent-commits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recent Commits
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributors
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -944,10 +900,9 @@
 
 
 <h1 id="reporting">Reporting<a class="headerlink" href="#reporting" title="Permanent link">&para;</a></h1>
-<p>Repository activity: recent commits and who's contributing.</p>
-<p><strong>Total commits:</strong> 29 · <strong>Contributors:</strong> 2</p>
+<p>Placeholder — pulled from Anthropic's Usage &amp; Cost API once each team is set up as its own workspace, plus a logging layer for skill-level detail.</p>
 <h2 id="usage-metrics-planned">Usage Metrics — Planned<a class="headerlink" href="#usage-metrics-planned" title="Permanent link">&para;</a></h2>
-<p>Team and org-wide adoption metrics aren't wired up yet. Here's what's planned, roughly in order of how feasible each one is to actually pull:</p>
+<p>Team and org-wide adoption metrics aren't wired up yet. Here's the full set of what's worth pulling once they are, roughly in order of how feasible each one is to actually get:</p>
 <table>
 <thead>
 <tr>
@@ -987,6 +942,30 @@
 <td>Org-wide</td>
 <td>Anthropic Usage API (cache_read_input_tokens vs. total)</td>
 <td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Average tokens per request</td>
+<td>Org-wide or team</td>
+<td>Derived from requests + tokens totals, no new data needed</td>
+<td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Request volume trend (daily / weekly)</td>
+<td>Org-wide or team</td>
+<td>Anthropic Usage API, time-bucketed</td>
+<td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Model version / mix adoption</td>
+<td>Org-wide or team</td>
+<td>Anthropic Usage API, broken out by model</td>
+<td>Feasible — flags teams still on older models</td>
+</tr>
+<tr>
+<td>Batch vs. real-time API split</td>
+<td>Org-wide</td>
+<td>Anthropic Usage API, if the Message Batches API is in use</td>
+<td>Feasible, only useful once batch usage exists</td>
 </tr>
 <tr>
 <td>Individual usage stats</td>
@@ -1051,98 +1030,6 @@
 <td>—</td>
 <td>—</td>
 <td>—</td>
-</tr>
-</tbody>
-</table>
-<h2 id="recent-commits">Recent Commits<a class="headerlink" href="#recent-commits" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Commit</th>
-<th>Author</th>
-<th>Date</th>
-<th>Message</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>860c823</code></td>
-<td>Claude</td>
-<td>2026-09-22</td>
-<td>Add Top Skills + Skill usage % to home, team slicing to Reporting</td>
-</tr>
-<tr>
-<td><code>2bbab3b</code></td>
-<td>Claude</td>
-<td>2026-09-22</td>
-<td>Curate homepage metrics, add a real usage-metrics roadmap to Reporting</td>
-</tr>
-<tr>
-<td><code>1d5f093</code></td>
-<td>Claude</td>
-<td>2026-09-22</td>
-<td>Drop homepage CTA buttons, reflow sections, add Additional Resources</td>
-</tr>
-<tr>
-<td><code>7c96441</code></td>
-<td>Claude</td>
-<td>2026-09-22</td>
-<td>Restructure nav into CitDev Resources / CitDev Inventory, rework homepage</td>
-</tr>
-<tr>
-<td><code>57fdae9</code></td>
-<td>Claude</td>
-<td>2026-09-22</td>
-<td>Drop What's Claude, widen New here?, reframe as a citizen developer site</td>
-</tr>
-<tr>
-<td><code>e6f7bf9</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Keep the top nav bar visible down to tablet width</td>
-</tr>
-<tr>
-<td><code>d87b448</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Add Reporting as the 7th top-level nav tab</td>
-</tr>
-<tr>
-<td><code>6787ba7</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Add top-level nav for Important links, Report an issue, and Contribute</td>
-</tr>
-<tr>
-<td><code>ad75459</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Shrink the Skills &amp; Teams column and move the date to the Teams page</td>
-</tr>
-<tr>
-<td><code>3d08543</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Force the 3-column hero layout and fold the tracker into it</td>
-</tr>
-</tbody>
-</table>
-<h2 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Commits</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>brianjgonza</td>
-<td>15</td>
-</tr>
-<tr>
-<td>Claude</td>
-<td>14</td>
 </tr>
 </tbody>
 </table>
