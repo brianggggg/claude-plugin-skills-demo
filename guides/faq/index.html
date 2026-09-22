@@ -855,8 +855,14 @@
 <p>We're putting together answers to the questions people actually ask when they start using the catalog. Check back soon.</p>
 <p>Have a question that isn't answered here yet? <a href="https://github.com/brianggggg/claude-plugin-skills-demo/issues/new">Open an issue</a> and tag it <code>question</code> — we'll get you an answer, and add it here for the next person.</p>
 <h2 id="cross-repo-test-temporary">Cross-repo test (temporary)<a class="headerlink" href="#cross-repo-test-temporary" title="Permanent link">&para;</a></h2>
-<p><em>Testing whether MkDocs here can pull and combine live data from a second, unrelated repo (<code>TestGhostProject</code>) at build time. Not a real feature — this section only populates where both repos are checked out side by side, and won't show real data on the deployed site.</em></p>
-<p><em>Not available in this build — the sibling <code>TestGhostProject</code> checkout isn't present here. This only runs where both repos happen to be checked out side by side; it's a one-off test, not a real feature of this site, and won't appear on the deployed GitHub Pages build.</em></p>
+<p><em>Testing whether MkDocs here can pull and combine live data from a second, unrelated repo (<code>TestGhostProject</code>) at build time. The "Docs" workflow checks that repo out fresh on every deploy, and <a href="https://github.com/brianggggg/TestGhostProject/blob/main/.github/workflows/docs.yml">its own workflow notifies this one to rebuild</a> whenever it deploys too — so a push to either repo should refresh the numbers below. Not a permanent feature of the site, just a proof of concept.</em></p>
+<p>Pulled live from the sibling <code>TestGhostProject</code> checkout: <strong>10 tracked items</strong>. Combined with this catalog's <strong>8 skills</strong>, that's <strong>18</strong> items across both repos.</p>
+<p><strong>Letter matches</strong> — skill name and other-repo file share a first letter:</p>
+<ul>
+<li><code>invoice-extractor</code> ↔ <code>index.html</code> (both start with "i")</li>
+<li><code>meeting-summarizer</code> ↔ <code>mkdocs.yml</code> (both start with "m")</li>
+<li><code>weekly-report-writer</code> ↔ <code>wood.png</code> (both start with "w")</li>
+</ul>
 
 
 
