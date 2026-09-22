@@ -8,19 +8,11 @@ hide:
 
 <div class="hero-grid reveal" markdown>
 
-<div class="hero-col" markdown>
-
-### What's Claude?
-
-Claude is Anthropic's AI assistant — you describe what you need in plain English, and it does the work, including running the skills below.
-
-</div>
-
-<div class="hero-col" markdown>
+<div class="hero-col hero-col--wide" markdown>
 
 ### New here?
 
-Get set up with Claude in a few minutes, then come back to explore what the team's already built.
+This is a citizen developer site designed for contributing reusable Claude skills. Get set up with Claude in a few minutes, then come back to explore what the team's already built.
 
 [Get Started](guides/getting-started.md){ .md-button .md-button--primary }
 [Read the FAQ](guides/faq.md){ .md-button }
