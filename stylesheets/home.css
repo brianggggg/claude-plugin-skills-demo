@@ -72,22 +72,6 @@ a.stat:hover {
   opacity: 0.7;
 }
 
-/* Stat card — same box as a.stat, but a plain (non-link) tile for
-   placeholder/unclickable metrics, e.g. the Skill usage preview. */
-.stat-card {
-  display: block;
-  background: var(--md-default-bg-color);
-  border-radius: 0.5rem;
-  box-shadow: var(--md-shadow-z1);
-  padding: 1rem 1.75rem;
-  text-align: center;
-  min-width: 9rem;
-}
-
-.stat-card .stat-number {
-  opacity: 0.4;
-}
-
 /* CTA banner */
 .cta-banner {
   width: 100vw;
