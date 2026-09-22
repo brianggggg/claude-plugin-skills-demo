@@ -6,7 +6,7 @@ Found a bug, a broken link, or something on the catalog that doesn't look right?
 
 ## Before you open one
 
-Check the [FAQ](guides/faq.md) first — your question may already be answered there.
+Check the [FAQ](faq.md) first — your question may already be answered there.
 
 ## What to include
 

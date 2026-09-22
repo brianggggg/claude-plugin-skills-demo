@@ -5,16 +5,16 @@ repo_name: brianggggg/claude-plugin-skills-demo
 
 nav:
   - Home: index.md
-  - Guides:
+  - CitDev Resources:
+      - guides/index.md
       - Getting started: guides/getting-started.md
       - Publishing a skill: guides/publishing-a-skill.md
       - Registering a team: guides/publishing-a-plugin.md
       - Requesting a connector: guides/requesting-a-connector.md
+      - Report an issue: guides/report-an-issue.md
       - FAQ: guides/faq.md
-  - Teams: plugins/index.md
+  - CitDev Inventory: plugins/index.md
   - Important links: important-links.md
-  - Report an issue: report-an-issue.md
-  - Contribute: contribute.md
   - Reporting: activity.md
 
 theme:

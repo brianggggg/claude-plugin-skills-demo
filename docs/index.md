@@ -12,7 +12,7 @@ hide:
 
 ### New here?
 
-This is a citizen developer site designed for contributing reusable Claude skills. Get set up with Claude in a few minutes, then come back to explore what the team's already built.
+This is a citizen developer site for contributing reusable Claude skills. Explore the resources below to see what you can contribute, browse the inventory of current team skills, and find additional Claude resources.
 
 [Get Started](guides/getting-started.md){ .md-button .md-button--primary }
 [Read the FAQ](guides/faq.md){ .md-button }
@@ -33,25 +33,41 @@ A skill teaches Claude one job well. A team groups skills together.
 
 <div class="reveal" markdown>
 
-## Add to the catalog
+## Where to find things
 
 <div class="grid cards" markdown>
 
--   :material-book-open-page-variant-outline:{ .lg .middle } __Publish a Skill__
+-   :material-compass-outline:{ .lg .middle } __CitDev Resources__
 
     ---
 
-    No coding background required.
+    Getting started, publishing guides, requesting a connector, reporting an issue, and the FAQ — all in one hub.
 
-    [:octicons-arrow-right-24: Read the guide](guides/publishing-a-skill.md)
+    [:octicons-arrow-right-24: Browse resources](guides/index.md)
 
--   :material-puzzle-outline:{ .lg .middle } __Register a Team__
+-   :material-view-grid-outline:{ .lg .middle } __CitDev Inventory__
 
     ---
 
-    Package up your team's skills so others can find and use them.
+    Browse every team's published skills.
 
-    [:octicons-arrow-right-24: Read the guide](guides/publishing-a-plugin.md)
+    [:octicons-arrow-right-24: Browse inventory](plugins/index.md)
+
+-   :material-link-variant:{ .lg .middle } __Important Links__
+
+    ---
+
+    Everything on this site, one page.
+
+    [:octicons-arrow-right-24: View links](important-links.md)
+
+-   :material-chart-line:{ .lg .middle } __Reporting__
+
+    ---
+
+    Commit activity today; skill usage metrics soon.
+
+    [:octicons-arrow-right-24: View reporting](activity.md)
 
 </div>
 
@@ -59,19 +75,15 @@ A skill teaches Claude one job well. A team groups skills together.
 
 <div class="reveal" markdown>
 
-## Need a new connector?
+## Skill usage
 
-Connectors let Claude read and write directly in outside systems — Salesforce, Jira, an internal database, and similar. Since these touch live systems, each one goes through a short security and access review before it's turned on for the team.
+*Placeholder metrics — these will be pulled from the Anthropic API once connected.*
 
-<div class="grid cards" markdown>
+<div class="stat-strip" markdown>
 
--   :material-connection:{ .lg .middle } __Request a Connector Review__
-
-    ---
-
-    Tell us what system you need connected and why — review typically takes a few days.
-
-    [:octicons-arrow-right-24: Read the guide](guides/requesting-a-connector.md)
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skills invoked (30d)</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Most-used skill</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Active teams</span></div>
 
 </div>
 
@@ -85,14 +97,5 @@ Click below to send it straight to the team.
 
 <!-- Placeholder: add a "To" address once the team has one, e.g. mailto:business-ops@yourcompany.com?subject=... -->
 [Email the team](mailto:?subject=Question%20about%20the%20Claude%20COE%20Catalog){ .md-button .md-button--primary }
-
-</div>
-
-<div class="reveal" markdown>
-
-## Key links
-
-- [Source repository](https://github.com/brianggggg/claude-plugin-skills-demo)
-- [Reporting](activity.md)
 
 </div>
