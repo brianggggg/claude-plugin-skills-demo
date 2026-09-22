@@ -776,23 +776,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Usage Metrics — Planned">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-note-on-individual-usage-stats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A note on individual usage stats
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -909,23 +892,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Usage Metrics — Planned">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-note-on-individual-usage-stats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A note on individual usage stats
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1054,12 +1020,6 @@
 <td>Feasible once API access is set up</td>
 </tr>
 <tr>
-<td>Cost by model (Opus / Sonnet / Haiku mix)</td>
-<td>Org-wide</td>
-<td>Anthropic Cost Admin API</td>
-<td>Feasible once API access is set up</td>
-</tr>
-<tr>
 <td>Prompt cache hit rate &amp; savings</td>
 <td>Org-wide</td>
 <td>Anthropic Usage API (cache_read_input_tokens vs. total)</td>
@@ -1078,37 +1038,19 @@
 <td>Feasible once API access is set up</td>
 </tr>
 <tr>
-<td>Model version / mix adoption</td>
-<td>Org-wide or team</td>
-<td>Anthropic Usage API, broken out by model</td>
-<td>Feasible — flags teams still on older models</td>
-</tr>
-<tr>
 <td>Batch vs. real-time API split</td>
 <td>Org-wide</td>
 <td>Anthropic Usage API, if the Message Batches API is in use</td>
 <td>Feasible, only useful once batch usage exists</td>
 </tr>
-<tr>
-<td>Individual usage stats</td>
-<td>Person</td>
-<td>Custom authenticated proxy in front of Claude</td>
-<td>Under evaluation — see note below</td>
-</tr>
 </tbody>
 </table>
-<p>Skill-level detail (which skill, how often) isn't in this table — Anthropic's API has no concept of "skills," so that needs its own logging layer regardless of level. See Next Steps below for the plan to build that layer.</p>
-<h3 id="a-note-on-individual-usage-stats">A note on individual usage stats<a class="headerlink" href="#a-note-on-individual-usage-stats" title="Permanent link">&para;</a></h3>
-<p>Storing usage events for 40k people isn't a scale problem — any normal database handles that volume easily. The real constraints are:</p>
-<ul>
-<li><strong>Anthropic's own reporting is by API key and workspace, not by named individual.</strong> Attributing a request to a specific person needs our own layer in front of Claude (an authenticated gateway or proxy) that tags and logs each request — that's a real build, not a reporting toggle.</li>
-<li><strong>Privacy and HR review.</strong> Individual-level usage dashboards read like productivity monitoring and typically need legal/HR sign-off before they're shown broadly, especially at a regulated company.</li>
-</ul>
-<p>Recommendation: start with team-level aggregates (lower lift, no privacy review needed) and treat named-individual stats as a separate initiative pending its own approval.</p>
+<p>No per-model cost breakdown here — every team is required to use Sonnet, so there's no model mix to compare.</p>
+<p>Skill-level detail (which skill, how often) isn't in this table — <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management">Anthropic's own enterprise Skills guidance confirms usage analytics aren't available through the Skills API</a> and that this needs application-level logging instead, regardless of level. See Next Steps below for the plan to build that layer.</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>None of the above is built yet — this is the plan, not a status update. It would ship as a feature of the required plugin the catalog already distributes, not a separate app.</p>
 <h3 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h3>
-<p>Track usage of <strong>catalog-published skills only</strong> — skills that go through this repo's publish/review process and are bundled into a team's plugin. Not third-party or ad-hoc user-created skills, and not named-individual usage (a separate initiative — see the note above).</p>
+<p>Track usage of <strong>catalog-published skills only</strong>, at the <strong>team level</strong> — skills that go through this repo's publish/review process and are bundled into a team's plugin. Not third-party or ad-hoc user-created skills. Per-user metrics are out of scope for now, to keep the focus on skill adoption.</p>
 <h3 id="the-plugin">The plugin<a class="headerlink" href="#the-plugin" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>MCP server</strong>, bundled with the required main plugin already pushed to every user — same distribution mechanism the catalog itself uses. Exposes one tool: <code>log_skill_usage(skill_name, team, timestamp)</code>.</li>
