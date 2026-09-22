@@ -796,6 +796,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#team-breakdown-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team Breakdown — Planned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recent-commits" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -880,6 +891,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#team-breakdown-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team Breakdown — Planned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recent-commits" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -923,9 +945,9 @@
 
 <h1 id="reporting">Reporting<a class="headerlink" href="#reporting" title="Permanent link">&para;</a></h1>
 <p>Repository activity: recent commits and who's contributing.</p>
-<p><strong>Total commits:</strong> 28 · <strong>Contributors:</strong> 2</p>
+<p><strong>Total commits:</strong> 29 · <strong>Contributors:</strong> 2</p>
 <h2 id="usage-metrics-planned">Usage Metrics — Planned<a class="headerlink" href="#usage-metrics-planned" title="Permanent link">&para;</a></h2>
-<p>Skill and team adoption metrics aren't wired up yet. Here's what's planned, roughly in order of how feasible each one is to actually pull:</p>
+<p>Team and org-wide adoption metrics aren't wired up yet. Here's what's planned, roughly in order of how feasible each one is to actually pull:</p>
 <table>
 <thead>
 <tr>
@@ -937,7 +959,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Claude requests, tokens, spend</td>
+<td>Requests, tokens, spend</td>
 <td>Org-wide</td>
 <td>Anthropic Usage &amp; Cost Admin API</td>
 <td>Feasible once API access is set up</td>
@@ -949,10 +971,22 @@
 <td>Feasible, needs workspace-per-team setup</td>
 </tr>
 <tr>
-<td>Skills invoked, most-used skill</td>
-<td>Skill</td>
-<td>Custom instrumentation — Anthropic's API doesn't track "skills" as a concept</td>
-<td>Needs a logging layer around skill invocation</td>
+<td>Token mix (input / output / cache read+write)</td>
+<td>Org-wide</td>
+<td>Anthropic Usage API</td>
+<td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Cost by model (Opus / Sonnet / Haiku mix)</td>
+<td>Org-wide</td>
+<td>Anthropic Cost Admin API</td>
+<td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Prompt cache hit rate &amp; savings</td>
+<td>Org-wide</td>
+<td>Anthropic Usage API (cache_read_input_tokens vs. total)</td>
+<td>Feasible once API access is set up</td>
 </tr>
 <tr>
 <td>Individual usage stats</td>
@@ -962,6 +996,7 @@
 </tr>
 </tbody>
 </table>
+<p>Skill-level detail (which skill, how often) isn't in this table — Anthropic's API has no concept of "skills," so that needs its own logging layer regardless of level. See the homepage's Top Skills preview for where that will surface once it exists.</p>
 <h3 id="a-note-on-individual-usage-stats">A note on individual usage stats<a class="headerlink" href="#a-note-on-individual-usage-stats" title="Permanent link">&para;</a></h3>
 <p>Storing usage events for 40k people isn't a scale problem — any normal database handles that volume easily. The real constraints are:</p>
 <ul>
@@ -969,6 +1004,56 @@
 <li><strong>Privacy and HR review.</strong> Individual-level usage dashboards read like productivity monitoring and typically need legal/HR sign-off before they're shown broadly, especially at a regulated company.</li>
 </ul>
 <p>Recommendation: start with team-level aggregates (lower lift, no privacy review needed) and treat named-individual stats as a separate initiative pending its own approval.</p>
+<h2 id="team-breakdown-planned">Team Breakdown — Planned<a class="headerlink" href="#team-breakdown-planned" title="Permanent link">&para;</a></h2>
+<p>The slice that matters most once usage is wired up: every team in the catalog, side by side. Skills Published is real (pulled from the catalog); the rest are placeholders for the same Usage &amp; Cost API breakdown, per team workspace.</p>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Skills Published</th>
+<th>Requests (30d)</th>
+<th>Cost (30d)</th>
+<th>Active Users (30d)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>crm-sync</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>expense-audit</td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>hr-onboarding</td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>invoice-processor</td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>meeting-ops</td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="recent-commits">Recent Commits<a class="headerlink" href="#recent-commits" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -980,6 +1065,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>860c823</code></td>
+<td>Claude</td>
+<td>2026-09-22</td>
+<td>Add Top Skills + Skill usage % to home, team slicing to Reporting</td>
+</tr>
 <tr>
 <td><code>2bbab3b</code></td>
 <td>Claude</td>
@@ -1034,12 +1125,6 @@
 <td>2026-09-21</td>
 <td>Force the 3-column hero layout and fold the tracker into it</td>
 </tr>
-<tr>
-<td><code>996364d</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Lay out What's Claude / New here / Skills &amp; Teams as 3 columns</td>
-</tr>
 </tbody>
 </table>
 <h2 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h2>
@@ -1057,7 +1142,7 @@
 </tr>
 <tr>
 <td>Claude</td>
-<td>13</td>
+<td>14</td>
 </tr>
 </tbody>
 </table>
