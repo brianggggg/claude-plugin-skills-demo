@@ -28,6 +28,7 @@ Anthropic's [Organization Analytics API for Skills](https://platform.claude.com/
 
 Before building anything, test the endpoint directly against this org's account:
 
+0. **Fastest first check — [Analytics Chat](https://support.claude.com/en/articles/14729354-use-analytics-chat-to-ask-claude-about-usage), if available.** Anthropic documents a feature that lets an admin ask Claude about org usage in plain English, no API key needed. If it's available on this org's plan, ask it directly — e.g. "Is skill invocation reporting enabled for our org? Show me usage for the expense-policy-checker skill over the last 30 days." *(Access requirements and whether it draws on the same data as the API below are unconfirmed — that page wasn't reachable to verify while writing this. Worth trying regardless, since it costs nothing to ask.)*
 1. Confirm the org is on a Claude Enterprise plan and provision an API key scoped `read:analytics` (an org-admin-level credential).
 2. Call the endpoint filtered to a few known catalog skill names over a recent date range, e.g. `filter[]=skill_name:expense-policy-checker` with `starting_date` set 30 days back.
 3. Check specifically:

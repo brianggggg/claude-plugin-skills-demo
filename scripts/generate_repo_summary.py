@@ -282,6 +282,17 @@ def build_activity_page(plugins):
     )
     lines.append("")
     lines.append(
+        "0. **Fastest first check — [Analytics Chat]"
+        "(https://support.claude.com/en/articles/14729354-use-analytics-chat-to-ask-claude-about-usage), "
+        "if available.** Anthropic documents a feature that lets an admin ask Claude "
+        "about org usage in plain English, no API key needed. If it's available on this "
+        "org's plan, ask it directly — e.g. \"Is skill invocation reporting enabled for "
+        "our org? Show me usage for the expense-policy-checker skill over the last 30 "
+        "days.\" *(Access requirements and whether it draws on the same data as the API "
+        "below are unconfirmed — that page wasn't reachable to verify while writing this. "
+        "Worth trying regardless, since it costs nothing to ask.)*"
+    )
+    lines.append(
         "1. Confirm the org is on a Claude Enterprise plan and provision an API key "
         "scoped `read:analytics` (an org-admin-level credential)."
     )
