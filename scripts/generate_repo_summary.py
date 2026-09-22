@@ -235,10 +235,6 @@ def build_activity_page(plugins):
         "| Feasible once API access is set up |"
     )
     lines.append(
-        "| Cost by model (Opus / Sonnet / Haiku mix) | Org-wide | Anthropic Cost Admin API "
-        "| Feasible once API access is set up |"
-    )
-    lines.append(
         "| Prompt cache hit rate & savings | Org-wide | Anthropic Usage API "
         "(cache_read_input_tokens vs. total) | Feasible once API access is set up |"
     )
@@ -251,47 +247,21 @@ def build_activity_page(plugins):
         "time-bucketed | Feasible once API access is set up |"
     )
     lines.append(
-        "| Model version / mix adoption | Org-wide or team | Anthropic Usage API, broken "
-        "out by model | Feasible — flags teams still on older models |"
-    )
-    lines.append(
         "| Batch vs. real-time API split | Org-wide | Anthropic Usage API, if the Message "
         "Batches API is in use | Feasible, only useful once batch usage exists |"
     )
+    lines.append("")
     lines.append(
-        "| Individual usage stats | Person | Custom authenticated proxy in front of Claude "
-        "| Under evaluation — see note below |"
+        "No per-model cost breakdown here — every team is required to use Sonnet, so "
+        "there's no model mix to compare."
     )
     lines.append("")
     lines.append(
-        "Skill-level detail (which skill, how often) isn't in this table — Anthropic's API "
-        "has no concept of \"skills,\" so that needs its own logging layer regardless of "
-        "level. See Next Steps below for the plan to build that layer."
-    )
-    lines.append("")
-    lines.append("### A note on individual usage stats")
-    lines.append("")
-    lines.append(
-        "Storing usage events for 40k people isn't a scale problem — any normal database "
-        "handles that volume easily. The real constraints are:"
-    )
-    lines.append("")
-    lines.append(
-        "- **Anthropic's own reporting is by API key and workspace, not by named "
-        "individual.** Attributing a request to a specific person needs our own layer in "
-        "front of Claude (an authenticated gateway or proxy) that tags and logs each "
-        "request — that's a real build, not a reporting toggle."
-    )
-    lines.append(
-        "- **Privacy and HR review.** Individual-level usage dashboards read like "
-        "productivity monitoring and typically need legal/HR sign-off before they're shown "
-        "broadly, especially at a regulated company."
-    )
-    lines.append("")
-    lines.append(
-        "Recommendation: start with team-level aggregates (lower lift, no privacy review "
-        "needed) and treat named-individual stats as a separate initiative pending its own "
-        "approval."
+        "Skill-level detail (which skill, how often) isn't in this table — "
+        "[Anthropic's own enterprise Skills guidance confirms usage analytics aren't "
+        "available through the Skills API](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management) "
+        "and that this needs application-level logging instead, regardless of level. See "
+        "Next Steps below for the plan to build that layer."
     )
     lines.append("")
 
@@ -306,10 +276,10 @@ def build_activity_page(plugins):
     lines.append("### Scope")
     lines.append("")
     lines.append(
-        "Track usage of **catalog-published skills only** — skills that go through this "
-        "repo's publish/review process and are bundled into a team's plugin. Not "
-        "third-party or ad-hoc user-created skills, and not named-individual usage (a "
-        "separate initiative — see the note above)."
+        "Track usage of **catalog-published skills only**, at the **team level** — skills "
+        "that go through this repo's publish/review process and are bundled into a team's "
+        "plugin. Not third-party or ad-hoc user-created skills. Per-user metrics are out of "
+        "scope for now, to keep the focus on skill adoption."
     )
     lines.append("")
     lines.append("### The plugin")

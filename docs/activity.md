@@ -11,24 +11,14 @@ Team and org-wide adoption metrics aren't wired up yet. Here's the full set of w
 | Requests, tokens, spend | Org-wide | Anthropic Usage & Cost Admin API | Feasible once API access is set up |
 | Requests by team | Team (workspace) | Anthropic Usage & Cost Admin API, if each team has its own workspace | Feasible, needs workspace-per-team setup |
 | Token mix (input / output / cache read+write) | Org-wide | Anthropic Usage API | Feasible once API access is set up |
-| Cost by model (Opus / Sonnet / Haiku mix) | Org-wide | Anthropic Cost Admin API | Feasible once API access is set up |
 | Prompt cache hit rate & savings | Org-wide | Anthropic Usage API (cache_read_input_tokens vs. total) | Feasible once API access is set up |
 | Average tokens per request | Org-wide or team | Derived from requests + tokens totals, no new data needed | Feasible once API access is set up |
 | Request volume trend (daily / weekly) | Org-wide or team | Anthropic Usage API, time-bucketed | Feasible once API access is set up |
-| Model version / mix adoption | Org-wide or team | Anthropic Usage API, broken out by model | Feasible — flags teams still on older models |
 | Batch vs. real-time API split | Org-wide | Anthropic Usage API, if the Message Batches API is in use | Feasible, only useful once batch usage exists |
-| Individual usage stats | Person | Custom authenticated proxy in front of Claude | Under evaluation — see note below |
 
-Skill-level detail (which skill, how often) isn't in this table — Anthropic's API has no concept of "skills," so that needs its own logging layer regardless of level. See Next Steps below for the plan to build that layer.
+No per-model cost breakdown here — every team is required to use Sonnet, so there's no model mix to compare.
 
-### A note on individual usage stats
-
-Storing usage events for 40k people isn't a scale problem — any normal database handles that volume easily. The real constraints are:
-
-- **Anthropic's own reporting is by API key and workspace, not by named individual.** Attributing a request to a specific person needs our own layer in front of Claude (an authenticated gateway or proxy) that tags and logs each request — that's a real build, not a reporting toggle.
-- **Privacy and HR review.** Individual-level usage dashboards read like productivity monitoring and typically need legal/HR sign-off before they're shown broadly, especially at a regulated company.
-
-Recommendation: start with team-level aggregates (lower lift, no privacy review needed) and treat named-individual stats as a separate initiative pending its own approval.
+Skill-level detail (which skill, how often) isn't in this table — [Anthropic's own enterprise Skills guidance confirms usage analytics aren't available through the Skills API](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management) and that this needs application-level logging instead, regardless of level. See Next Steps below for the plan to build that layer.
 
 ## Next Steps
 
@@ -36,7 +26,7 @@ None of the above is built yet — this is the plan, not a status update. It wou
 
 ### Scope
 
-Track usage of **catalog-published skills only** — skills that go through this repo's publish/review process and are bundled into a team's plugin. Not third-party or ad-hoc user-created skills, and not named-individual usage (a separate initiative — see the note above).
+Track usage of **catalog-published skills only**, at the **team level** — skills that go through this repo's publish/review process and are bundled into a team's plugin. Not third-party or ad-hoc user-created skills. Per-user metrics are out of scope for now, to keep the focus on skill adoption.
 
 ### The plugin
 
