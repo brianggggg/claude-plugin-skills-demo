@@ -1,0 +1,67 @@
+/* Simple horizontal bar chart used on the Reporting page.
+   Theme-aware: colors are Material CSS variables so it tracks
+   light/dark mode and the site's primary accent automatically. */
+
+.bar-chart {
+  margin: 1.5rem 0 2rem;
+  font-size: 0.85rem;
+}
+
+.bar-chart .bar-row {
+  display: grid;
+  grid-template-columns: 13rem 1fr 3rem;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.bar-chart .bar-label {
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-chart .bar-track {
+  display: block;
+  background: var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+  height: 1.1rem;
+  overflow: hidden;
+}
+
+.bar-chart .bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--md-primary-fg-color);
+  border-radius: 4px;
+}
+
+.bar-chart .bar-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media screen and (max-width: 40em) {
+  .bar-chart .bar-row {
+    grid-template-columns: 1fr 3rem;
+    grid-template-areas:
+      "label value"
+      "track track";
+    row-gap: 0.25rem;
+  }
+
+  .bar-chart .bar-label {
+    grid-area: label;
+    text-align: left;
+  }
+
+  .bar-chart .bar-value {
+    grid-area: value;
+    text-align: right;
+  }
+
+  .bar-chart .bar-track {
+    grid-area: track;
+  }
+}
