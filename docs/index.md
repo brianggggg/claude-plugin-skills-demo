@@ -6,28 +6,11 @@ hide:
 
 # Claude COE { .visually-hidden }
 
-<div class="hero-grid reveal" markdown>
+<div class="reveal" markdown>
 
-<div class="hero-col hero-col--wide" markdown>
-
-### New here?
+## New here?
 
 This is a citizen developer site for contributing reusable Claude skills. Explore the resources below to see what you can contribute, browse the inventory of current team skills, and find additional Claude resources.
-
-[Get Started](guides/getting-started.md){ .md-button .md-button--primary }
-[Read the FAQ](guides/faq.md){ .md-button }
-
-</div>
-
-<div class="hero-col" markdown>
-
-### :material-flash-outline: Skills & Teams
-
-A skill teaches Claude one job well. A team groups skills together.
-
---8<-- "_generated/stats.md"
-
-</div>
 
 </div>
 
@@ -70,6 +53,16 @@ A skill teaches Claude one job well. A team groups skills together.
     [:octicons-arrow-right-24: View reporting](activity.md)
 
 </div>
+
+</div>
+
+<div class="reveal" markdown>
+
+## :material-flash-outline: Skills & Teams
+
+A skill teaches Claude one job well. A team groups skills together.
+
+--8<-- "_generated/stats.md"
 
 </div>
 

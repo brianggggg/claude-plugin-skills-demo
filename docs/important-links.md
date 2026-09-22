@@ -19,3 +19,13 @@ Everything you need, in one place.
 ## Source
 
 - [Source repository](https://github.com/brianggggg/claude-plugin-skills-demo)
+
+## Additional Resources
+
+<!-- Placeholder — swap in the real links once each destination is confirmed. -->
+
+- AI Microsite
+- Training Sites
+- Viva Engage
+- News
+- Team Docs
