@@ -246,13 +246,13 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../getting-started/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
     
   
-  Guides
+  CitDev Resources
 
         </a>
       </li>
@@ -272,7 +272,7 @@
   
     
   
-  Teams
+  CitDev Inventory
 
       </a>
     </li>
@@ -292,44 +292,6 @@
     
   
   Important links
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../report-an-issue/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Report an issue
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../contribute/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Contribute
 
       </a>
     </li>
@@ -445,6 +407,12 @@
     
       
         
+          
+        
+      
+        
+      
+        
       
         
       
@@ -473,14 +441,15 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
     
   
-    Guides
+    CitDev Resources
   
 
     
@@ -488,19 +457,27 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Guides
+    CitDev Resources
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -745,6 +722,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../report-an-issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Report an issue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../faq/" class="md-nav__link">
         
   
@@ -787,7 +792,7 @@
   <span class="md-ellipsis">
     
   
-    Teams
+    CitDev Inventory
   
 
     
@@ -815,60 +820,6 @@
     
   
     Important links
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../report-an-issue/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Report an issue
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contribute/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contribute
   
 
     
@@ -1048,7 +999,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="3-bundle-your-teams-skills">3. Bundle your team's skills<a class="headerlink" href="#3-bundle-your-teams-skills" title="Permanent link">&para;</a></h2>
-<p>List the skills this team publishes — already published under another team on the <a href="../../plugins/">Teams catalog</a> (or under "Unassigned Skills" there), or new ones you're adding alongside it in the <code>skills/</code> folder — in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
+<p>List the skills this team publishes — already published under another team on the <a href="../../plugins/">CitDev Inventory</a> (or under "Unassigned Skills" there), or new ones you're adding alongside it in the <code>skills/</code> folder — in a <code>skills.json</code> file next to <code>plugin.json</code>:</p>
 <div class="highlight"><pre><span></span><code>plugins/your-team-name/skills.json
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s2">"skill-one"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skill-two"</span><span class="p">]</span>
@@ -1077,7 +1028,7 @@ including which skill(s) to lean on for the actual reasoning.
 <h2 id="6-submit-it">6. Submit it<a class="headerlink" href="#6-submit-it" title="Permanent link">&para;</a></h2>
 <p>Same as skills — open a pull request with your new files, or ask a teammate (or Claude, pointed at this repository) to do the git mechanics for you.</p>
 <h2 id="7-what-happens-next">7. What happens next<a class="headerlink" href="#7-what-happens-next" title="Permanent link">&para;</a></h2>
-<p>Once merged, the site rebuilds automatically. Your team appears on the <a href="../../plugins/">Teams catalog</a> with its published skills (and any commands) nested inside its accordion entry.</p>
+<p>Once merged, the site rebuilds automatically. Your team appears on the <a href="../../plugins/">CitDev Inventory</a> with its published skills (and any commands) nested inside its accordion entry.</p>
 
 
 
