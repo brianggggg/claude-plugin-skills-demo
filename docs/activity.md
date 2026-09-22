@@ -1,6 +1,56 @@
 # Reporting
 
-Placeholder — pulled from Anthropic's Usage & Cost API and Organization Analytics API once each is wired up. See Next Steps below.
+## Example: Skill Usage
+
+<div class="bar-chart">
+<div class="bar-row" title="Brand & Design Assistant — 958 invocations (30d)">
+  <span class="bar-label">Brand &amp; Design Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 100.0%;"></span></span>
+  <span class="bar-value">958</span>
+</div>
+<div class="bar-row" title="Employee Onboarding Assistant — 694 invocations (30d)">
+  <span class="bar-label">Employee Onboarding Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 72.4%;"></span></span>
+  <span class="bar-value">694</span>
+</div>
+<div class="bar-row" title="Knowledge & FAQ Assistant — 495 invocations (30d)">
+  <span class="bar-label">Knowledge &amp; FAQ Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 51.7%;"></span></span>
+  <span class="bar-value">495</span>
+</div>
+<div class="bar-row" title="Document Creator — 401 invocations (30d)">
+  <span class="bar-label">Document Creator</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 41.9%;"></span></span>
+  <span class="bar-value">401</span>
+</div>
+<div class="bar-row" title="Enterprise Information Assistant — 379 invocations (30d)">
+  <span class="bar-label">Enterprise Information Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 39.6%;"></span></span>
+  <span class="bar-value">379</span>
+</div>
+<div class="bar-row" title="Presentation Builder — 358 invocations (30d)">
+  <span class="bar-label">Presentation Builder</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 37.4%;"></span></span>
+  <span class="bar-value">358</span>
+</div>
+<div class="bar-row" title="Spreadsheet Assistant — 285 invocations (30d)">
+  <span class="bar-label">Spreadsheet Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 29.7%;"></span></span>
+  <span class="bar-value">285</span>
+</div>
+<div class="bar-row" title="Issue Intake Assistant — 153 invocations (30d)">
+  <span class="bar-label">Issue Intake Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 16.0%;"></span></span>
+  <span class="bar-value">153</span>
+</div>
+<div class="bar-row" title="PDF Analysis Assistant — 99 invocations (30d)">
+  <span class="bar-label">PDF Analysis Assistant</span>
+  <span class="bar-track"><span class="bar-fill" style="width: 10.3%;"></span></span>
+  <span class="bar-value">99</span>
+</div>
+</div>
+
+*Sample data for illustration — [download the source workbook](assets/reports/skill-usage-example.xlsx){ download } to see the numbers behind it or drop in real ones later.*
 
 ## Usage Metrics — Planned
 
@@ -22,27 +72,7 @@ Skill-level detail (which skill, how often) isn't in the table above — that's 
 
 ## Next Steps
 
-Anthropic's [Organization Analytics API for Skills](https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills) (`GET /v1/organizations/analytics/skills`, currently in beta) covers most of what this page needs natively — no custom logging layer required. This replaces the MCP-server-and-SharePoint build previously planned here with a single API integration.
-
-### Immediate next step: evaluate the API
-
-Before building anything, test the endpoint directly against this org's account:
-
-0. **Fastest first check — [Analytics Chat](https://support.claude.com/en/articles/14729354-use-analytics-chat-to-ask-claude-about-usage), if available.** Anthropic documents a feature that lets an admin ask Claude about org usage in plain English, no API key needed. If it's available on this org's plan, ask it directly — e.g. "Is skill invocation reporting enabled for our org? Show me usage for the expense-policy-checker skill over the last 30 days." *(Access requirements and whether it draws on the same data as the API below are unconfirmed — that page wasn't reachable to verify while writing this. Worth trying regardless, since it costs nothing to ask.)*
-1. Confirm the org is on a Claude Enterprise plan and provision an API key scoped `read:analytics` (an org-admin-level credential).
-2. Call the endpoint filtered to a few known catalog skill names over a recent date range, e.g. `filter[]=skill_name:expense-policy-checker` with `starting_date` set 30 days back.
-3. Check specifically:
-    - Whether `skill_display_name` resolves to the real skill name for our plugin-delivered skills — the docs say it should, since they come from the org's own plugin marketplace, but worth confirming against real data.
-    - Whether `invocation_count` and `enable_count` come back populated or null. Both are documented as null "when invocation/enable reporting is not enabled for this organization" — that reads like a separate admin toggle may be required beyond just having API access.
-    - Whether `chat`-product rows include Claude Desktop usage. Desktop isn't listed as its own `product` value (only `chat`, `claude_code`, `cowork`, `office_agent`), so this needs to be confirmed rather than assumed, since Desktop is how this org actually uses Claude.
-
-### If it checks out
-
-- **Scope:** filter every query to this catalog's skill names (`filter[]=skill_name:...`), so reporting reflects the published catalog specifically, not every skill in the org.
-- **Team-level breakdown:** `group_by[]=rbac_group_id` gives per-team numbers natively, if teams are organized as RBAC groups in the Enterprise admin console. If not, that's the one setup dependency — and it's far lighter than the workspace-per-team requirement in the table above.
-- **Pipeline:** a scheduled job — can extend the existing "Docs" GitHub Action — calls the endpoint and writes an aggregated rollup into a small data file in this repo. `generate_repo_summary.py` reads it the same way it already reads the catalog, and the placeholders in the table below become real numbers. No MCP server, no SharePoint, no Power Automate, no logging instructions to inject into skills — and no user-approval question, since no tool call is involved at all.
-
-Per-user data is technically available too (`group_by[]=user_id` / `filter[]=user_id:...`) but stays a separate initiative pending privacy/HR review, same as before — the API supports it whenever that's greenlit, with no additional engineering needed then either.
+Anthropic's [Organization Analytics API for Skills](https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills) covers what this page needs — filtered to this catalog's skill names, grouped by team. A scheduled job feeds the result into `generate_repo_summary.py` the same way it already reads the catalog, and the placeholders below become real numbers. Per-user detail is supported too, pending privacy/HR review.
 
 ## Team Breakdown — Planned
 
