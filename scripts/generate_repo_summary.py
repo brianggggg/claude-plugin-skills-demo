@@ -37,6 +37,12 @@ SKILLS_OUT_DIR = os.path.join(DOCS_DIR, "skills")
 PLUGINS_DIR = os.path.join(REPO_ROOT, "plugins")
 SKILLS_DIR = os.path.join(REPO_ROOT, "skills")
 
+# Cross-repo test only — see build_cross_repo_test(). Only present when both
+# repos happen to be checked out side by side (this sandbox); absent in the
+# real "Docs" CI workflow, which checks out only this repo.
+OTHER_REPO_ROOT = os.path.join(os.path.dirname(REPO_ROOT), "TestGhostProject")
+OTHER_REPO_EXCLUDE_DIRS = {".git", "site", "docs", "node_modules", "__pycache__"}
+
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
 
 
@@ -116,6 +122,70 @@ def load_skills():
             }
         )
     return skills
+
+
+def load_other_repo_items():
+    """Cross-repo test: walk the sibling TestGhostProject checkout, if
+    present, and return its tracked file paths (relative to that repo's
+    root). Returns None when that checkout isn't there, so callers can
+    render an honest "not available in this build" note instead of
+    crashing or faking data."""
+    if not os.path.isdir(OTHER_REPO_ROOT):
+        return None
+    items = []
+    for root, dirs, filenames in os.walk(OTHER_REPO_ROOT):
+        dirs[:] = [d for d in dirs if d not in OTHER_REPO_EXCLUDE_DIRS and not d.startswith(".")]
+        for name in filenames:
+            items.append(os.path.relpath(os.path.join(root, name), OTHER_REPO_ROOT))
+    return sorted(items)
+
+
+def build_cross_repo_test(other_items, skills):
+    if other_items is None:
+        return (
+            "*Not available in this build — the sibling `TestGhostProject` checkout "
+            "isn't present here. This only runs where both repos happen to be checked "
+            "out side by side; it's a one-off test, not a real feature of this site, "
+            "and won't appear on the deployed GitHub Pages build.*\n"
+        )
+
+    other_count = len(other_items)
+    skill_count = len(skills)
+    combined = other_count + skill_count
+
+    lines = [
+        f"Pulled live from the sibling `TestGhostProject` checkout: "
+        f"**{other_count} tracked item{'s' if other_count != 1 else ''}**. Combined "
+        f"with this catalog's **{skill_count} skill{'s' if skill_count != 1 else ''}**, "
+        f"that's **{combined}** items across both repos.",
+        "",
+    ]
+
+    other_by_letter = defaultdict(list)
+    for item in other_items:
+        basename = os.path.basename(item)
+        if basename:
+            other_by_letter[basename[0].lower()].append(basename)
+
+    matches = []
+    for skill in skills:
+        letter = skill["name"][0].lower()
+        for filename in other_by_letter.get(letter, []):
+            matches.append((skill["name"], filename, letter))
+
+    if matches:
+        lines.append(
+            "**Letter matches** — skill name and other-repo file share a first letter:"
+        )
+        lines.append("")
+        for skill_name, filename, letter in matches:
+            lines.append(f'- `{skill_name}` ↔ `{filename}` (both start with "{letter}")')
+        lines.append("")
+    else:
+        lines.append("No skill name currently shares a first letter with a file in the other repo.")
+        lines.append("")
+
+    return "\n".join(lines)
 
 
 def indent(text, prefix="    "):
@@ -393,8 +463,13 @@ def main():
 
     friendly_date = datetime.now(timezone.utc).strftime("%B %-d, %Y")
 
+    other_items = load_other_repo_items()
+
     with open(os.path.join(GENERATED_DIR, "stats.md"), "w", encoding="utf-8") as f:
         f.write(build_stats_snippet(plugins, skills))
+
+    with open(os.path.join(GENERATED_DIR, "cross_repo_test.md"), "w", encoding="utf-8") as f:
+        f.write(build_cross_repo_test(other_items, skills))
 
     with open(os.path.join(PLUGINS_OUT_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date))
