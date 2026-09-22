@@ -207,8 +207,8 @@ def build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date
 def build_activity_page(plugins):
     lines = ["# Reporting", ""]
     lines.append(
-        "Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up "
-        "as its own workspace, plus a logging layer for skill-level detail."
+        "Placeholder — pulled from Anthropic's Usage & Cost API and Organization "
+        "Analytics API once each is wired up. See Next Steps below."
     )
     lines.append("")
 
@@ -257,83 +257,86 @@ def build_activity_page(plugins):
     )
     lines.append("")
     lines.append(
-        "Skill-level detail (which skill, how often) isn't in this table — "
-        "[Anthropic's own enterprise Skills guidance confirms usage analytics aren't "
-        "available through the Skills API](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management) "
-        "and that this needs application-level logging instead, regardless of level. See "
-        "Next Steps below for the plan to build that layer."
+        "Skill-level detail (which skill, how often) isn't in the table above — that's "
+        "general org-wide usage, and [Anthropic's own enterprise Skills guidance confirms "
+        "the Skills API itself has no usage analytics](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management). "
+        "But a separate, purpose-built endpoint does cover it — see Next Steps below."
     )
     lines.append("")
 
     lines.append("## Next Steps")
     lines.append("")
     lines.append(
-        "None of the above is built yet — this is the plan, not a status update. It would "
-        "ship as a feature of the required plugin the catalog already distributes, not a "
-        "separate app."
+        "Anthropic's [Organization Analytics API for Skills]"
+        "(https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills) "
+        "(`GET /v1/organizations/analytics/skills`, currently in beta) covers most of what "
+        "this page needs natively — no custom logging layer required. This replaces the "
+        "MCP-server-and-SharePoint build previously planned here with a single API "
+        "integration."
     )
     lines.append("")
-    lines.append("### Scope")
+    lines.append("### Immediate next step: evaluate the API")
     lines.append("")
     lines.append(
-        "Track usage of **catalog-published skills only**, at the **team level** — skills "
-        "that go through this repo's publish/review process and are bundled into a team's "
-        "plugin. Not third-party or ad-hoc user-created skills. Per-user metrics are out of "
-        "scope for now, to keep the focus on skill adoption."
+        "Before building anything, test the endpoint directly against this org's account:"
     )
     lines.append("")
-    lines.append("### The plugin")
-    lines.append("")
     lines.append(
-        "1. **MCP server**, bundled with the required main plugin already pushed to every "
-        "user — same distribution mechanism the catalog itself uses. Exposes one tool: "
-        "`log_skill_usage(skill_name, team, timestamp)`."
+        "1. Confirm the org is on a Claude Enterprise plan and provision an API key "
+        "scoped `read:analytics` (an org-admin-level credential)."
     )
     lines.append(
-        "2. **Logging instructions injected at build time, not hand-authored per skill.** "
-        "The publishing pipeline wraps each catalog skill with the logging call "
-        "automatically when it's packaged for distribution. Source `SKILL.md` files stay "
-        "untouched, so this applies to every already-published skill with zero edits, and "
-        "to every future skill automatically."
+        "2. Call the endpoint filtered to a few known catalog skill names over a recent "
+        "date range, e.g. `filter[]=skill_name:expense-policy-checker` with "
+        "`starting_date` set 30 days back."
     )
-    lines.append("")
-    lines.append("### The data path")
-    lines.append("")
+    lines.append("3. Check specifically:")
     lines.append(
-        "3. **Ingestion:** a Power Automate flow triggered by an HTTP request (not email — "
-        "instant, structured, no mailbox-polling overhead) writes each event to a "
-        "SharePoint list."
+        "    - Whether `skill_display_name` resolves to the real skill name for our "
+        "plugin-delivered skills — the docs say it should, since they come from the "
+        "org's own plugin marketplace, but worth confirming against real data."
     )
     lines.append(
-        "4. **Retention:** a separate scheduled Power Automate flow purges list items "
-        "older than 30 days."
+        "    - Whether `invocation_count` and `enable_count` come back populated or "
+        "null. Both are documented as null \"when invocation/enable reporting is not "
+        "enabled for this organization\" — that reads like a separate admin toggle may "
+        "be required beyond just having API access."
     )
     lines.append(
-        "5. **Rollup into this site:** a scheduled job (can extend the existing \"Docs\" "
-        "GitHub Action) pulls an aggregated summary — counts, not raw events — from the "
-        "SharePoint list into a small data file in this repo. `generate_repo_summary.py` "
-        "reads it the same way it already reads the catalog, and the placeholders in the "
-        "table above become real numbers."
+        "    - Whether `chat`-product rows include Claude Desktop usage. Desktop isn't "
+        "listed as its own `product` value (only `chat`, `claude_code`, `cowork`, "
+        "`office_agent`), so this needs to be confirmed rather than assumed, since "
+        "Desktop is how this org actually uses Claude."
     )
     lines.append("")
-    lines.append("### Open questions before building")
+    lines.append("### If it checks out")
     lines.append("")
     lines.append(
-        "- **Approval friction:** does a centrally-required plugin get pre-trusted "
-        "(silent from the first use), or does each user see a one-time \"Always Allow\" "
-        "prompt the first time it fires? Unconfirmed — needs a direct answer from the "
-        "Enterprise/Cowork admin console or Anthropic account team, since it affects "
-        "rollout messaging."
+        "- **Scope:** filter every query to this catalog's skill names "
+        "(`filter[]=skill_name:...`), so reporting reflects the published catalog "
+        "specifically, not every skill in the org."
     )
     lines.append(
-        "- **Distribution mechanism:** confirm Cowork's actual mandatory-plugin push "
-        "behavior. claude.ai itself doesn't support org-wide admin-pushed custom Skills — "
-        "Cowork may differ, but that's worth verifying directly rather than assuming."
+        "- **Team-level breakdown:** `group_by[]=rbac_group_id` gives per-team numbers "
+        "natively, if teams are organized as RBAC groups in the Enterprise admin "
+        "console. If not, that's the one setup dependency — and it's far lighter than "
+        "the workspace-per-team requirement in the table above."
     )
     lines.append(
-        "- **SharePoint throttling at scale:** fine at modest volume; if usage grows "
-        "large, batch events client-side (a few minutes at a time) rather than firing the "
-        "webhook per invocation."
+        "- **Pipeline:** a scheduled job — can extend the existing \"Docs\" GitHub "
+        "Action — calls the endpoint and writes an aggregated rollup into a small data "
+        "file in this repo. `generate_repo_summary.py` reads it the same way it already "
+        "reads the catalog, and the placeholders in the table below become real numbers. "
+        "No MCP server, no SharePoint, no Power Automate, no logging instructions to "
+        "inject into skills — and no user-approval question, since no tool call is "
+        "involved at all."
+    )
+    lines.append("")
+    lines.append(
+        "Per-user data is technically available too (`group_by[]=user_id` / "
+        "`filter[]=user_id:...`) but stays a separate initiative pending privacy/HR "
+        "review, same as before — the API supports it whenever that's greenlit, with no "
+        "additional engineering needed then either."
     )
     lines.append("")
 
@@ -342,7 +345,8 @@ def build_activity_page(plugins):
     lines.append(
         "The slice that matters most once usage is wired up: every team in the catalog, "
         "side by side. Skills Published is real (pulled from the catalog); the rest are "
-        "placeholders for the same Usage & Cost API breakdown, per team workspace."
+        "placeholders for the Organization Analytics API breakdown, grouped by team "
+        "(RBAC group, pending confirmation above)."
     )
     lines.append("")
     lines.append("| Team | Skills Published | Requests (30d) | Cost (30d) | Active Users (30d) |")
