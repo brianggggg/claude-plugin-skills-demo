@@ -1008,6 +1008,7 @@
 <h3 id="immediate-next-step-evaluate-the-api">Immediate next step: evaluate the API<a class="headerlink" href="#immediate-next-step-evaluate-the-api" title="Permanent link">&para;</a></h3>
 <p>Before building anything, test the endpoint directly against this org's account:</p>
 <ol>
+<li><strong>Fastest first check — <a href="https://support.claude.com/en/articles/14729354-use-analytics-chat-to-ask-claude-about-usage">Analytics Chat</a>, if available.</strong> Anthropic documents a feature that lets an admin ask Claude about org usage in plain English, no API key needed. If it's available on this org's plan, ask it directly — e.g. "Is skill invocation reporting enabled for our org? Show me usage for the expense-policy-checker skill over the last 30 days." <em>(Access requirements and whether it draws on the same data as the API below are unconfirmed — that page wasn't reachable to verify while writing this. Worth trying regardless, since it costs nothing to ask.)</em></li>
 <li>Confirm the org is on a Claude Enterprise plan and provision an API key scoped <code>read:analytics</code> (an org-admin-level credential).</li>
 <li>Call the endpoint filtered to a few known catalog skill names over a recent date range, e.g. <code>filter[]=skill_name:expense-policy-checker</code> with <code>starting_date</code> set 30 days back.</li>
 <li>Check specifically:<ul>
