@@ -65,25 +65,3 @@ Team and org-wide adoption metrics aren't wired up yet. Here's the full set of w
 | Average tokens per request | Org-wide or team | Derived from requests + tokens totals, no new data needed | Feasible once API access is set up |
 | Request volume trend (daily / weekly) | Org-wide or team | Anthropic Usage API, time-bucketed | Feasible once API access is set up |
 | Batch vs. real-time API split | Org-wide | Anthropic Usage API, if the Message Batches API is in use | Feasible, only useful once batch usage exists |
-
-No per-model cost breakdown here — every team is required to use Sonnet, so there's no model mix to compare.
-
-Skill-level detail (which skill, how often) isn't in the table above — that's general org-wide usage, and [Anthropic's own enterprise Skills guidance confirms the Skills API itself has no usage analytics](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management). But a separate, purpose-built endpoint does cover it — see Next Steps below.
-
-## Next Steps
-
-Anthropic's [Organization Analytics API for Skills](https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills) covers what this page needs — filtered to this catalog's skill names, grouped by team. A scheduled job feeds the result into `generate_repo_summary.py` the same way it already reads the catalog, and the placeholders below become real numbers. Per-user detail is supported too, pending privacy/HR review.
-
-## Team Breakdown — Planned
-
-The slice that matters most once usage is wired up: every team in the catalog, side by side. Skills Published is real (pulled from the catalog); the rest are placeholders for the Organization Analytics API breakdown, grouped by team (RBAC group, pending confirmation above).
-
-| Team | Skills Published | Requests (30d) | Cost (30d) | Active Users (30d) |
-|---|---|---|---|---|
-| crm-sync | 0 | — | — | — |
-| expense-audit | 2 | — | — | — |
-| hr-onboarding | 1 | — | — | — |
-| invoice-processor | 2 | — | — | — |
-| meeting-ops | 2 | — | — | — |
-
-[:octicons-arrow-left-24: Back to Home](index.md)

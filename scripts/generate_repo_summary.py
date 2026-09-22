@@ -293,7 +293,7 @@ SKILL_USAGE_EXAMPLE = [
 ]
 
 
-def build_activity_page(plugins):
+def build_activity_page():
     lines = ["# Reporting", ""]
 
     lines.append("## Example: Skill Usage")
@@ -358,48 +358,6 @@ def build_activity_page(plugins):
         "Batches API is in use | Feasible, only useful once batch usage exists |"
     )
     lines.append("")
-    lines.append(
-        "No per-model cost breakdown here — every team is required to use Sonnet, so "
-        "there's no model mix to compare."
-    )
-    lines.append("")
-    lines.append(
-        "Skill-level detail (which skill, how often) isn't in the table above — that's "
-        "general org-wide usage, and [Anthropic's own enterprise Skills guidance confirms "
-        "the Skills API itself has no usage analytics](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management). "
-        "But a separate, purpose-built endpoint does cover it — see Next Steps below."
-    )
-    lines.append("")
-
-    lines.append("## Next Steps")
-    lines.append("")
-    lines.append(
-        "Anthropic's [Organization Analytics API for Skills]"
-        "(https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills) "
-        "covers what this page needs — filtered to this catalog's skill names, grouped by "
-        "team. A scheduled job feeds the result into `generate_repo_summary.py` the same "
-        "way it already reads the catalog, and the placeholders below become real numbers. "
-        "Per-user detail is supported too, pending privacy/HR review."
-    )
-    lines.append("")
-
-    lines.append("## Team Breakdown — Planned")
-    lines.append("")
-    lines.append(
-        "The slice that matters most once usage is wired up: every team in the catalog, "
-        "side by side. Skills Published is real (pulled from the catalog); the rest are "
-        "placeholders for the Organization Analytics API breakdown, grouped by team "
-        "(RBAC group, pending confirmation above)."
-    )
-    lines.append("")
-    lines.append("| Team | Skills Published | Requests (30d) | Cost (30d) | Active Users (30d) |")
-    lines.append("|---|---|---|---|---|")
-    for plugin in plugins:
-        lines.append(f"| {plugin['name']} | {len(plugin['skills'])} | — | — | — |")
-    lines.append("")
-
-    lines.append("[:octicons-arrow-left-24: Back to Home](index.md)")
-    lines.append("")
     return "\n".join(lines)
 
 
@@ -437,7 +395,7 @@ def main():
         f.write(build_plugins_index(plugins, skills_by_name, skill_to_plugins, friendly_date))
 
     with open(os.path.join(DOCS_DIR, "activity.md"), "w", encoding="utf-8") as f:
-        f.write(build_activity_page(plugins))
+        f.write(build_activity_page())
 
     print(
         f"Wrote stats snippet and plugins/index.md ({len(plugins)} teams, "
