@@ -768,6 +768,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage-metrics-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Metrics — Planned
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Metrics — Planned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-note-on-individual-usage-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A note on individual usage stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recent-commits" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -824,6 +852,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage-metrics-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Metrics — Planned
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Metrics — Planned">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-note-on-individual-usage-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A note on individual usage stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#recent-commits" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -867,7 +923,52 @@
 
 <h1 id="reporting">Reporting<a class="headerlink" href="#reporting" title="Permanent link">&para;</a></h1>
 <p>Repository activity: recent commits and who's contributing.</p>
-<p><strong>Total commits:</strong> 27 · <strong>Contributors:</strong> 2</p>
+<p><strong>Total commits:</strong> 28 · <strong>Contributors:</strong> 2</p>
+<h2 id="usage-metrics-planned">Usage Metrics — Planned<a class="headerlink" href="#usage-metrics-planned" title="Permanent link">&para;</a></h2>
+<p>Skill and team adoption metrics aren't wired up yet. Here's what's planned, roughly in order of how feasible each one is to actually pull:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Level</th>
+<th>Source</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude requests, tokens, spend</td>
+<td>Org-wide</td>
+<td>Anthropic Usage &amp; Cost Admin API</td>
+<td>Feasible once API access is set up</td>
+</tr>
+<tr>
+<td>Requests by team</td>
+<td>Team (workspace)</td>
+<td>Anthropic Usage &amp; Cost Admin API, if each team has its own workspace</td>
+<td>Feasible, needs workspace-per-team setup</td>
+</tr>
+<tr>
+<td>Skills invoked, most-used skill</td>
+<td>Skill</td>
+<td>Custom instrumentation — Anthropic's API doesn't track "skills" as a concept</td>
+<td>Needs a logging layer around skill invocation</td>
+</tr>
+<tr>
+<td>Individual usage stats</td>
+<td>Person</td>
+<td>Custom authenticated proxy in front of Claude</td>
+<td>Under evaluation — see note below</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-note-on-individual-usage-stats">A note on individual usage stats<a class="headerlink" href="#a-note-on-individual-usage-stats" title="Permanent link">&para;</a></h3>
+<p>Storing usage events for 40k people isn't a scale problem — any normal database handles that volume easily. The real constraints are:</p>
+<ul>
+<li><strong>Anthropic's own reporting is by API key and workspace, not by named individual.</strong> Attributing a request to a specific person needs our own layer in front of Claude (an authenticated gateway or proxy) that tags and logs each request — that's a real build, not a reporting toggle.</li>
+<li><strong>Privacy and HR review.</strong> Individual-level usage dashboards read like productivity monitoring and typically need legal/HR sign-off before they're shown broadly, especially at a regulated company.</li>
+</ul>
+<p>Recommendation: start with team-level aggregates (lower lift, no privacy review needed) and treat named-individual stats as a separate initiative pending its own approval.</p>
 <h2 id="recent-commits">Recent Commits<a class="headerlink" href="#recent-commits" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -879,6 +980,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>2bbab3b</code></td>
+<td>Claude</td>
+<td>2026-09-22</td>
+<td>Curate homepage metrics, add a real usage-metrics roadmap to Reporting</td>
+</tr>
 <tr>
 <td><code>1d5f093</code></td>
 <td>Claude</td>
@@ -933,12 +1040,6 @@
 <td>2026-09-21</td>
 <td>Lay out What's Claude / New here / Skills &amp; Teams as 3 columns</td>
 </tr>
-<tr>
-<td><code>e4ae454</code></td>
-<td>Claude</td>
-<td>2026-09-21</td>
-<td>Rename site to Claude COE, drop the masthead to save space</td>
-</tr>
 </tbody>
 </table>
 <h2 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h2>
@@ -956,7 +1057,7 @@
 </tr>
 <tr>
 <td>Claude</td>
-<td>12</td>
+<td>13</td>
 </tr>
 </tbody>
 </table>
