@@ -68,15 +68,14 @@ A skill teaches Claude one job well. A team groups skills together.
 
 <div class="reveal" markdown>
 
-## Skill usage
+## Usage snapshot
 
-*Placeholder metrics — these will be pulled from the Anthropic API once connected.*
+*Placeholder — pulled from Anthropic's Usage & Cost API once each team is set up as its own workspace. See [Reporting](activity.md) for more on what's planned and why.*
 
 <div class="stat-strip" markdown>
 
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skills invoked (30d)</span></div>
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Most-used skill</span></div>
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Active teams</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Claude requests (30d)</span></div>
+<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Active teams (30d)</span></div>
 
 </div>
 

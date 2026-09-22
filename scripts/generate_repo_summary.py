@@ -240,6 +240,58 @@ def build_activity_page(commits, contributors, total_commits):
     lines.append(f"**Total commits:** {total_commits} · **Contributors:** {len(contributors)}")
     lines.append("")
 
+    lines.append("## Usage Metrics — Planned")
+    lines.append("")
+    lines.append(
+        "Skill and team adoption metrics aren't wired up yet. Here's what's planned, "
+        "roughly in order of how feasible each one is to actually pull:"
+    )
+    lines.append("")
+    lines.append("| Metric | Level | Source | Status |")
+    lines.append("|---|---|---|---|")
+    lines.append(
+        "| Claude requests, tokens, spend | Org-wide | Anthropic Usage & Cost Admin API "
+        "| Feasible once API access is set up |"
+    )
+    lines.append(
+        "| Requests by team | Team (workspace) | Anthropic Usage & Cost Admin API, "
+        "if each team has its own workspace | Feasible, needs workspace-per-team setup |"
+    )
+    lines.append(
+        "| Skills invoked, most-used skill | Skill | Custom instrumentation — Anthropic's "
+        "API doesn't track \"skills\" as a concept | Needs a logging layer around skill invocation |"
+    )
+    lines.append(
+        "| Individual usage stats | Person | Custom authenticated proxy in front of Claude "
+        "| Under evaluation — see note below |"
+    )
+    lines.append("")
+    lines.append("### A note on individual usage stats")
+    lines.append("")
+    lines.append(
+        "Storing usage events for 40k people isn't a scale problem — any normal database "
+        "handles that volume easily. The real constraints are:"
+    )
+    lines.append("")
+    lines.append(
+        "- **Anthropic's own reporting is by API key and workspace, not by named "
+        "individual.** Attributing a request to a specific person needs our own layer in "
+        "front of Claude (an authenticated gateway or proxy) that tags and logs each "
+        "request — that's a real build, not a reporting toggle."
+    )
+    lines.append(
+        "- **Privacy and HR review.** Individual-level usage dashboards read like "
+        "productivity monitoring and typically need legal/HR sign-off before they're shown "
+        "broadly, especially at a regulated company."
+    )
+    lines.append("")
+    lines.append(
+        "Recommendation: start with team-level aggregates (lower lift, no privacy review "
+        "needed) and treat named-individual stats as a separate initiative pending its own "
+        "approval."
+    )
+    lines.append("")
+
     lines.append("## Recent Commits")
     lines.append("")
     lines.append("| Commit | Author | Date | Message |")
