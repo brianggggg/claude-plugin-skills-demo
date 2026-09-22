@@ -266,8 +266,7 @@ def build_activity_page(plugins):
     lines.append(
         "Skill-level detail (which skill, how often) isn't in this table — Anthropic's API "
         "has no concept of \"skills,\" so that needs its own logging layer regardless of "
-        "level. See the homepage's Top Skills preview for where that will surface once it "
-        "exists."
+        "level. See Next Steps below for the plan to build that layer."
     )
     lines.append("")
     lines.append("### A note on individual usage stats")
@@ -293,6 +292,78 @@ def build_activity_page(plugins):
         "Recommendation: start with team-level aggregates (lower lift, no privacy review "
         "needed) and treat named-individual stats as a separate initiative pending its own "
         "approval."
+    )
+    lines.append("")
+
+    lines.append("## Next Steps")
+    lines.append("")
+    lines.append(
+        "None of the above is built yet — this is the plan, not a status update. It would "
+        "ship as a feature of the required plugin the catalog already distributes, not a "
+        "separate app."
+    )
+    lines.append("")
+    lines.append("### Scope")
+    lines.append("")
+    lines.append(
+        "Track usage of **catalog-published skills only** — skills that go through this "
+        "repo's publish/review process and are bundled into a team's plugin. Not "
+        "third-party or ad-hoc user-created skills, and not named-individual usage (a "
+        "separate initiative — see the note above)."
+    )
+    lines.append("")
+    lines.append("### The plugin")
+    lines.append("")
+    lines.append(
+        "1. **MCP server**, bundled with the required main plugin already pushed to every "
+        "user — same distribution mechanism the catalog itself uses. Exposes one tool: "
+        "`log_skill_usage(skill_name, team, timestamp)`."
+    )
+    lines.append(
+        "2. **Logging instructions injected at build time, not hand-authored per skill.** "
+        "The publishing pipeline wraps each catalog skill with the logging call "
+        "automatically when it's packaged for distribution. Source `SKILL.md` files stay "
+        "untouched, so this applies to every already-published skill with zero edits, and "
+        "to every future skill automatically."
+    )
+    lines.append("")
+    lines.append("### The data path")
+    lines.append("")
+    lines.append(
+        "3. **Ingestion:** a Power Automate flow triggered by an HTTP request (not email — "
+        "instant, structured, no mailbox-polling overhead) writes each event to a "
+        "SharePoint list."
+    )
+    lines.append(
+        "4. **Retention:** a separate scheduled Power Automate flow purges list items "
+        "older than 30 days."
+    )
+    lines.append(
+        "5. **Rollup into this site:** a scheduled job (can extend the existing \"Docs\" "
+        "GitHub Action) pulls an aggregated summary — counts, not raw events — from the "
+        "SharePoint list into a small data file in this repo. `generate_repo_summary.py` "
+        "reads it the same way it already reads the catalog, and the placeholders in the "
+        "table above become real numbers."
+    )
+    lines.append("")
+    lines.append("### Open questions before building")
+    lines.append("")
+    lines.append(
+        "- **Approval friction:** does a centrally-required plugin get pre-trusted "
+        "(silent from the first use), or does each user see a one-time \"Always Allow\" "
+        "prompt the first time it fires? Unconfirmed — needs a direct answer from the "
+        "Enterprise/Cowork admin console or Anthropic account team, since it affects "
+        "rollout messaging."
+    )
+    lines.append(
+        "- **Distribution mechanism:** confirm Cowork's actual mandatory-plugin push "
+        "behavior. claude.ai itself doesn't support org-wide admin-pushed custom Skills — "
+        "Cowork may differ, but that's worth verifying directly rather than assuming."
+    )
+    lines.append(
+        "- **SharePoint throttling at scale:** fine at modest volume; if usage grows "
+        "large, batch events client-side (a few minutes at a time) rather than firing the "
+        "webhook per invocation."
     )
     lines.append("")
 

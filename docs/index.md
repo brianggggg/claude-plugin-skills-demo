@@ -66,27 +66,6 @@ A skill teaches Claude one job well. A team groups skills together.
 
 </div>
 
-<div class="reveal" markdown>
-
-## Usage snapshot
-
-<div class="stat-strip" markdown>
-
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Skills fired (30d)</span></div>
-<div class="stat-card"><span class="stat-number">—</span><span class="stat-label">Percent utilization</span></div>
-
-</div>
-
-**Top skills (30d)**
-
-1. —
-2. —
-3. —
-4. —
-5. —
-
-</div>
-
 <div class="cta-banner reveal" markdown>
 
 ### Have a question?
