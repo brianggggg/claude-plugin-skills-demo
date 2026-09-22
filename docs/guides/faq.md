@@ -8,6 +8,6 @@ Have a question that isn't answered here yet? [Open an issue](https://github.com
 
 ## Cross-repo test (temporary)
 
-*Testing whether MkDocs here can pull and combine live data from a second, unrelated repo (`TestGhostProject`) at build time. Not a real feature — this section only populates where both repos are checked out side by side, and won't show real data on the deployed site.*
+*Testing whether MkDocs here can pull and combine live data from a second, unrelated repo (`TestGhostProject`) at build time. The "Docs" workflow checks that repo out fresh on every deploy, and [its own workflow notifies this one to rebuild](https://github.com/brianggggg/TestGhostProject/blob/main/.github/workflows/docs.yml) whenever it deploys too — so a push to either repo should refresh the numbers below. Not a permanent feature of the site, just a proof of concept.*
 
 --8<-- "_generated/cross_repo_test.md"

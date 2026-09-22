@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+  # Fired by TestGhostProject's own Docs workflow after it deploys, so a
+  # push there refreshes this site's cross-repo numbers too. See
+  # docs/guides/faq.md and scripts/generate_repo_summary.py
+  # (build_cross_repo_test). Requires a CROSS_REPO_DISPATCH_TOKEN secret
+  # on TestGhostProject's side — see that repo's docs.yml for the other
+  # half of this.
+  repository_dispatch:
+    types: [testghostproject-updated]
   workflow_dispatch: {}
 
 permissions:
@@ -22,6 +30,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout TestGhostProject (cross-repo test — see FAQ)
+        uses: actions/checkout@v4
+        with:
+          repository: brianggggg/TestGhostProject
+          path: TestGhostProject
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -36,6 +50,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Generate repo summary page
+        env:
+          OTHER_REPO_ROOT: ${{ github.workspace }}/TestGhostProject
         run: python scripts/generate_repo_summary.py
 
       - name: Deploy to GitHub Pages

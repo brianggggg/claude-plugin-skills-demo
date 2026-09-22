@@ -37,10 +37,16 @@ SKILLS_OUT_DIR = os.path.join(DOCS_DIR, "skills")
 PLUGINS_DIR = os.path.join(REPO_ROOT, "plugins")
 SKILLS_DIR = os.path.join(REPO_ROOT, "skills")
 
-# Cross-repo test only — see build_cross_repo_test(). Only present when both
-# repos happen to be checked out side by side (this sandbox); absent in the
-# real "Docs" CI workflow, which checks out only this repo.
-OTHER_REPO_ROOT = os.path.join(os.path.dirname(REPO_ROOT), "TestGhostProject")
+# Cross-repo test only — see build_cross_repo_test(). The "Docs" workflow
+# checks TestGhostProject out to $GITHUB_WORKSPACE/TestGhostProject and
+# points OTHER_REPO_ROOT at it via env var; falls back to a sibling
+# directory for local/sandbox runs where both repos are checked out side
+# by side. Either way, load_other_repo_items() degrades gracefully if
+# it's just not there.
+OTHER_REPO_ROOT = os.environ.get(
+    "OTHER_REPO_ROOT",
+    os.path.join(os.path.dirname(REPO_ROOT), "TestGhostProject"),
+)
 OTHER_REPO_EXCLUDE_DIRS = {".git", "site", "docs", "node_modules", "__pycache__"}
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
@@ -143,10 +149,10 @@ def load_other_repo_items():
 def build_cross_repo_test(other_items, skills):
     if other_items is None:
         return (
-            "*Not available in this build — the sibling `TestGhostProject` checkout "
-            "isn't present here. This only runs where both repos happen to be checked "
-            "out side by side; it's a one-off test, not a real feature of this site, "
-            "and won't appear on the deployed GitHub Pages build.*\n"
+            "*Not available in this build — the `TestGhostProject` checkout isn't "
+            "present here. The \"Docs\" workflow checks it out on every deploy, so this "
+            "should only show up locally (e.g. running the generator script directly, "
+            "without setting `OTHER_REPO_ROOT`) or if that checkout step ever fails.*\n"
         )
 
     other_count = len(other_items)
