@@ -791,10 +791,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#immediate-next-step-evaluate-the-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        Immediate next step: evaluate the API
       
     </span>
   </a>
@@ -802,32 +802,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-plugin" class="md-nav__link">
+  <a href="#if-it-checks-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The plugin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-data-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The data path
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open-questions-before-building" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Open questions before building
+        If it checks out
       
     </span>
   </a>
@@ -908,10 +886,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#immediate-next-step-evaluate-the-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        Immediate next step: evaluate the API
       
     </span>
   </a>
@@ -919,32 +897,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-plugin" class="md-nav__link">
+  <a href="#if-it-checks-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The plugin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-data-path" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The data path
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#open-questions-before-building" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Open questions before building
+        If it checks out
       
     </span>
   </a>
@@ -988,7 +944,7 @@
 
 
 <h1 id="reporting">Reporting<a class="headerlink" href="#reporting" title="Permanent link">&para;</a></h1>
-<p>Placeholder — pulled from Anthropic's Usage &amp; Cost API once each team is set up as its own workspace, plus a logging layer for skill-level detail.</p>
+<p>Placeholder — pulled from Anthropic's Usage &amp; Cost API and Organization Analytics API once each is wired up. See Next Steps below.</p>
 <h2 id="usage-metrics-planned">Usage Metrics — Planned<a class="headerlink" href="#usage-metrics-planned" title="Permanent link">&para;</a></h2>
 <p>Team and org-wide adoption metrics aren't wired up yet. Here's the full set of what's worth pulling once they are, roughly in order of how feasible each one is to actually get:</p>
 <table>
@@ -1046,30 +1002,30 @@
 </tbody>
 </table>
 <p>No per-model cost breakdown here — every team is required to use Sonnet, so there's no model mix to compare.</p>
-<p>Skill-level detail (which skill, how often) isn't in this table — <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management">Anthropic's own enterprise Skills guidance confirms usage analytics aren't available through the Skills API</a> and that this needs application-level logging instead, regardless of level. See Next Steps below for the plan to build that layer.</p>
+<p>Skill-level detail (which skill, how often) isn't in the table above — that's general org-wide usage, and <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management">Anthropic's own enterprise Skills guidance confirms the Skills API itself has no usage analytics</a>. But a separate, purpose-built endpoint does cover it — see Next Steps below.</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>None of the above is built yet — this is the plan, not a status update. It would ship as a feature of the required plugin the catalog already distributes, not a separate app.</p>
-<h3 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h3>
-<p>Track usage of <strong>catalog-published skills only</strong>, at the <strong>team level</strong> — skills that go through this repo's publish/review process and are bundled into a team's plugin. Not third-party or ad-hoc user-created skills. Per-user metrics are out of scope for now, to keep the focus on skill adoption.</p>
-<h3 id="the-plugin">The plugin<a class="headerlink" href="#the-plugin" title="Permanent link">&para;</a></h3>
+<p>Anthropic's <a href="https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills">Organization Analytics API for Skills</a> (<code>GET /v1/organizations/analytics/skills</code>, currently in beta) covers most of what this page needs natively — no custom logging layer required. This replaces the MCP-server-and-SharePoint build previously planned here with a single API integration.</p>
+<h3 id="immediate-next-step-evaluate-the-api">Immediate next step: evaluate the API<a class="headerlink" href="#immediate-next-step-evaluate-the-api" title="Permanent link">&para;</a></h3>
+<p>Before building anything, test the endpoint directly against this org's account:</p>
 <ol>
-<li><strong>MCP server</strong>, bundled with the required main plugin already pushed to every user — same distribution mechanism the catalog itself uses. Exposes one tool: <code>log_skill_usage(skill_name, team, timestamp)</code>.</li>
-<li><strong>Logging instructions injected at build time, not hand-authored per skill.</strong> The publishing pipeline wraps each catalog skill with the logging call automatically when it's packaged for distribution. Source <code>SKILL.md</code> files stay untouched, so this applies to every already-published skill with zero edits, and to every future skill automatically.</li>
-</ol>
-<h3 id="the-data-path">The data path<a class="headerlink" href="#the-data-path" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Ingestion:</strong> a Power Automate flow triggered by an HTTP request (not email — instant, structured, no mailbox-polling overhead) writes each event to a SharePoint list.</li>
-<li><strong>Retention:</strong> a separate scheduled Power Automate flow purges list items older than 30 days.</li>
-<li><strong>Rollup into this site:</strong> a scheduled job (can extend the existing "Docs" GitHub Action) pulls an aggregated summary — counts, not raw events — from the SharePoint list into a small data file in this repo. <code>generate_repo_summary.py</code> reads it the same way it already reads the catalog, and the placeholders in the table above become real numbers.</li>
-</ol>
-<h3 id="open-questions-before-building">Open questions before building<a class="headerlink" href="#open-questions-before-building" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Approval friction:</strong> does a centrally-required plugin get pre-trusted (silent from the first use), or does each user see a one-time "Always Allow" prompt the first time it fires? Unconfirmed — needs a direct answer from the Enterprise/Cowork admin console or Anthropic account team, since it affects rollout messaging.</li>
-<li><strong>Distribution mechanism:</strong> confirm Cowork's actual mandatory-plugin push behavior. claude.ai itself doesn't support org-wide admin-pushed custom Skills — Cowork may differ, but that's worth verifying directly rather than assuming.</li>
-<li><strong>SharePoint throttling at scale:</strong> fine at modest volume; if usage grows large, batch events client-side (a few minutes at a time) rather than firing the webhook per invocation.</li>
+<li>Confirm the org is on a Claude Enterprise plan and provision an API key scoped <code>read:analytics</code> (an org-admin-level credential).</li>
+<li>Call the endpoint filtered to a few known catalog skill names over a recent date range, e.g. <code>filter[]=skill_name:expense-policy-checker</code> with <code>starting_date</code> set 30 days back.</li>
+<li>Check specifically:<ul>
+<li>Whether <code>skill_display_name</code> resolves to the real skill name for our plugin-delivered skills — the docs say it should, since they come from the org's own plugin marketplace, but worth confirming against real data.</li>
+<li>Whether <code>invocation_count</code> and <code>enable_count</code> come back populated or null. Both are documented as null "when invocation/enable reporting is not enabled for this organization" — that reads like a separate admin toggle may be required beyond just having API access.</li>
+<li>Whether <code>chat</code>-product rows include Claude Desktop usage. Desktop isn't listed as its own <code>product</code> value (only <code>chat</code>, <code>claude_code</code>, <code>cowork</code>, <code>office_agent</code>), so this needs to be confirmed rather than assumed, since Desktop is how this org actually uses Claude.</li>
 </ul>
+</li>
+</ol>
+<h3 id="if-it-checks-out">If it checks out<a class="headerlink" href="#if-it-checks-out" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Scope:</strong> filter every query to this catalog's skill names (<code>filter[]=skill_name:...</code>), so reporting reflects the published catalog specifically, not every skill in the org.</li>
+<li><strong>Team-level breakdown:</strong> <code>group_by[]=rbac_group_id</code> gives per-team numbers natively, if teams are organized as RBAC groups in the Enterprise admin console. If not, that's the one setup dependency — and it's far lighter than the workspace-per-team requirement in the table above.</li>
+<li><strong>Pipeline:</strong> a scheduled job — can extend the existing "Docs" GitHub Action — calls the endpoint and writes an aggregated rollup into a small data file in this repo. <code>generate_repo_summary.py</code> reads it the same way it already reads the catalog, and the placeholders in the table below become real numbers. No MCP server, no SharePoint, no Power Automate, no logging instructions to inject into skills — and no user-approval question, since no tool call is involved at all.</li>
+</ul>
+<p>Per-user data is technically available too (<code>group_by[]=user_id</code> / <code>filter[]=user_id:...</code>) but stays a separate initiative pending privacy/HR review, same as before — the API supports it whenever that's greenlit, with no additional engineering needed then either.</p>
 <h2 id="team-breakdown-planned">Team Breakdown — Planned<a class="headerlink" href="#team-breakdown-planned" title="Permanent link">&para;</a></h2>
-<p>The slice that matters most once usage is wired up: every team in the catalog, side by side. Skills Published is real (pulled from the catalog); the rest are placeholders for the same Usage &amp; Cost API breakdown, per team workspace.</p>
+<p>The slice that matters most once usage is wired up: every team in the catalog, side by side. Skills Published is real (pulled from the catalog); the rest are placeholders for the Organization Analytics API breakdown, grouped by team (RBAC group, pending confirmation above).</p>
 <table>
 <thead>
 <tr>
