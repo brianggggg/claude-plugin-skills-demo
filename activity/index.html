@@ -837,28 +837,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#team-breakdown-planned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Team Breakdown — Planned
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -909,28 +887,6 @@
     <span class="md-ellipsis">
       
         Usage Metrics — Planned
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#team-breakdown-planned" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Team Breakdown — Planned
       
     </span>
   </a>
@@ -1064,61 +1020,6 @@
 </tr>
 </tbody>
 </table>
-<p>No per-model cost breakdown here — every team is required to use Sonnet, so there's no model mix to compare.</p>
-<p>Skill-level detail (which skill, how often) isn't in the table above — that's general org-wide usage, and <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise#skill-lifecycle-management">Anthropic's own enterprise Skills guidance confirms the Skills API itself has no usage analytics</a>. But a separate, purpose-built endpoint does cover it — see Next Steps below.</p>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>Anthropic's <a href="https://platform.claude.com/docs/en/api/http/beta/organization/analytics/skills">Organization Analytics API for Skills</a> covers what this page needs — filtered to this catalog's skill names, grouped by team. A scheduled job feeds the result into <code>generate_repo_summary.py</code> the same way it already reads the catalog, and the placeholders below become real numbers. Per-user detail is supported too, pending privacy/HR review.</p>
-<h2 id="team-breakdown-planned">Team Breakdown — Planned<a class="headerlink" href="#team-breakdown-planned" title="Permanent link">&para;</a></h2>
-<p>The slice that matters most once usage is wired up: every team in the catalog, side by side. Skills Published is real (pulled from the catalog); the rest are placeholders for the Organization Analytics API breakdown, grouped by team (RBAC group, pending confirmation above).</p>
-<table>
-<thead>
-<tr>
-<th>Team</th>
-<th>Skills Published</th>
-<th>Requests (30d)</th>
-<th>Cost (30d)</th>
-<th>Active Users (30d)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>crm-sync</td>
-<td>0</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>expense-audit</td>
-<td>2</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>hr-onboarding</td>
-<td>1</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>invoice-processor</td>
-<td>2</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr>
-<td>meeting-ops</td>
-<td>2</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<p><a href="../"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></svg></span> Back to Home</a></p>
 
 
 
